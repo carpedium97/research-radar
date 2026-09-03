@@ -1,0 +1,124 @@
+# ============================================================
+# Research Radar 設定檔
+# 改這個檔案就好，radar.py 不用動
+# ============================================================
+
+# 你的研究輪廓 —— 這段會直接送給 Claude 當作打分依據
+# 寫得越具體，篩選越準。建議每兩三個月回來修一次。
+profile: |
+  使用者是臺北市立聯合醫院松德院區的精神科主治醫師，同時是陽明交通大學
+  神經科學博士生（指導教授為腦連結體與磁共振方法學背景）。
+
+  他的兩條主軸：
+  (1) 中文精神科住院病歷（出院病摘、病程紀錄、護理紀錄）的 LLM 結構化擷取，
+      用於再入院預測與臨床決策支援。特別關心：evaluation framework、
+      cascaded / multi-stage pipeline、evidence grounding、可地端部署的
+      開源模型（Qwen、Llama 系列）、中文或非英語臨床文本、標註方法。
+  (2) 神經影像結合臨床族群，特別是 normative modeling（PCNtoolkit）、
+      影像 foundation model、連結體、digital twin brain，以及成癮
+      （酒精使用疾患、安非他命使用疾患）與思覺失調症的影像與臨床預測。
+
+  他也關心：安非他命誘發精神病轉化為思覺失調症、成癮藥物治療、
+  精神科住院結果預測、臨床試驗方法學。
+
+  他「不」需要：純工程最佳化（推論加速、量化、kernel）、與臨床或精神科
+  無關的通用 NLP、動物實驗、分子生物機轉、影像硬體與序列開發。
+
+# ------------------------------------------------------------
+# 陽明圖書館 EZproxy 前綴
+# 登入圖書館電子資源後看網址列，把 login?url= 之前那段（含 login?url=）貼進來。
+# 常見形式：https://xxxxx.nycu.edu.tw/login?url=
+# 留空的話輸出頁就只會有 DOI 原始連結。
+# ------------------------------------------------------------
+ezproxy_prefix: ""
+
+# 每次回看幾天（排程每天跑，設 3 天可以吃掉週末與延遲）
+lookback_days: 3
+
+# 送進 Claude 打分的上限，控制成本用
+max_score_items: 150
+
+# 分數門檻
+thresholds:
+  read: 7      # 這個分數以上放「值得讀」
+  scan: 5      # 這個分數以上放「掃一眼」，其餘收進摺疊區
+
+# ------------------------------------------------------------
+# PubMed
+# ------------------------------------------------------------
+pubmed:
+  # 整本掃過的期刊。名稱要用 PubMed 的 journal title 或縮寫。
+  # 沒被 PubMed 收錄的刊物寫了也不會壞，只是抓不到東西。
+  journals:
+    - "NPJ digital medicine"
+    - "NEJM AI"
+    - "The Lancet. Digital health"
+    - "Journal of the American Medical Informatics Association"
+    - "Nature medicine"
+    - "NeuroImage"
+    - "Imaging neuroscience"
+    - "Medical image analysis"
+    - "IEEE transactions on medical imaging"
+    - "Human brain mapping"
+    - "Network neuroscience"
+    - "Nature neuroscience"
+    - "Nature methods"
+    - "Biological psychiatry. Cognitive neuroscience and neuroimaging"
+    - "JAMA psychiatry"
+    - "The American journal of psychiatry"
+    - "Molecular psychiatry"
+    - "Addiction"
+    - "Schizophrenia bulletin"
+  journal_max: 200
+
+  # 全 PubMed 範圍的主題掃描（不限期刊）
+  topic_terms:
+    - "large language model"
+    - "clinical natural language processing"
+    - "electronic health record prediction"
+    - "normative modeling"
+    - "psychiatric readmission"
+    - "methamphetamine psychosis"
+    - "digital twin brain"
+    - "foundation model neuroimaging"
+  topic_max: 200
+
+# ------------------------------------------------------------
+# arXiv
+# ------------------------------------------------------------
+arxiv:
+  categories: [cs.CL, cs.LG, eess.IV, q-bio.NC]
+  terms:
+    - "clinical notes"
+    - "electronic health record"
+    - "discharge summary"
+    - "psychiatric"
+    - "medical large language model"
+    - "brain connectivity"
+    - "neuroimaging foundation model"
+  max_results: 150
+
+# ------------------------------------------------------------
+# bioRxiv / medRxiv
+# ------------------------------------------------------------
+rxiv:
+  servers: [medrxiv, biorxiv]
+  categories:
+    - "psychiatry and clinical psychology"
+    - "neuroscience"
+    - "health informatics"
+    - "addiction medicine"
+  # 標題或摘要要命中至少一個才會送去打分（控制成本）
+  keywords:
+    - language model
+    - LLM
+    - clinical note
+    - electronic health record
+    - readmission
+    - normative model
+    - connectome
+    - schizophrenia
+    - methamphetamine
+    - alcohol use disorder
+    - psychosis
+    - functional connectivity
