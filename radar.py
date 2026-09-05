@@ -658,6 +658,11 @@ window.PROXY = {json.dumps(proxy)};
 </script>
 </body></html>"""
 
+    dest = os.path.join(DOCS, outfile)
+    if not items and os.path.exists(dest):
+        log(f"這一輪沒有新論文，保留既有的 docs/{outfile} 不覆蓋")
+        return
+
     arch = os.path.join(DOCS, "archive", os.path.splitext(outfile)[0])
     os.makedirs(arch, exist_ok=True)
     with open(os.path.join(DOCS, outfile), "w", encoding="utf-8") as f:
