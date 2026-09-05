@@ -44,6 +44,26 @@ def log(*a):
     print(*a, file=sys.stderr, flush=True)
 
 
+def as_text(v, default=""):
+    """模型偶爾會把字串欄位回成 list 或 dict，全部壓成字串。"""
+    if isinstance(v, str):
+        return v.strip()
+    if isinstance(v, (list, tuple)):
+        return as_text(v[0], default) if v else default
+    if isinstance(v, dict):
+        return as_text(next(iter(v.values()), ""), default) if v else default
+    if v is None:
+        return default
+    return str(v).strip()
+
+
+def as_int(v, default=0):
+    try:
+        return int(float(as_text(v, str(default))))
+    except Exception:
+        return default
+
+
 def norm_title(t):
     return re.sub(r"[^a-z0-9]+", "", (t or "").lower())[:120]
 
@@ -221,12 +241,21 @@ def fetch_arxiv(cfg, cutoff):
     params = {"search_query": q, "start": 0,
               "max_results": ax.get("max_results", 100),
               "sortBy": "submittedDate", "sortOrder": "descending"}
-    try:
-        r = SESSION.get("http://export.arxiv.org/api/query",
-                        params=params, timeout=90)
-        r.raise_for_status()
-    except Exception as e:
-        log(f"  arxiv 失敗：{e}")
+    hdrs = {"Accept": "application/atom+xml,text/xml;q=0.9,*/*;q=0.8",
+            "User-Agent": f"research-radar/2.0 (mailto:{CONTACT})"}
+    r = None
+    for attempt in range(3):
+        try:
+            r = SESSION.get("https://export.arxiv.org/api/query",
+                            params=params, headers=hdrs, timeout=90)
+            r.raise_for_status()
+            break
+        except Exception as e:
+            log(f"  arxiv 第 {attempt + 1} 次失敗：{e}")
+            r = None
+            time.sleep(5 * (attempt + 1))
+    if r is None:
+        log("  arxiv 這輪放棄，其他來源照常")
         return []
     out = []
     for e in feedparser.parse(r.text).entries:
@@ -368,12 +397,17 @@ def score_items(items, cfg, calib):
         except Exception as e:
             log(f"  打分失敗（第 {i // BATCH + 1} 批）：{e}")
             arr = []
-        by_n = {int(a["n"]): a for a in arr if isinstance(a, dict) and "n" in a}
+        by_n = {}
+        if isinstance(arr, list):
+            for a in arr:
+                if isinstance(a, dict) and "n" in a:
+                    by_n[as_int(a["n"], -1)] = a
         for n, it in enumerate(batch):
             a = by_n.get(n, {})
-            it["score"] = int(a.get("score", 0) or 0)
-            it["why"] = (a.get("why") or "").strip()
-            it["tag"] = (a.get("tag") or tags[-1]).strip()
+            it["score"] = max(0, min(10, as_int(a.get("score"), 0)))
+            it["why"] = as_text(a.get("why"))
+            tag = as_text(a.get("tag"), tags[-1]) or tags[-1]
+            it["tag"] = tag if tag in tags else tags[-1]
             scored.append(it)
         log(f"  已打分 {min(i + BATCH, len(items))}/{len(items)}")
     return scored
