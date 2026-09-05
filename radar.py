@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 """
 Research Radar
-每天抓 PubMed / arXiv / bioRxiv / medRxiv，用 Claude 依個人研究輪廓打分，
+抓 PubMed / arXiv / bioRxiv / medRxiv，用 Claude 依設定檔的評分標準打分，
 產出一頁中文摘要頁面。支援收藏與讚／倒讚回饋。
 
-跑法：  python radar.py
+跑法：
+    python radar.py                 # 用 config.yaml（個人研究雷達，每天）
+    python radar.py teaching.yaml   # 用 teaching.yaml（教學新知，每週）
+
 環境變數：
     ANTHROPIC_API_KEY  （必要）
-    NCBI_API_KEY       （選用，有的話 PubMed 速率上限從 3/秒 提到 10/秒）
+    NCBI_API_KEY       （選用，PubMed 速率上限 3/秒 → 10/秒）
     CONTACT_EMAIL      （選用，NCBI 要求識別身分用）
 """
 
@@ -24,8 +27,6 @@ import feedparser
 import yaml
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-STATE_PATH = os.path.join(ROOT, "state", "seen.json")
-FEEDBACK_PATH = os.path.join(ROOT, "feedback.json")
 DOCS = os.path.join(ROOT, "docs")
 TPE = timezone(timedelta(hours=8))
 
@@ -36,10 +37,8 @@ ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = "claude-haiku-4-5-20251001"
 
 SESSION = requests.Session()
-SESSION.headers["User-Agent"] = "research-radar/1.1 (personal literature alert)"
+SESSION.headers["User-Agent"] = "research-radar/2.0 (personal literature alert)"
 
-
-# ---------------------------------------------------------------- utilities
 
 def log(*a):
     print(*a, file=sys.stderr, flush=True)
@@ -49,30 +48,30 @@ def norm_title(t):
     return re.sub(r"[^a-z0-9]+", "", (t or "").lower())[:120]
 
 
-def load_state():
+# ---------------------------------------------------------------- state
+
+def load_state(path):
     try:
-        with open(STATE_PATH, encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             d = json.load(f)
             return set(d.get("ids", [])), set(d.get("titles", []))
     except Exception:
         return set(), set()
 
 
-def save_state(ids, titles):
-    os.makedirs(os.path.dirname(STATE_PATH), exist_ok=True)
-    with open(STATE_PATH, "w", encoding="utf-8") as f:
-        json.dump({"ids": sorted(ids)[-6000:],
-                   "titles": sorted(titles)[-6000:]}, f, ensure_ascii=False)
+def save_state(path, ids, titles):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump({"ids": sorted(ids)[-8000:],
+                   "titles": sorted(titles)[-8000:]}, f, ensure_ascii=False)
 
 
-def load_feedback():
-    """讀 feedback.json（從網頁匯出、手動貼回來的）。沒有就回空。"""
+def load_feedback(path):
     try:
-        with open(FEEDBACK_PATH, encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
-        up = [d for d in data if d.get("v") == 1]
-        dn = [d for d in data if d.get("v") == -1]
-        return up[-20:], dn[-20:]
+        return ([d for d in data if d.get("v") == 1][-20:],
+                [d for d in data if d.get("v") == -1][-20:])
     except Exception:
         return [], []
 
@@ -113,6 +112,8 @@ def _efetch(pmids):
                 parts.append(f"{lbl}: {txt}" if lbl else txt)
             journal = (art.findtext(".//Journal/ISOAbbreviation")
                        or art.findtext(".//Journal/Title") or "")
+            ptypes = [p.text for p in art.findall(".//PublicationType")
+                      if p.text]
             doi = ""
             for aid in art.findall(".//ArticleId"):
                 if aid.get("IdType") == "doi":
@@ -122,6 +123,7 @@ def _efetch(pmids):
             out.append({
                 "id": f"pmid:{pmid}", "source": "PubMed", "venue": journal,
                 "title": title, "abstract": " ".join(parts), "doi": doi,
+                "ptypes": ptypes,
                 "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/", "date": "",
             })
         time.sleep(0.4 if NCBI_KEY else 0.8)
@@ -129,25 +131,35 @@ def _efetch(pmids):
 
 
 def fetch_pubmed(cfg):
+    """支援兩種寫法：
+       新：pubmed.queries = [{name, term, max}, ...]（可直接寫 PubMed 語法）
+       舊：pubmed.journals / pubmed.topic_terms
+    """
     days = cfg["lookback_days"]
-    pm = cfg["pubmed"]
+    pm = cfg.get("pubmed") or {}
+    blocks = []
+    if pm.get("queries"):
+        blocks = [(q.get("name", "query"), q["term"], q.get("max", 200))
+                  for q in pm["queries"]]
+    else:
+        if pm.get("journals"):
+            blocks.append(("期刊掃描",
+                           "(" + " OR ".join(f'"{j}"[Journal]'
+                                             for j in pm["journals"]) + ")",
+                           pm.get("journal_max", 200)))
+        if pm.get("topic_terms"):
+            blocks.append(("主題掃描",
+                           "(" + " OR ".join(f'"{t}"[Title/Abstract]'
+                                             for t in pm["topic_terms"]) + ")",
+                           pm.get("topic_max", 200)))
     ids = []
-    if pm.get("journals"):
-        q = " OR ".join(f'"{j}"[Journal]' for j in pm["journals"])
+    for name, term, mx in blocks:
         try:
-            got = _esearch(f"({q})", days, pm.get("journal_max", 200))
-            log(f"  pubmed 期刊掃描 {len(got)} 筆")
+            got = _esearch(term, days, mx)
+            log(f"  pubmed／{name}：{len(got)} 筆")
             ids += got
         except Exception as e:
-            log(f"  pubmed 期刊查詢失敗：{e}")
-    if pm.get("topic_terms"):
-        q = " OR ".join(f'"{t}"[Title/Abstract]' for t in pm["topic_terms"])
-        try:
-            got = _esearch(f"({q})", days, pm.get("topic_max", 200))
-            log(f"  pubmed 主題掃描 {len(got)} 筆")
-            ids += got
-        except Exception as e:
-            log(f"  pubmed 主題查詢失敗：{e}")
+            log(f"  pubmed／{name} 失敗：{e}")
     ids = list(dict.fromkeys(ids))
     if not ids:
         return []
@@ -177,24 +189,23 @@ def fetch_arxiv(cfg, cutoff):
     except Exception as e:
         log(f"  arxiv 失敗：{e}")
         return []
-    feed = feedparser.parse(r.text)
     out = []
-    for e in feed.entries:
+    for e in feedparser.parse(r.text).entries:
         try:
             pub = datetime(*e.published_parsed[:6], tzinfo=timezone.utc)
         except Exception:
             continue
         if pub < cutoff:
             continue
-        aid = e.id.rsplit("/", 1)[-1]
         out.append({
-            "id": f"arxiv:{aid}", "source": "arXiv",
+            "id": f"arxiv:{e.id.rsplit('/', 1)[-1]}", "source": "arXiv",
             "venue": ", ".join(t.term for t in getattr(e, "tags", [])[:3]),
             "title": re.sub(r"\s+", " ", e.title).strip(),
             "abstract": re.sub(r"\s+", " ", e.summary).strip(),
-            "doi": "", "url": e.link, "date": pub.strftime("%Y-%m-%d"),
+            "doi": "", "ptypes": [], "url": e.link,
+            "date": pub.strftime("%Y-%m-%d"),
         })
-    log(f"  arxiv {len(out)} 筆")
+    log(f"  arxiv：{len(out)} 筆")
     return out
 
 
@@ -202,10 +213,12 @@ def fetch_arxiv(cfg, cutoff):
 
 def fetch_rxiv(cfg, start, end):
     rx = cfg.get("rxiv") or {}
+    if not rx.get("servers"):
+        return []
     cats = {c.lower() for c in rx.get("categories", [])}
     kws = [k.lower() for k in rx.get("keywords", [])]
     out = []
-    for server in rx.get("servers", []):
+    for server in rx["servers"]:
         cursor, total, seen_n = 0, None, 0
         while True:
             url = f"https://api.biorxiv.org/details/{server}/{start}/{end}/{cursor}"
@@ -217,16 +230,14 @@ def fetch_rxiv(cfg, start, end):
             coll = j.get("collection") or []
             if not coll:
                 break
-            msg = (j.get("messages") or [{}])[0]
             if total is None:
                 try:
-                    total = int(msg.get("total") or 0)
+                    total = int((j.get("messages") or [{}])[0].get("total") or 0)
                 except Exception:
                     total = 0
             for p in coll:
                 seen_n += 1
-                cat = (p.get("category") or "").lower()
-                if cats and cat not in cats:
+                if cats and (p.get("category") or "").lower() not in cats:
                     continue
                 blob = f"{p.get('title','')} {p.get('abstract','')}".lower()
                 if kws and not any(k in blob for k in kws):
@@ -237,18 +248,16 @@ def fetch_rxiv(cfg, start, end):
                     "venue": p.get("category", ""),
                     "title": (p.get("title") or "").strip(),
                     "abstract": (p.get("abstract") or "").strip(),
-                    "doi": doi,
+                    "doi": doi, "ptypes": [],
                     "url": f"https://doi.org/{doi}" if doi else "",
                     "date": p.get("date", ""),
                 })
             cursor += 100
-            if total and cursor >= total:
-                break
-            if cursor > 3000:
+            if (total and cursor >= total) or cursor > 3000:
                 break
             time.sleep(0.3)
-        n = len([x for x in out if x["source"] == server])
-        log(f"  {server} 掃過 {seen_n} 筆，留下 {n} 筆")
+        log(f"  {server}：掃過 {seen_n} 筆，留下 "
+            f"{len([x for x in out if x['source'] == server])} 筆")
     return out
 
 
@@ -258,53 +267,58 @@ def calibration_block(up, dn):
     if not up and not dn:
         return ""
     def fmt(rows):
-        return "\n".join(
-            f"  - {r.get('title','')}（{r.get('venue','')}）" for r in rows)
+        return "\n".join(f"  - {r.get('title','')}（{r.get('venue','')}）"
+                         for r in rows)
     b = ["\n以下是他過去對推薦結果的實際回饋。這是最重要的校準依據，"
          "請讓你的評分向這個方向靠攏：\n"]
     if up:
         b.append("【他明確認可、覺得推得好的】\n" + fmt(up))
     if dn:
         b.append("\n【他明確覺得推錯、不該出現在高分區的】\n" + fmt(dn) +
-                 "\n（注意：這些不是壞論文，只是對他沒用。"
-                 "遇到同類型的，分數要壓低。）")
+                 "\n（這些不是壞論文，只是對他沒用。同類型的分數要壓低。）")
     return "\n".join(b) + "\n"
 
 
-def score_items(items, profile, calib):
+DEFAULT_RUBRIC = ("10 = 一定要讀；7-9 = 直接相關，值得讀；"
+                  "5-6 = 邊緣相關，掃標題就好；0-4 = 不相關。"
+                  "請嚴格，大多數論文應該落在 0-4。")
+DEFAULT_WHY = ("一句正體中文（40 字以內），說明這篇對他的意義，"
+               "不要重述摘要。")
+
+
+def score_items(items, cfg, calib):
     if not items:
         return []
-    scored = []
-    BATCH = 12
+    profile = cfg["profile"]
+    rubric = cfg.get("rubric") or DEFAULT_RUBRIC
+    why_hint = cfg.get("why_instruction") or DEFAULT_WHY
+    tags = cfg.get("tags") or ["其他"]
+    scored, BATCH = [], 10
     for i in range(0, len(items), BATCH):
         batch = items[i:i + BATCH]
         listing = "\n\n".join(
-            f"[{n}]\n來源：{it['source']} / {it['venue']}\n"
-            f"標題：{it['title']}\n"
-            f"摘要：{(it['abstract'] or '(無摘要)')[:1600]}"
+            f"[{n}]\n期刊：{it['venue']}\n"
+            + (f"類型：{', '.join(it.get('ptypes', [])[:4])}\n"
+               if it.get("ptypes") else "")
+            + f"標題：{it['title']}\n"
+              f"摘要：{(it['abstract'] or '(無摘要)')[:1800]}"
             for n, it in enumerate(batch))
         prompt = (
-            f"以下是這位研究者的輪廓：\n\n{profile}\n{calib}\n"
-            f"請針對下面每一篇論文評估與他的相關性。\n\n{listing}\n\n"
+            f"{profile}\n{calib}\n"
+            f"請針對下面每一篇論文評分。\n\n{listing}\n\n"
             "請只輸出一個 JSON 陣列，不要有任何前後說明或 markdown 標記。"
             "每個元素包含：\n"
             '  "n": 編號（整數）\n'
-            '  "score": 0-10 的整數。10 = 他這週一定要讀；'
-            "7-9 = 直接相關，值得讀；5-6 = 邊緣相關，掃標題就好；"
-            "0-4 = 不相關。請嚴格，大多數論文應該落在 0-4，"
-            "9 分以上一天不應該超過兩篇。\n"
-            '  "why": 一句正體中文（40 字以內），說明這篇對「他」的意義，'
-            "不要重述摘要，要講清楚可以拿來用在哪裡或為什麼該注意。\n"
-            '  "tag": 從 ["臨床文本LLM","神經影像方法","成癮","精神病理預測",'
-            '"臨床試驗方法","其他"] 擇一。\n'
-        )
+            f'  "score": 0-10 的整數。{rubric}\n'
+            f'  "why": {why_hint}\n'
+            f'  "tag": 從 {json.dumps(tags, ensure_ascii=False)} 擇一。\n')
         try:
             r = SESSION.post(
                 "https://api.anthropic.com/v1/messages",
                 headers={"x-api-key": ANTHROPIC_KEY,
                          "anthropic-version": "2023-06-01",
                          "content-type": "application/json"},
-                json={"model": MODEL, "max_tokens": 2000,
+                json={"model": MODEL, "max_tokens": 3000,
                       "messages": [{"role": "user", "content": prompt}]},
                 timeout=180)
             r.raise_for_status()
@@ -313,16 +327,16 @@ def score_items(items, profile, calib):
                          flags=re.MULTILINE).strip()
             arr = json.loads(txt)
         except Exception as e:
-            log(f"  打分失敗（第 {i//BATCH + 1} 批）：{e}")
+            log(f"  打分失敗（第 {i // BATCH + 1} 批）：{e}")
             arr = []
         by_n = {int(a["n"]): a for a in arr if isinstance(a, dict) and "n" in a}
         for n, it in enumerate(batch):
             a = by_n.get(n, {})
             it["score"] = int(a.get("score", 0) or 0)
             it["why"] = (a.get("why") or "").strip()
-            it["tag"] = (a.get("tag") or "其他").strip()
+            it["tag"] = (a.get("tag") or tags[-1]).strip()
             scored.append(it)
-        log(f"  已打分 {min(i+BATCH, len(items))}/{len(items)}")
+        log(f"  已打分 {min(i + BATCH, len(items))}/{len(items)}")
     return scored
 
 
@@ -346,6 +360,7 @@ header{padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.
 h1{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;
   font-size:1.5rem;margin:0 0 .2rem;letter-spacing:-.01em}
 .stamp{color:var(--muted);font-size:.82rem}
+.stamp a{margin-left:.6rem}
 h2{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;font-size:1.05rem;
   margin:2.4rem 0 .2rem;color:var(--accent)}
 h2.saved{color:var(--save)}
@@ -382,27 +397,20 @@ footer button{background:none;border:1px solid var(--rule);border-radius:3px;
 """
 
 JS = """
-const KS='radar.saved', KF='radar.feedback';
+const KS=window.NS+'.saved', KF=window.NS+'.feedback';
 const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}};
 const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){
   alert('儲存空間寫入失敗，收藏可能不會保留。')}};
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,
   c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-function actsHtml(id){
-  return '<div class="acts" data-id="'+esc(id)+'">'
-    +'<button class="save">收藏</button>'
-    +'<button class="up">讚</button>'
-    +'<button class="dn">倒讚</button></div>';
-}
-
 function linksHtml(it){
   let h='';
   if(it.url) h+='<a href="'+esc(it.url)+'">'+
     (it.source==='PubMed'?'PubMed':it.source==='arXiv'?'arXiv':'預印本')+'</a>';
   if(it.doi) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
-  if(it.doi && window.PROXY) h+='<a href="'+esc(window.PROXY+'https://doi.org/'+it.doi)+
-    '">全文（校內）</a>';
+  if(it.doi && window.PROXY) h+='<a href="'+
+    esc(window.PROXY+'https://doi.org/'+it.doi)+'">全文（校內）</a>';
   return '<div class="links">'+h+'</div>';
 }
 
@@ -411,17 +419,18 @@ function itemHtml(it){
   return '<div class="item"><div class="sc">'+esc(it.score)+'</div><div>'
     +'<p class="ttl">'+esc(it.title)+'</p>'
     +(it.why?'<p class="why">'+esc(it.why)+'</p>':'')
-    +'<p class="meta">'+esc(meta)+'</p>'
-    +linksHtml(it)+actsHtml(it.id)+'</div></div>';
+    +'<p class="meta">'+esc(meta)+'</p>'+linksHtml(it)
+    +'<div class="acts" data-id="'+esc(it.id)+'">'
+    +'<button class="save">收藏</button><button class="up">讚</button>'
+    +'<button class="dn">倒讚</button></div></div></div>';
 }
 
 function renderSaved(){
   const box=document.getElementById('savedbox');
-  const saved=rd(KS);
-  const arr=Object.values(saved).sort((a,b)=>(b._at||0)-(a._at||0));
-  if(!arr.length){box.innerHTML='';return;}
-  box.innerHTML='<h2 class="saved">待讀清單（'+arr.length+'）</h2>'
-    +arr.map(itemHtml).join('');
+  const arr=Object.values(rd(KS)).sort((a,b)=>(b._at||0)-(a._at||0));
+  box.innerHTML = arr.length
+    ? '<h2 class="saved">待讀清單（'+arr.length+'）</h2>'+arr.map(itemHtml).join('')
+    : '';
   paint();
 }
 
@@ -429,8 +438,9 @@ function paint(){
   const saved=rd(KS), fb=rd(KF);
   document.querySelectorAll('.acts').forEach(el=>{
     const id=el.dataset.id, v=(fb[id]||{}).v;
-    el.querySelector('.save').classList.toggle('on', !!saved[id]);
-    el.querySelector('.save').textContent = saved[id]?'已收藏':'收藏';
+    const sb=el.querySelector('.save');
+    sb.classList.toggle('on', !!saved[id]);
+    sb.textContent = saved[id]?'已收藏':'收藏';
     el.querySelector('.up').classList.toggle('on', v===1);
     el.querySelector('.dn').classList.toggle('on', v===-1);
   });
@@ -439,44 +449,40 @@ function paint(){
 document.addEventListener('click', e=>{
   const btn=e.target.closest('.acts button'); if(!btn) return;
   const id=btn.closest('.acts').dataset.id;
-  const it=(window.ITEMS||{})[id] || (rd(KS)[id]);
+  const it=(window.ITEMS||{})[id] || rd(KS)[id];
   if(!it) return;
   if(btn.classList.contains('save')){
     const s=rd(KS);
     if(s[id]) delete s[id]; else s[id]=Object.assign({},it,{_at:Date.now()});
     wr(KS,s); renderSaved();
   } else {
-    const v=btn.classList.contains('up')?1:-1;
-    const f=rd(KF);
+    const v=btn.classList.contains('up')?1:-1, f=rd(KF);
     if((f[id]||{}).v===v) delete f[id];
     else f[id]={v:v,title:it.title,venue:it.venue,tag:it.tag,at:Date.now()};
-    wr(KF,f);
+    wr(KF,f); paint();
   }
-  paint();
 });
 
-function exportFb(){
-  const f=rd(KF);
-  const arr=Object.entries(f).map(([id,o])=>({id:id,v:o.v,title:o.title,
-    venue:o.venue,tag:o.tag}));
-  const txt=JSON.stringify(arr,null,1);
-  const ta=document.getElementById('dump');
-  ta.style.display='block'; ta.value=txt; ta.select();
-  if(navigator.clipboard) navigator.clipboard.writeText(txt).then(
-    ()=>{document.getElementById('expbtn').textContent='已複製 '+arr.length+' 筆回饋';},
-    ()=>{});
-}
-
 window.addEventListener('DOMContentLoaded',()=>{
-  renderSaved(); paint();
-  document.getElementById('expbtn').addEventListener('click', exportFb);
+  renderSaved();
+  document.getElementById('expbtn').addEventListener('click',()=>{
+    const arr=Object.entries(rd(KF)).map(([id,o])=>({id:id,v:o.v,
+      title:o.title,venue:o.venue,tag:o.tag}));
+    const txt=JSON.stringify(arr,null,1), ta=document.getElementById('dump');
+    ta.style.display='block'; ta.value=txt; ta.select();
+    if(navigator.clipboard) navigator.clipboard.writeText(txt).then(()=>{
+      document.getElementById('expbtn').textContent='已複製 '+arr.length+' 筆回饋';},()=>{});
+  });
 });
 """
 
 
 def render(items, cfg):
     proxy = (cfg.get("ezproxy_prefix") or "").strip()
-    th = cfg["thresholds"]
+    th = cfg.get("thresholds", {"read": 7, "scan": 5})
+    title = cfg.get("title", "研究雷達")
+    ns = cfg.get("namespace", "radar")
+    outfile = cfg.get("output", "index.html")
     items.sort(key=lambda x: -x["score"])
     read = [i for i in items if i["score"] >= th["read"]]
     scan = [i for i in items if th["scan"] <= i["score"] < th["read"]]
@@ -486,9 +492,8 @@ def render(items, cfg):
     def links_html(it):
         out = []
         if it.get("url"):
-            label = {"PubMed": "PubMed", "arXiv": "arXiv"}.get(
-                it["source"], "預印本")
-            out.append(f'<a href="{html.escape(it["url"])}">{label}</a>')
+            lbl = {"PubMed": "PubMed", "arXiv": "arXiv"}.get(it["source"], "預印本")
+            out.append(f'<a href="{html.escape(it["url"])}">{lbl}</a>')
         if it.get("doi"):
             d = f"https://doi.org/{it['doi']}"
             out.append(f'<a href="{html.escape(d)}">DOI</a>')
@@ -497,11 +502,11 @@ def render(items, cfg):
         return f'<div class="links">{"".join(out)}</div>'
 
     def item_html(it, hot):
-        cls = "sc hi" if hot else "sc"
         meta = " · ".join(x for x in [it.get("tag"), it.get("venue"),
                                       it.get("date")] if x)
         return (
-            f'<div class="item"><div class="{cls}">{it["score"]}</div><div>'
+            f'<div class="item"><div class="{"sc hi" if hot else "sc"}">'
+            f'{it["score"]}</div><div>'
             f'<p class="ttl">{html.escape(it["title"])}</p>'
             + (f'<p class="why">{html.escape(it["why"])}</p>'
                if it.get("why") else "")
@@ -510,18 +515,33 @@ def render(items, cfg):
             + f'<div class="acts" data-id="{html.escape(it["id"])}">'
               '<button class="save">收藏</button>'
               '<button class="up">讚</button>'
-              '<button class="dn">倒讚</button></div>'
-            + "</div></div>")
+              '<button class="dn">倒讚</button></div></div></div>')
 
     body = []
-    if read:
-        body.append("<h2>值得讀</h2>")
-        body += [item_html(i, True) for i in read]
-    if scan:
-        body.append("<h2>掃一眼</h2>")
-        body += [item_html(i, False) for i in scan]
-    if not read and not scan:
-        body.append('<p class="empty">今天沒有命中的東西。</p>')
+    if cfg.get("group_by") == "tag":
+        pool = read + scan
+        order = cfg.get("tags", [])
+        for t in order:
+            grp = [i for i in pool if i.get("tag") == t]
+            if not grp:
+                continue
+            body.append(f"<h2>{html.escape(t)}</h2>")
+            body += [item_html(i, i["score"] >= th["read"]) for i in grp]
+        misc = [i for i in pool if i.get("tag") not in order]
+        if misc:
+            body.append("<h2>其他</h2>")
+            body += [item_html(i, i["score"] >= th["read"]) for i in misc]
+        if not pool:
+            body.append('<p class="empty">這一輪沒有達到門檻的東西。</p>')
+    else:
+        if read:
+            body.append("<h2>值得讀</h2>")
+            body += [item_html(i, True) for i in read]
+        if scan:
+            body.append("<h2>掃一眼</h2>")
+            body += [item_html(i, False) for i in scan]
+        if not read and not scan:
+            body.append('<p class="empty">今天沒有命中的東西。</p>')
     if rest:
         body.append(f'<details><summary>其餘 {len(rest)} 篇（低相關）</summary>')
         body += [item_html(i, False) for i in rest[:60]]
@@ -531,20 +551,22 @@ def render(items, cfg):
             "score", "source")
     lookup = {it["id"]: {k: it.get(k, "") for k in keep} for it in items}
     items_json = json.dumps(lookup, ensure_ascii=False).replace("<", "\\u003c")
-    proxy_json = json.dumps(proxy)
 
+    nav = ""
+    for label, href in (cfg.get("siblings") or {}).items():
+        nav += f'<a href="{html.escape(href)}">{html.escape(label)}</a>'
     stamp = (f"{now:%Y 年 %m 月 %d 日} · 掃過 {len(items)} 篇 · "
-             f"值得讀 {len(read)} 篇")
+             f"值得讀 {len(read)} 篇{nav}")
 
     page = f"""<!doctype html><html lang="zh-Hant"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Radar">
+<meta name="apple-mobile-web-app-title" content="{html.escape(title)}">
 <meta name="theme-color" content="#fbfaf7">
-<title>研究雷達 {now:%m/%d}</title>
+<title>{html.escape(title)} {now:%m/%d}</title>
 <style>{CSS}</style></head><body><div class="wrap">
-<header><h1>研究雷達</h1>
+<header><h1>{html.escape(title)}</h1>
 <div class="stamp">{stamp}</div></header>
 <section id="savedbox"></section>
 {''.join(body)}
@@ -552,59 +574,62 @@ def render(items, cfg):
 <button id="expbtn">匯出回饋（複製到剪貼簿）</button>
 <textarea id="dump" readonly></textarea>
 <p>收藏與回饋存在這台裝置的瀏覽器裡，換裝置不會同步。
-資料來源：PubMed、arXiv、bioRxiv、medRxiv。分數由 Claude 依 config.yaml
-的研究輪廓評定，僅供分流參考，不代表論文品質。</p>
+分數由 Claude 依設定檔的評分標準評定，僅供分流參考，不代表論文品質。</p>
 </footer>
 </div>
 <script>
+window.NS = {json.dumps(ns)};
 window.ITEMS = {items_json};
-window.PROXY = {proxy_json};
+window.PROXY = {json.dumps(proxy)};
 {JS}
 </script>
 </body></html>"""
 
-    os.makedirs(os.path.join(DOCS, "archive"), exist_ok=True)
-    with open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8") as f:
+    arch = os.path.join(DOCS, "archive", os.path.splitext(outfile)[0])
+    os.makedirs(arch, exist_ok=True)
+    with open(os.path.join(DOCS, outfile), "w", encoding="utf-8") as f:
         f.write(page)
-    with open(os.path.join(DOCS, "archive", f"{now:%Y-%m-%d}.html"),
-              "w", encoding="utf-8") as f:
+    with open(os.path.join(arch, f"{now:%Y-%m-%d}.html"), "w",
+              encoding="utf-8") as f:
         f.write(page)
-    log(f"已輸出 docs/index.html（值得讀 {len(read)}、掃一眼 {len(scan)}）")
+    log(f"已輸出 docs/{outfile}（值得讀 {len(read)}、掃一眼 {len(scan)}）")
 
 
 # ---------------------------------------------------------------- main
 
 def main():
     if not ANTHROPIC_KEY:
-        log("缺少 ANTHROPIC_API_KEY")
-        sys.exit(1)
-    with open(os.path.join(ROOT, "config.yaml"), encoding="utf-8") as f:
+        sys.exit("缺少 ANTHROPIC_API_KEY")
+    cfg_name = sys.argv[1] if len(sys.argv) > 1 else "config.yaml"
+    with open(os.path.join(ROOT, cfg_name), encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
+    log(f"設定檔：{cfg_name}")
+
+    state_path = os.path.join(ROOT, "state",
+                              cfg.get("state", "seen.json"))
+    fb_path = os.path.join(ROOT, cfg.get("feedback", "feedback.json"))
 
     days = cfg["lookback_days"]
     now = datetime.now(timezone.utc)
     cutoff = now - timedelta(days=days)
 
-    up, dn = load_feedback()
+    up, dn = load_feedback(fb_path)
     if up or dn:
         log(f"讀到回饋：讚 {len(up)}、倒讚 {len(dn)}")
     calib = calibration_block(up, dn)
 
     log("抓取中…")
-    items = []
-    items += fetch_pubmed(cfg)
+    items = fetch_pubmed(cfg)
     items += fetch_arxiv(cfg, cutoff)
-    items += fetch_rxiv(cfg,
-                        (now - timedelta(days=days)).strftime("%Y-%m-%d"),
+    items += fetch_rxiv(cfg, (now - timedelta(days=days)).strftime("%Y-%m-%d"),
                         now.strftime("%Y-%m-%d"))
 
-    seen_ids, seen_titles = load_state()
+    seen_ids, seen_titles = load_state(state_path)
     fresh, ids_now, titles_now = [], set(), set()
     for it in items:
         nt = norm_title(it["title"])
-        if it["id"] in seen_ids or nt in seen_titles:
-            continue
-        if it["id"] in ids_now or nt in titles_now:
+        if (it["id"] in seen_ids or nt in seen_titles
+                or it["id"] in ids_now or nt in titles_now):
             continue
         ids_now.add(it["id"])
         titles_now.add(nt)
@@ -616,9 +641,8 @@ def main():
         log(f"超過上限，只送前 {cap} 篇打分")
         fresh = fresh[:cap]
 
-    scored = score_items(fresh, cfg["profile"], calib)
-    render(scored, cfg)
-    save_state(seen_ids | ids_now, seen_titles | titles_now)
+    render(score_items(fresh, cfg, calib), cfg)
+    save_state(state_path, seen_ids | ids_now, seen_titles | titles_now)
 
 
 if __name__ == "__main__":
