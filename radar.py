@@ -2,7 +2,7 @@
 """
 Research Radar
 每天抓 PubMed / arXiv / bioRxiv / medRxiv，用 Claude 依個人研究輪廓打分，
-產出一頁中文摘要頁面。
+產出一頁中文摘要頁面。支援收藏與讚／倒讚回饋。
 
 跑法：  python radar.py
 環境變數：
@@ -17,7 +17,6 @@ import sys
 import json
 import time
 import html
-import urllib.parse
 from datetime import datetime, timedelta, timezone
 
 import requests
@@ -26,6 +25,7 @@ import yaml
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 STATE_PATH = os.path.join(ROOT, "state", "seen.json")
+FEEDBACK_PATH = os.path.join(ROOT, "feedback.json")
 DOCS = os.path.join(ROOT, "docs")
 TPE = timezone(timedelta(hours=8))
 
@@ -36,7 +36,7 @@ ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = "claude-haiku-4-5-20251001"
 
 SESSION = requests.Session()
-SESSION.headers["User-Agent"] = "research-radar/1.0 (personal literature alert)"
+SESSION.headers["User-Agent"] = "research-radar/1.1 (personal literature alert)"
 
 
 # ---------------------------------------------------------------- utilities
@@ -60,10 +60,21 @@ def load_state():
 
 def save_state(ids, titles):
     os.makedirs(os.path.dirname(STATE_PATH), exist_ok=True)
-    # 只留最近 6000 筆，避免檔案無限膨脹
     with open(STATE_PATH, "w", encoding="utf-8") as f:
         json.dump({"ids": sorted(ids)[-6000:],
                    "titles": sorted(titles)[-6000:]}, f, ensure_ascii=False)
+
+
+def load_feedback():
+    """讀 feedback.json（從網頁匯出、手動貼回來的）。沒有就回空。"""
+    try:
+        with open(FEEDBACK_PATH, encoding="utf-8") as f:
+            data = json.load(f)
+        up = [d for d in data if d.get("v") == 1]
+        dn = [d for d in data if d.get("v") == -1]
+        return up[-20:], dn[-20:]
+    except Exception:
+        return [], []
 
 
 # ---------------------------------------------------------------- PubMed
@@ -109,14 +120,9 @@ def _efetch(pmids):
             if not title:
                 continue
             out.append({
-                "id": f"pmid:{pmid}",
-                "source": "PubMed",
-                "venue": journal,
-                "title": title,
-                "abstract": " ".join(parts),
-                "doi": doi,
-                "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
-                "date": "",
+                "id": f"pmid:{pmid}", "source": "PubMed", "venue": journal,
+                "title": title, "abstract": " ".join(parts), "doi": doi,
+                "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/", "date": "",
             })
         time.sleep(0.4 if NCBI_KEY else 0.8)
     return out
@@ -182,14 +188,11 @@ def fetch_arxiv(cfg, cutoff):
             continue
         aid = e.id.rsplit("/", 1)[-1]
         out.append({
-            "id": f"arxiv:{aid}",
-            "source": "arXiv",
+            "id": f"arxiv:{aid}", "source": "arXiv",
             "venue": ", ".join(t.term for t in getattr(e, "tags", [])[:3]),
             "title": re.sub(r"\s+", " ", e.title).strip(),
             "abstract": re.sub(r"\s+", " ", e.summary).strip(),
-            "doi": "",
-            "url": e.link,
-            "date": pub.strftime("%Y-%m-%d"),
+            "doi": "", "url": e.link, "date": pub.strftime("%Y-%m-%d"),
         })
     log(f"  arxiv {len(out)} 筆")
     return out
@@ -205,8 +208,7 @@ def fetch_rxiv(cfg, start, end):
     for server in rx.get("servers", []):
         cursor, total, seen_n = 0, None, 0
         while True:
-            url = (f"https://api.biorxiv.org/details/{server}/"
-                   f"{start}/{end}/{cursor}")
+            url = f"https://api.biorxiv.org/details/{server}/{start}/{end}/{cursor}"
             try:
                 j = SESSION.get(url, timeout=60).json()
             except Exception as e:
@@ -231,8 +233,7 @@ def fetch_rxiv(cfg, start, end):
                     continue
                 doi = p.get("doi", "")
                 out.append({
-                    "id": f"{server}:{doi}",
-                    "source": server,
+                    "id": f"{server}:{doi}", "source": server,
                     "venue": p.get("category", ""),
                     "title": (p.get("title") or "").strip(),
                     "abstract": (p.get("abstract") or "").strip(),
@@ -246,13 +247,31 @@ def fetch_rxiv(cfg, start, end):
             if cursor > 3000:
                 break
             time.sleep(0.3)
-        log(f"  {server} 掃過 {seen_n} 筆，留下 {len([x for x in out if x['source']==server])} 筆")
+        n = len([x for x in out if x["source"] == server])
+        log(f"  {server} 掃過 {seen_n} 筆，留下 {n} 筆")
     return out
 
 
 # ---------------------------------------------------------------- scoring
 
-def score_items(items, profile):
+def calibration_block(up, dn):
+    if not up and not dn:
+        return ""
+    def fmt(rows):
+        return "\n".join(
+            f"  - {r.get('title','')}（{r.get('venue','')}）" for r in rows)
+    b = ["\n以下是他過去對推薦結果的實際回饋。這是最重要的校準依據，"
+         "請讓你的評分向這個方向靠攏：\n"]
+    if up:
+        b.append("【他明確認可、覺得推得好的】\n" + fmt(up))
+    if dn:
+        b.append("\n【他明確覺得推錯、不該出現在高分區的】\n" + fmt(dn) +
+                 "\n（注意：這些不是壞論文，只是對他沒用。"
+                 "遇到同類型的，分數要壓低。）")
+    return "\n".join(b) + "\n"
+
+
+def score_items(items, profile, calib):
     if not items:
         return []
     scored = []
@@ -265,14 +284,15 @@ def score_items(items, profile):
             f"摘要：{(it['abstract'] or '(無摘要)')[:1600]}"
             for n, it in enumerate(batch))
         prompt = (
-            f"以下是這位研究者的輪廓：\n\n{profile}\n\n"
+            f"以下是這位研究者的輪廓：\n\n{profile}\n{calib}\n"
             f"請針對下面每一篇論文評估與他的相關性。\n\n{listing}\n\n"
             "請只輸出一個 JSON 陣列，不要有任何前後說明或 markdown 標記。"
             "每個元素包含：\n"
             '  "n": 編號（整數）\n'
             '  "score": 0-10 的整數。10 = 他這週一定要讀；'
             "7-9 = 直接相關，值得讀；5-6 = 邊緣相關，掃標題就好；"
-            "0-4 = 不相關。請嚴格，大多數論文應該落在 0-4。\n"
+            "0-4 = 不相關。請嚴格，大多數論文應該落在 0-4，"
+            "9 分以上一天不應該超過兩篇。\n"
             '  "why": 一句正體中文（40 字以內），說明這篇對「他」的意義，'
             "不要重述摘要，要講清楚可以拿來用在哪裡或為什麼該注意。\n"
             '  "tag": 從 ["臨床文本LLM","神經影像方法","成癮","精神病理預測",'
@@ -311,11 +331,11 @@ def score_items(items, profile):
 CSS = """
 :root{
   --paper:#fbfaf7; --ink:#16181c; --muted:#6b7280; --rule:#e3e0d8;
-  --accent:#1b3a5c; --hot:#8c2f24;
+  --accent:#1b3a5c; --hot:#8c2f24; --save:#9a6b12;
 }
 @media (prefers-color-scheme:dark){
   :root{ --paper:#14161a; --ink:#e8e6e1; --muted:#8b8f98; --rule:#282c33;
-         --accent:#8fb4d9; --hot:#e0796a; }
+         --accent:#8fb4d9; --hot:#e0796a; --save:#d3a44a; }
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);
@@ -328,7 +348,7 @@ h1{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;
 .stamp{color:var(--muted);font-size:.82rem}
 h2{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;font-size:1.05rem;
   margin:2.4rem 0 .2rem;color:var(--accent)}
-h2 + .note{color:var(--muted);font-size:.78rem;margin:0 0 .4rem}
+h2.saved{color:var(--save)}
 .item{display:grid;grid-template-columns:2.4rem 1fr;gap:.85rem;
   padding:1.05rem 0;border-top:1px solid var(--rule)}
 .sc{font-family:Georgia,serif;font-size:1.5rem;line-height:1.15;
@@ -341,39 +361,117 @@ h2 + .note{color:var(--muted);font-size:.78rem;margin:0 0 .4rem}
 .links a{color:var(--accent);font-size:.8rem;margin-right:.9rem;
   text-underline-offset:2px}
 a{color:var(--accent)}
+.acts{margin-top:.5rem;display:flex;gap:1.1rem;align-items:center}
+.acts button{background:none;border:0;padding:0;font:inherit;font-size:.8rem;
+  color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.acts button.on{font-weight:600}
+.acts .save.on{color:var(--save)}
+.acts .up.on{color:var(--accent)}
+.acts .dn.on{color:var(--hot)}
 details{margin-top:2rem;border-top:1px solid var(--rule);padding-top:.8rem}
 summary{cursor:pointer;color:var(--muted);font-size:.86rem}
-details .item{grid-template-columns:2.4rem 1fr}
 .empty{color:var(--muted);padding:2rem 0}
 footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);
   color:var(--muted);font-size:.75rem}
+footer button{background:none;border:1px solid var(--rule);border-radius:3px;
+  padding:.4rem .7rem;font:inherit;font-size:.78rem;color:var(--ink);
+  cursor:pointer;margin:.6rem .5rem .6rem 0}
+#dump{width:100%;height:9rem;margin-top:.6rem;font-size:.7rem;
+  font-family:ui-monospace,monospace;display:none;
+  background:var(--paper);color:var(--ink);border:1px solid var(--rule)}
 """
 
+JS = """
+const KS='radar.saved', KF='radar.feedback';
+const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}};
+const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){
+  alert('儲存空間寫入失敗，收藏可能不會保留。')}};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,
+  c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-def links_html(it, proxy):
-    out = []
-    if it.get("url"):
-        label = {"PubMed": "PubMed", "arXiv": "arXiv"}.get(it["source"], "預印本")
-        out.append(f'<a href="{html.escape(it["url"])}">{label}</a>')
-    if it.get("doi"):
-        doi_url = f"https://doi.org/{it['doi']}"
-        out.append(f'<a href="{html.escape(doi_url)}">DOI</a>')
-        if proxy:
-            out.append(f'<a href="{html.escape(proxy + doi_url)}">全文（校內）</a>')
-    return f'<div class="links">{"".join(out)}</div>'
+function actsHtml(id){
+  return '<div class="acts" data-id="'+esc(id)+'">'
+    +'<button class="save">收藏</button>'
+    +'<button class="up">讚</button>'
+    +'<button class="dn">倒讚</button></div>';
+}
 
+function linksHtml(it){
+  let h='';
+  if(it.url) h+='<a href="'+esc(it.url)+'">'+
+    (it.source==='PubMed'?'PubMed':it.source==='arXiv'?'arXiv':'預印本')+'</a>';
+  if(it.doi) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
+  if(it.doi && window.PROXY) h+='<a href="'+esc(window.PROXY+'https://doi.org/'+it.doi)+
+    '">全文（校內）</a>';
+  return '<div class="links">'+h+'</div>';
+}
 
-def item_html(it, proxy, hot):
-    cls = "sc hi" if hot else "sc"
-    meta = " · ".join(x for x in [it.get("tag"), it.get("venue"),
-                                  it.get("date")] if x)
-    return (
-        f'<div class="item"><div class="{cls}">{it["score"]}</div><div>'
-        f'<p class="ttl">{html.escape(it["title"])}</p>'
-        + (f'<p class="why">{html.escape(it["why"])}</p>' if it.get("why") else "")
-        + f'<p class="meta">{html.escape(meta)}</p>'
-        + links_html(it, proxy)
-        + "</div></div>")
+function itemHtml(it){
+  const meta=[it.tag,it.venue,it.date].filter(Boolean).join(' · ');
+  return '<div class="item"><div class="sc">'+esc(it.score)+'</div><div>'
+    +'<p class="ttl">'+esc(it.title)+'</p>'
+    +(it.why?'<p class="why">'+esc(it.why)+'</p>':'')
+    +'<p class="meta">'+esc(meta)+'</p>'
+    +linksHtml(it)+actsHtml(it.id)+'</div></div>';
+}
+
+function renderSaved(){
+  const box=document.getElementById('savedbox');
+  const saved=rd(KS);
+  const arr=Object.values(saved).sort((a,b)=>(b._at||0)-(a._at||0));
+  if(!arr.length){box.innerHTML='';return;}
+  box.innerHTML='<h2 class="saved">待讀清單（'+arr.length+'）</h2>'
+    +arr.map(itemHtml).join('');
+  paint();
+}
+
+function paint(){
+  const saved=rd(KS), fb=rd(KF);
+  document.querySelectorAll('.acts').forEach(el=>{
+    const id=el.dataset.id, v=(fb[id]||{}).v;
+    el.querySelector('.save').classList.toggle('on', !!saved[id]);
+    el.querySelector('.save').textContent = saved[id]?'已收藏':'收藏';
+    el.querySelector('.up').classList.toggle('on', v===1);
+    el.querySelector('.dn').classList.toggle('on', v===-1);
+  });
+}
+
+document.addEventListener('click', e=>{
+  const btn=e.target.closest('.acts button'); if(!btn) return;
+  const id=btn.closest('.acts').dataset.id;
+  const it=(window.ITEMS||{})[id] || (rd(KS)[id]);
+  if(!it) return;
+  if(btn.classList.contains('save')){
+    const s=rd(KS);
+    if(s[id]) delete s[id]; else s[id]=Object.assign({},it,{_at:Date.now()});
+    wr(KS,s); renderSaved();
+  } else {
+    const v=btn.classList.contains('up')?1:-1;
+    const f=rd(KF);
+    if((f[id]||{}).v===v) delete f[id];
+    else f[id]={v:v,title:it.title,venue:it.venue,tag:it.tag,at:Date.now()};
+    wr(KF,f);
+  }
+  paint();
+});
+
+function exportFb(){
+  const f=rd(KF);
+  const arr=Object.entries(f).map(([id,o])=>({id:id,v:o.v,title:o.title,
+    venue:o.venue,tag:o.tag}));
+  const txt=JSON.stringify(arr,null,1);
+  const ta=document.getElementById('dump');
+  ta.style.display='block'; ta.value=txt; ta.select();
+  if(navigator.clipboard) navigator.clipboard.writeText(txt).then(
+    ()=>{document.getElementById('expbtn').textContent='已複製 '+arr.length+' 筆回饋';},
+    ()=>{});
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  renderSaved(); paint();
+  document.getElementById('expbtn').addEventListener('click', exportFb);
+});
+"""
 
 
 def render(items, cfg):
@@ -385,23 +483,59 @@ def render(items, cfg):
     rest = [i for i in items if i["score"] < th["scan"]]
     now = datetime.now(TPE)
 
+    def links_html(it):
+        out = []
+        if it.get("url"):
+            label = {"PubMed": "PubMed", "arXiv": "arXiv"}.get(
+                it["source"], "預印本")
+            out.append(f'<a href="{html.escape(it["url"])}">{label}</a>')
+        if it.get("doi"):
+            d = f"https://doi.org/{it['doi']}"
+            out.append(f'<a href="{html.escape(d)}">DOI</a>')
+            if proxy:
+                out.append(f'<a href="{html.escape(proxy + d)}">全文（校內）</a>')
+        return f'<div class="links">{"".join(out)}</div>'
+
+    def item_html(it, hot):
+        cls = "sc hi" if hot else "sc"
+        meta = " · ".join(x for x in [it.get("tag"), it.get("venue"),
+                                      it.get("date")] if x)
+        return (
+            f'<div class="item"><div class="{cls}">{it["score"]}</div><div>'
+            f'<p class="ttl">{html.escape(it["title"])}</p>'
+            + (f'<p class="why">{html.escape(it["why"])}</p>'
+               if it.get("why") else "")
+            + f'<p class="meta">{html.escape(meta)}</p>'
+            + links_html(it)
+            + f'<div class="acts" data-id="{html.escape(it["id"])}">'
+              '<button class="save">收藏</button>'
+              '<button class="up">讚</button>'
+              '<button class="dn">倒讚</button></div>'
+            + "</div></div>")
+
     body = []
     if read:
         body.append("<h2>值得讀</h2>")
-        body += [item_html(i, proxy, True) for i in read]
+        body += [item_html(i, True) for i in read]
     if scan:
         body.append("<h2>掃一眼</h2>")
-        body += [item_html(i, proxy, False) for i in scan]
+        body += [item_html(i, False) for i in scan]
     if not read and not scan:
-        body.append('<p class="empty">今天沒有命中的東西。'
-                    '連續好幾天都這樣的話，把 config.yaml 的門檻調低看看。</p>')
+        body.append('<p class="empty">今天沒有命中的東西。</p>')
     if rest:
         body.append(f'<details><summary>其餘 {len(rest)} 篇（低相關）</summary>')
-        body += [item_html(i, proxy, False) for i in rest[:60]]
+        body += [item_html(i, False) for i in rest[:60]]
         body.append("</details>")
+
+    keep = ("id", "title", "why", "tag", "venue", "date", "url", "doi",
+            "score", "source")
+    lookup = {it["id"]: {k: it.get(k, "") for k in keep} for it in items}
+    items_json = json.dumps(lookup, ensure_ascii=False).replace("<", "\\u003c")
+    proxy_json = json.dumps(proxy)
 
     stamp = (f"{now:%Y 年 %m 月 %d 日} · 掃過 {len(items)} 篇 · "
              f"值得讀 {len(read)} 篇")
+
     page = f"""<!doctype html><html lang="zh-Hant"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -412,10 +546,22 @@ def render(items, cfg):
 <style>{CSS}</style></head><body><div class="wrap">
 <header><h1>研究雷達</h1>
 <div class="stamp">{stamp}</div></header>
+<section id="savedbox"></section>
 {''.join(body)}
-<footer>資料來源：PubMed、arXiv、bioRxiv、medRxiv。分數由 Claude 依 config.yaml
-的研究輪廓評定，僅供分流參考，不代表論文品質。</footer>
-</div></body></html>"""
+<footer>
+<button id="expbtn">匯出回饋（複製到剪貼簿）</button>
+<textarea id="dump" readonly></textarea>
+<p>收藏與回饋存在這台裝置的瀏覽器裡，換裝置不會同步。
+資料來源：PubMed、arXiv、bioRxiv、medRxiv。分數由 Claude 依 config.yaml
+的研究輪廓評定，僅供分流參考，不代表論文品質。</p>
+</footer>
+</div>
+<script>
+window.ITEMS = {items_json};
+window.PROXY = {proxy_json};
+{JS}
+</script>
+</body></html>"""
 
     os.makedirs(os.path.join(DOCS, "archive"), exist_ok=True)
     with open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8") as f:
@@ -438,6 +584,11 @@ def main():
     days = cfg["lookback_days"]
     now = datetime.now(timezone.utc)
     cutoff = now - timedelta(days=days)
+
+    up, dn = load_feedback()
+    if up or dn:
+        log(f"讀到回饋：讚 {len(up)}、倒讚 {len(dn)}")
+    calib = calibration_block(up, dn)
 
     log("抓取中…")
     items = []
@@ -465,7 +616,7 @@ def main():
         log(f"超過上限，只送前 {cap} 篇打分")
         fresh = fresh[:cap]
 
-    scored = score_items(fresh, cfg["profile"])
+    scored = score_items(fresh, cfg["profile"], calib)
     render(scored, cfg)
     save_state(seen_ids | ids_now, seen_titles | titles_now)
 
