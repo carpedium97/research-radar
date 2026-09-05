@@ -78,14 +78,46 @@ def load_feedback(path):
 
 # ---------------------------------------------------------------- PubMed
 
+_LAST_CALL = [0.0]
+
+
+def _pace():
+    """NCBI 速率限制：有 key 每秒 10 次，沒有 key 每秒 3 次。保守一點抓。"""
+    gap = 0.15 if NCBI_KEY else 0.45
+    wait = gap - (time.monotonic() - _LAST_CALL[0])
+    if wait > 0:
+        time.sleep(wait)
+    _LAST_CALL[0] = time.monotonic()
+
+
+def _ncbi(method, url, **kw):
+    """被 429／5xx 擋下時指數退避重試。GitHub runner 是共用 IP，會被誤傷。"""
+    delay = 3.0
+    last = None
+    for attempt in range(5):
+        _pace()
+        try:
+            r = SESSION.request(method, url, timeout=90, **kw)
+            if r.status_code in (429, 500, 502, 503, 504):
+                raise requests.HTTPError(f"{r.status_code} from NCBI")
+            r.raise_for_status()
+            return r
+        except Exception as e:
+            last = e
+            if attempt < 4:
+                log(f"    NCBI 被擋，{delay:.0f} 秒後重試（{e}）")
+                time.sleep(delay)
+                delay *= 2
+    raise last
+
+
 def _esearch(term, days, retmax):
     p = {"db": "pubmed", "term": term, "retmax": retmax, "retmode": "json",
          "datetype": "edat", "reldate": days, "sort": "date",
          "tool": "research-radar", "email": CONTACT}
     if NCBI_KEY:
         p["api_key"] = NCBI_KEY
-    r = SESSION.get(f"{EUTILS}/esearch.fcgi", params=p, timeout=40)
-    r.raise_for_status()
+    r = _ncbi("GET", f"{EUTILS}/esearch.fcgi", params=p)
     return r.json().get("esearchresult", {}).get("idlist", [])
 
 
@@ -98,9 +130,12 @@ def _efetch(pmids):
                 "tool": "research-radar", "email": CONTACT}
         if NCBI_KEY:
             data["api_key"] = NCBI_KEY
-        r = SESSION.post(f"{EUTILS}/efetch.fcgi", data=data, timeout=90)
-        r.raise_for_status()
-        root = ET.fromstring(r.content)
+        try:
+            r = _ncbi("POST", f"{EUTILS}/efetch.fcgi", data=data)
+            root = ET.fromstring(r.content)
+        except Exception as e:
+            log(f"  efetch 第 {i // 150 + 1} 批放棄：{e}")
+            continue
         for art in root.iter("PubmedArticle"):
             pmid = art.findtext(".//MedlineCitation/PMID") or ""
             te = art.find(".//ArticleTitle")
@@ -126,7 +161,6 @@ def _efetch(pmids):
                 "ptypes": ptypes,
                 "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/", "date": "",
             })
-        time.sleep(0.4 if NCBI_KEY else 0.8)
     return out
 
 
@@ -163,11 +197,16 @@ def fetch_pubmed(cfg):
     ids = list(dict.fromkeys(ids))
     if not ids:
         return []
+    log(f"  pubmed 合計 {len(ids)} 筆待取詳細內容")
     try:
-        return _efetch(ids)
+        got = _efetch(ids)
     except Exception as e:
         log(f"  pubmed efetch 失敗：{e}")
-        return []
+        got = []
+    if ids and not got:
+        log("  警告：一篇都沒取到。多半是 NCBI 擋下（429）。"
+            "請設定 NCBI_API_KEY secret，或稍後重跑。")
+    return got
 
 
 # ---------------------------------------------------------------- arXiv
