@@ -8,11 +8,11 @@
 <style>
 :root{
   --paper:#fbfaf7; --ink:#16181c; --muted:#6b7280; --rule:#e3e0d8;
-  --accent:#1b3a5c; --hot:#8c2f24;
+  --accent:#1b3a5c; --hot:#8c2f24; --save:#9a6b12;
 }
 @media (prefers-color-scheme:dark){
   :root{ --paper:#14161a; --ink:#e8e6e1; --muted:#8b8f98; --rule:#282c33;
-         --accent:#8fb4d9; --hot:#e0796a; }
+         --accent:#8fb4d9; --hot:#e0796a; --save:#d3a44a; }
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);
@@ -25,7 +25,7 @@ h1{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;
 .stamp{color:var(--muted);font-size:.82rem}
 h2{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;font-size:1.05rem;
   margin:2.4rem 0 .2rem;color:var(--accent)}
-h2 + .note{color:var(--muted);font-size:.78rem;margin:0 0 .4rem}
+h2.saved{color:var(--save)}
 .item{display:grid;grid-template-columns:2.4rem 1fr;gap:.85rem;
   padding:1.05rem 0;border-top:1px solid var(--rule)}
 .sc{font-family:Georgia,serif;font-size:1.5rem;line-height:1.15;
@@ -38,16 +38,130 @@ h2 + .note{color:var(--muted);font-size:.78rem;margin:0 0 .4rem}
 .links a{color:var(--accent);font-size:.8rem;margin-right:.9rem;
   text-underline-offset:2px}
 a{color:var(--accent)}
+.acts{margin-top:.5rem;display:flex;gap:1.1rem;align-items:center}
+.acts button{background:none;border:0;padding:0;font:inherit;font-size:.8rem;
+  color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.acts button.on{font-weight:600}
+.acts .save.on{color:var(--save)}
+.acts .up.on{color:var(--accent)}
+.acts .dn.on{color:var(--hot)}
 details{margin-top:2rem;border-top:1px solid var(--rule);padding-top:.8rem}
 summary{cursor:pointer;color:var(--muted);font-size:.86rem}
-details .item{grid-template-columns:2.4rem 1fr}
 .empty{color:var(--muted);padding:2rem 0}
 footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);
   color:var(--muted);font-size:.75rem}
+footer button{background:none;border:1px solid var(--rule);border-radius:3px;
+  padding:.4rem .7rem;font:inherit;font-size:.78rem;color:var(--ink);
+  cursor:pointer;margin:.6rem .5rem .6rem 0}
+#dump{width:100%;height:9rem;margin-top:.6rem;font-size:.7rem;
+  font-family:ui-monospace,monospace;display:none;
+  background:var(--paper);color:var(--ink);border:1px solid var(--rule)}
 </style></head><body><div class="wrap">
 <header><h1>研究雷達</h1>
-<div class="stamp">2026 年 09 月 05 日 · 掃過 40 篇 · 值得讀 2 篇</div></header>
-<h2>值得讀</h2><div class="item"><div class="sc hi">8</div><div><p class="ttl">Developmental and cellular vulnerabilities underlie genetic architecture of schizophrenia.</p><p class="why">思覺失調症遺傳架構與細胞類型對應，包含多組學與發育過程，直接支持其思覺失調症影像與遺傳預測工作。</p><p class="meta">精神病理預測 · Mol Psychiatry</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42693176/">PubMed</a><a href="https://doi.org/10.1038/s41586-025-08757-x">DOI</a></div></div></div><div class="item"><div class="sc hi">7</div><div><p class="ttl">Severe PTSD symptoms magnify episodic memory-encoding deficits and amygdala-ACC attenuation during unpredictable threat in male combat veterans.</p><p class="why">PTSD 症狀與記憶編碼缺陷的 fMRI 關聯，直接相關於精神科住院結果預測與臨床神經影像研究。</p><p class="meta">神經影像方法 · Mol Psychiatry</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42693177/">PubMed</a><a href="https://doi.org/10.1016/j.copsyc.2016.11.002">DOI</a></div></div></div><h2>掃一眼</h2><div class="item"><div class="sc">6</div><div><p class="ttl">Gene alteration in human brain suggests genetic and epigenetic roots of major depression.</p><p class="why">重度抑鬱症遺傳與表觀遺傳基礎，但缺摘要無法評估與其思覺失調症/成癮工作的重疊程度。</p><p class="meta">精神病理預測 · Nat Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42693300/">PubMed</a><a href="https://doi.org/10.1038/s41380-026-03507-5">DOI</a></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">Structure-Constrained Intrinsic Timescales Across Tasks</p><p class="why">任務狀態下的內在神經時間尺度與結構連結體耦合，涉及connectome與動態組織，與normative modeling思路相近。</p><p class="meta">神經影像方法 · neuroscience · 2026-09-01</p><div class="links"><a href="https://doi.org/10.64898/2026.08.26.747109">預印本</a><a href="https://doi.org/10.64898/2026.08.26.747109">DOI</a></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">Two-State Effective Connectivity Predicts the effect of Anterior Cingulate Cortex Excitatory / Inhibitory Balance on Posterior Cingulate Cortex</p><p class="why">結合MRS與rsfMRI研究精神病風險中的E/I失衡，方法論可借鑑，但樣本小(n=20)、缺臨床結果預測縱向驗證。</p><p class="meta">精神病理預測 · neuroscience · 2026-09-04</p><div class="links"><a href="https://doi.org/10.64898/2026.09.01.748001">預印本</a><a href="https://doi.org/10.64898/2026.09.01.748001">DOI</a></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Assessing specificity testing in Lesion Network Mapping</p><p class="why">病灶網路映射的特異性檢驗涉及normative connectome與精神神經疾病迴路識別，方法相關但無臨床族群資料。</p><p class="meta">神經影像方法 · neuroscience · 2026-09-01</p><div class="links"><a href="https://doi.org/10.64898/2026.08.26.746668">預印本</a><a href="https://doi.org/10.64898/2026.08.26.746668">DOI</a></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Interpretable Decoding of Frequency-Resolved Functional Connectivity</p><p class="why">MEG功能連結的可解釋深度學習與年齡預測，涉及生物標誌發現但非精神科或成癮族群。</p><p class="meta">神經影像方法 · neuroscience · 2026-09-03</p><div class="links"><a href="https://doi.org/10.64898/2026.08.20.745932">預印本</a><a href="https://doi.org/10.64898/2026.08.20.745932">DOI</a></div></div></div><details><summary>其餘 33 篇（低相關）</summary><div class="item"><div class="sc">4</div><div><p class="ttl">Evaluating a Guideline-Integrated Clinical Interaction Framework Vs a Standard Large Language Model Interaction for Dietary Recommendations in Recurrent Urolithiasis: In Silico Study.</p><p class="why">LLM臨床決策框架與guideline整合，參考價值在於cascaded pipeline設計邏輯。</p><p class="meta">臨床文本LLM · J Med Internet Res</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42696728/">PubMed</a><a href="https://doi.org/10.2196/95162">DOI</a></div></div></div><div class="item"><div class="sc">4</div><div><p class="ttl">AI Monitoring AI with LLMs: The American College of Radiology&#x27;s Imaging AI Registry.</p><p class="why">放射科報告的LLM自動化擷取與監測框架有方法借鑑價值，但不針對精神科文本或臨床決策支援。</p><p class="meta">臨床文本LLM · J Am Coll Radiol</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42692226/">PubMed</a><a href="https://doi.org/10.1016/j.jacr.2026.08.022">DOI</a></div></div></div><div class="item"><div class="sc">4</div><div><p class="ttl">Evolution and Human Neural Individuality</p><p class="why">神經個體差異與進化簽名的連結體指紋學，興趣相關但缺臨床族群與疾病預測應用。</p><p class="meta">神經影像方法 · neuroscience · 2026-09-01</p><div class="links"><a href="https://doi.org/10.64898/2026.08.26.747255">預印本</a><a href="https://doi.org/10.64898/2026.08.26.747255">DOI</a></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Artificial intelligence models for automated and semiautomated analysis and interpretation of clinical electroencephalography.</p><p class="why">EEG AI 自動化解釋，臨床神經診斷工具但非精神科核心；不涉及病歷文本或住院預測。</p><p class="meta">臨床文本LLM · Lancet Digit Health</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42692953/">PubMed</a><a href="https://doi.org/10.1016/j.landig.2026.101023">DOI</a></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Cortical Thickness and Functional Connectivity in Occipitotemporal and Frontal Regions Are Critical for Chinese Children&#x27;s Reading Development.</p><p class="why">中文兒童閱讀發展神經影像研究，與臨床族群或精神疾病預測無關。</p><p class="meta">神經影像方法 · Neuroimage</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42692311/">PubMed</a><a href="https://doi.org/10.1016/j.neuroimage.2026.122197">DOI</a></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Toward Robust AI-Assisted Dietary Assessment for Diabetes Self-Management: Quantifying and Decomposing Large Language Model Prediction Variability From Meal Images.</p><p class="why">多模態LLM在飲食評估的不確定性分解，方向相近但無精神科實踐。</p><p class="meta">臨床文本LLM · JMIR Diabetes</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42696510/">PubMed</a><a href="https://doi.org/10.2196/102715">DOI</a></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Learning from Scarce Labels: Multi-View Echocardiography for Ejection Fraction Prediction</p><p class="why">超音波EF預測的多視角融合與標籤稀缺策略有技術參考，但非精神科影像或臨床族群研究。</p><p class="meta">神經影像方法 · eess.IV, cs.CV, cs.LG · 2026-09-02</p><div class="links"><a href="https://arxiv.org/abs/2609.02969v1">arXiv</a></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Citation reliability of frontier large language models in medical writing and its automated verification</p><p class="why">醫學文獻引用驗證的LLM方法論，與精神科文本擷取框架同為NLP信度問題，但場景差異大。</p><p class="meta">臨床文本LLM · health informatics · 2026-09-04</p><div class="links"><a href="https://doi.org/10.64898/2026.08.31.26361806">預印本</a><a href="https://doi.org/10.64898/2026.08.31.26361806">DOI</a></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Astrocyte molecular rhythm disruption in nucleus accumbens promotes increased binge-like drinking in mice</p><p class="why">雖涉及酒精使用但以小鼠分子節律機轉為主，缺乏人類臨床族群與神經影像結合的預測價值。</p><p class="meta">成癮 · neuroscience · 2026-09-03</p><div class="links"><a href="https://doi.org/10.64898/2026.08.28.747847">預印本</a><a href="https://doi.org/10.64898/2026.08.28.747847">DOI</a></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Limited benchmarks constrain the conclusions of a general-purpose versus clinical AI comparison.</p><p class="why">通用 AI 與臨床 AI 基準比較，無直接臨床應用場景，缺摘要難評估。</p><p class="meta">其他 · Nat Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42693299/">PubMed</a><a href="https://doi.org/10.1038/d41586-026-02125-z">DOI</a></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Status, challenges, and future directions of machine learning in the management of epilepsy: a systematic review and meta-analysis.</p><p class="why">癲癇 ML 臨床決策支援，方法論相關但病種無重疊；未涉及精神科住院病歷。</p><p class="meta">其他 · Lancet Digit Health</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42692952/">PubMed</a><a href="https://doi.org/10.1016/j.landig.2026.101029">DOI</a></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Machine learning prediction for epilepsy treatment selection and prognosis: achievements and challenges.</p><p class="why">癲癇治療預測與精神科無關；機器學習方法論雖通用但無精神科特色應用。</p><p class="meta">其他 · Lancet Digit Health</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42692951/">PubMed</a><a href="https://doi.org/10.1016/j.landig.2026.101022">DOI</a></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Hierarchical gist representation of events in human brain during naturalistic stimuli.</p><p class="why">自然敘述fMRI與事件語義表徵基礎研究，無臨床應用或精神科應用。</p><p class="meta">神經影像方法 · Neuroimage</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42692309/">PubMed</a><a href="https://doi.org/10.1016/j.neuroimage.2026.122191">DOI</a></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Principal Spatiotemporal Pattern Mapping Detects Brain Activity Partially Decoupled With Task Timing.</p><p class="why">fMRI分析方法論創新，無特定臨床應用背景。</p><p class="meta">神經影像方法 · Neuroimage</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42692308/">PubMed</a><a href="https://doi.org/10.1016/j.neuroimage.2026.122192">DOI</a></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Parent Perspectives on Dietary and Nutraceutical Therapies in Autism Spectrum Disorder: A Qualitative Thematic Analysis Using a Large Language Model.</p><p class="why">自閉症家長的LLM定性分析，無精神科住院或復發預測應用。</p><p class="meta">臨床文本LLM · J Restor Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42694496/">PubMed</a><a href="https://doi.org/10.14200/jrm.2026.0001">DOI</a></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Executable explanation traces for legal LLM predictions via retrieval-augmented codification.</p><p class="why">法律領域的可解釋性框架，與精神科臨床無關，縱有中文案例也不涉及醫療文本。</p><p class="meta">其他 · Front Artif Intell</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42694309/">PubMed</a><a href="https://doi.org/10.1007/s10506-024-09402-0">DOI</a></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Large language model responses to questions about brain death/death by neurologic criteria: ChatGPT 4o-mini and Gemini 3 Flash (Fast).</p><p class="why">腦死判定的LLM回答品質評估，無關精神科、成癮、思覺失調症或神經影像。</p><p class="meta">其他 · J Neurol Sci</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42691933/">PubMed</a><a href="https://doi.org/10.1016/j.jns.2026.126156">DOI</a></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">When medical credentials conflict with stated accuracy: A factorial study of source credibility and answer revision in medical LLM interactions</p><p class="why">LLM回答修正的可信度因子研究，與精神科病歷結構化擷取或臨床決策無直接關聯。</p><p class="meta">其他 · health informatics · 2026-09-01</p><div class="links"><a href="https://doi.org/10.64898/2026.08.28.26361634">預印本</a><a href="https://doi.org/10.64898/2026.08.28.26361634">DOI</a></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Priming of CD8+ T cells by peripheral dendritic cells exacerbates tau-mediated neurodegeneration.</p><p class="why">阿茲海默症與 tau 病理的免疫機轉，與精神科臨床預測無關。</p><p class="meta">其他 · Nat Neurosci</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42693199/">PubMed</a><a href="https://doi.org/10.1093/bioinformatics/bts621">DOI</a></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Magnetoencephalography Source Analysis in Epilepsy-Aphasia Spectrum.</p><p class="why">兒童癲癇與失語症譜系的MEG源定位，非精神科相關。</p><p class="meta">其他 · Neuroimage</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42692310/">PubMed</a><a href="https://doi.org/10.1016/j.neuroimage.2026.122198">DOI</a></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">SoftMorph: Differentiable probabilistic morphological operators for image analysis.</p><p class="why">影像分割的深度學習工程優化，不在臨床或精神科關注範疇。</p><p class="meta">其他 · Med Image Anal</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42691733/">PubMed</a><a href="https://doi.org/10.1016/j.media.2026.104284">DOI</a></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">TEAMS: Text-prompted spatiotEmporal dual-heAd Mamba Snake.</p><p class="why">器官分割的視覺-語言模型，無精神科影像應用。</p><p class="meta">其他 · Med Image Anal</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42691732/">PubMed</a><a href="https://doi.org/10.1016/j.media.2026.104277">DOI</a></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Orientation-robust latent motion trajectory learning for annotation-free cardiac phase detection in fetal echocardiography.</p><p class="why">胎兒心臟超音波自動分析，與精神科完全無關。</p><p class="meta">其他 · Med Image Anal</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42691555/">PubMed</a><a href="https://doi.org/10.1016/j.media.2026.104288">DOI</a></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Postoperative Contrast Sensitivity and Its Association with Lenticule Surface Regularity After KLEx with the VisuMax 800.</p><p class="why">眼科手術後對比敏感度，使用LLM視覺評分但無精神科相關性。</p><p class="meta">其他 · Clin Ophthalmol</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42694961/">PubMed</a><a href="https://doi.org/10.3928/1081597x-20090422-09">DOI</a></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">The Effect of AI-based Linguistically Tailored Health Messages on Plant-Based Lunch Choices of Adolescents: A Randomised Controlled Trial.</p><p class="why">青少年健康訊息傳播研究，與精神科診斷、住院預測、神經影像完全無關。</p><p class="meta">其他 · Appetite</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42692370/">PubMed</a><a href="https://doi.org/10.1016/j.appet.2026.108773">DOI</a></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">An egocentric map prioritizing peri-personal space in the mouse rostro-lateral visual area</p><p class="why">鼠類視覺皮層的近體空間表示，動物單位記錄研究，不在其關注範圍內。</p><p class="meta">其他 · neuroscience · 2026-09-01</p><div class="links"><a href="https://doi.org/10.64898/2026.08.25.747123">預印本</a><a href="https://doi.org/10.64898/2026.08.25.747123">DOI</a></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Loss of FMRP leads to translationally relevant functional connectivity differences in a rat model of Fragile X Syndrome</p><p class="why">動物實驗（大鼠FXS模型）與分子機轉為主，與臨床精神科或成癮無直接關係，不符合研究焦點。</p><p class="meta">其他 · neuroscience · 2026-09-03</p><div class="links"><a href="https://doi.org/10.64898/2026.08.28.747531">預印本</a><a href="https://doi.org/10.64898/2026.08.28.747531">DOI</a></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Simulation and Design Study of Edge-on GaAs:Cr Detector for Clinical Photon Counting CT.</p><p class="why">CT 硬體設計，與臨床決策支援和神經影像分析無關。</p><p class="meta">其他 · IEEE Trans Med Imaging</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42696630/">PubMed</a><a href="https://doi.org/10.1109/TMI.2026.3730875">DOI</a></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Reply to: Limited benchmarks constrain the conclusions of a general-purpose versus clinical AI comparison.</p><p class="why">回覆論文，無原始內容貢獻。</p><p class="meta">其他 · Nat Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42693298/">PubMed</a><a href="https://doi.org/10.1038/s41591-026-04431-5">DOI</a></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Structured experience shapes strategy learning and neural dynamics in the medial entorhinal cortex.</p><p class="why">小鼠嗅覺與學習的神經動力學，純動物基礎神經科學，不在其研究範圍。</p><p class="meta">其他 · Nat Neurosci</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42693198/">PubMed</a><a href="https://doi.org/10.1523/JNEUROSCI.0971-11.2011">DOI</a></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Towards high-quality large-scale T cell receptor antigen specificity data: challenges and promises.</p><p class="why">T 細胞受體抗原特異性資料庫開發，與臨床精神科或神經影像無關。</p><p class="meta">其他 · Nat Methods</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42693187/">PubMed</a><a href="https://doi.org/10.1126/sciadv.adr3196">DOI</a></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Author Correction: Effect of a digital health behaviour change support system on cardiovascular disease risk in a randomized weight loss trial.</p><p class="why">心血管疾病風險的數位健康干預，與精神科無關。</p><p class="meta">其他 · NPJ Digit Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42693163/">PubMed</a><a href="https://doi.org/10.1038/s41746-026-03190-4">DOI</a></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">A canonical excitatory-inhibitory motif embedded in the connectome underlies rhythmic locomotion in Drosophila larvae</p><p class="why">果蠅幼蟲運動神經迴路研究，純神經生物學機轉探討，與臨床精神醫學與成癮預測無關。</p><p class="meta">其他 · neuroscience · 2026-09-04</p><div class="links"><a href="https://doi.org/10.64898/2026.08.31.748252">預印本</a><a href="https://doi.org/10.64898/2026.08.31.748252">DOI</a></div></div></div></details>
-<footer>資料來源：PubMed、arXiv、bioRxiv、medRxiv。分數由 Claude 依 config.yaml
-的研究輪廓評定，僅供分流參考，不代表論文品質。</footer>
-</div></body></html>
+<div class="stamp">2026 年 09 月 05 日 · 掃過 7 篇 · 值得讀 2 篇</div></header>
+<section id="savedbox"></section>
+<h2>值得讀</h2><div class="item"><div class="sc hi">8</div><div><p class="ttl">Default-filled outcome labels in a deployed cognitive-screening programme: an operator-level audit and the construction of twenty-four language-model arms</p><p class="why">直接相關主軸(1)：中文或非英語臨床文本的LLM結構化擷取、多階段pipeline、開源模型(Qwen)微調與評估框架的實務案例。</p><p class="meta">臨床文本LLM · health informatics · 2026-09-02</p><div class="links"><a href="https://doi.org/10.64898/2026.08.28.26361585">預印本</a><a href="https://doi.org/10.64898/2026.08.28.26361585">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.08.28.26361585"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc hi">7</div><div><p class="ttl">The microstructure-weighted human connectome: network properties and structure-function correlations across spatial scales</p><p class="why">連結體微結構加權與腦功能耦合，直接相關主軸(2)：神經影像方法論、連結體分析、多尺度網路特性在臨床預測的應用基礎。</p><p class="meta">神經影像方法 · neuroscience · 2026-09-02</p><div class="links"><a href="https://doi.org/10.64898/2026.05.19.726180">預印本</a><a href="https://doi.org/10.64898/2026.05.19.726180">DOI</a></div><div class="acts" data-id="biorxiv:10.64898/2026.05.19.726180"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><h2>掃一眼</h2><div class="item"><div class="sc">6</div><div><p class="ttl">Secondary causes among adult patients presenting with first-episode psychosis to acute medical settings in Hong Kong: A 10-Year retrospective study</p><p class="why">首發精神病的次級病因篩檢研究，安非他命誘發精神病相關，但主要是臨床流行病學而非預測模型或文本分析。</p><p class="meta">精神病理預測 · psychiatry and clinical psychology · 2026-09-04</p><div class="links"><a href="https://doi.org/10.64898/2026.09.02.26362044">預印本</a><a href="https://doi.org/10.64898/2026.09.02.26362044">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.09.02.26362044"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><details><summary>其餘 4 篇（低相關）</summary><div class="item"><div class="sc">4</div><div><p class="ttl">Heterogeneity in Excess Mortality Across Mental, Behavioural, and Neurodevelopmental Disorders</p><p class="why">精神科流行病學研究，關於超額死亡率異質性，與再入院預測邊緣相關但無臨床文本或神經影像方法論貢獻。</p><p class="meta">精神病理預測 · psychiatry and clinical psychology · 2026-09-04</p><div class="links"><a href="https://doi.org/10.64898/2026.09.02.26362001">預印本</a><a href="https://doi.org/10.64898/2026.09.02.26362001">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.09.02.26362001"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Can a General-Purpose Coding Agent Analyze a Production Hospital Data Warehouse?</p><p class="why">臨床數據倉庫查詢自動化，與EHR結構化擷取有遠端相關，但非中文、非精神科、無LLM微調方法論。</p><p class="meta">臨床文本LLM · health informatics · 2026-09-04</p><div class="links"><a href="https://doi.org/10.64898/2026.09.02.26362008">預印本</a><a href="https://doi.org/10.64898/2026.09.02.26362008">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.09.02.26362008"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Human-like meaning maps from single-prompt VLM ratings of local scene meaning</p><p class="why">視覺語言模型用於場景語義判斷，與精神科臨床或神經影像無關。</p><p class="meta">其他 · neuroscience · 2026-09-03</p><div class="links"><a href="https://doi.org/10.64898/2026.08.30.748100">預印本</a><a href="https://doi.org/10.64898/2026.08.30.748100">DOI</a></div><div class="acts" data-id="biorxiv:10.64898/2026.08.30.748100"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Recurrent beta-gamma interactions between olfactory bulb and piriform cortex support cross-sniff perceptual continuity in humans</p><p class="why">嗅覺腦迴路基礎神經科學，動物實驗色彩濃厚，與臨床精神科或預測模型無關。</p><p class="meta">其他 · neuroscience · 2026-09-04</p><div class="links"><a href="https://doi.org/10.64898/2026.08.31.747807">預印本</a><a href="https://doi.org/10.64898/2026.08.31.747807">DOI</a></div><div class="acts" data-id="biorxiv:10.64898/2026.08.31.747807"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div></details>
+<footer>
+<button id="expbtn">匯出回饋（複製到剪貼簿）</button>
+<textarea id="dump" readonly></textarea>
+<p>收藏與回饋存在這台裝置的瀏覽器裡，換裝置不會同步。
+資料來源：PubMed、arXiv、bioRxiv、medRxiv。分數由 Claude 依 config.yaml
+的研究輪廓評定，僅供分流參考，不代表論文品質。</p>
+</footer>
+</div>
+<script>
+window.ITEMS = {"medrxiv:10.64898/2026.08.28.26361585": {"id": "medrxiv:10.64898/2026.08.28.26361585", "title": "Default-filled outcome labels in a deployed cognitive-screening programme: an operator-level audit and the construction of twenty-four language-model arms", "why": "直接相關主軸(1)：中文或非英語臨床文本的LLM結構化擷取、多階段pipeline、開源模型(Qwen)微調與評估框架的實務案例。", "tag": "臨床文本LLM", "venue": "health informatics", "date": "2026-09-02", "url": "https://doi.org/10.64898/2026.08.28.26361585", "doi": "10.64898/2026.08.28.26361585", "score": 8, "source": "medrxiv"}, "biorxiv:10.64898/2026.05.19.726180": {"id": "biorxiv:10.64898/2026.05.19.726180", "title": "The microstructure-weighted human connectome: network properties and structure-function correlations across spatial scales", "why": "連結體微結構加權與腦功能耦合，直接相關主軸(2)：神經影像方法論、連結體分析、多尺度網路特性在臨床預測的應用基礎。", "tag": "神經影像方法", "venue": "neuroscience", "date": "2026-09-02", "url": "https://doi.org/10.64898/2026.05.19.726180", "doi": "10.64898/2026.05.19.726180", "score": 7, "source": "biorxiv"}, "medrxiv:10.64898/2026.09.02.26362044": {"id": "medrxiv:10.64898/2026.09.02.26362044", "title": "Secondary causes among adult patients presenting with first-episode psychosis to acute medical settings in Hong Kong: A 10-Year retrospective study", "why": "首發精神病的次級病因篩檢研究，安非他命誘發精神病相關，但主要是臨床流行病學而非預測模型或文本分析。", "tag": "精神病理預測", "venue": "psychiatry and clinical psychology", "date": "2026-09-04", "url": "https://doi.org/10.64898/2026.09.02.26362044", "doi": "10.64898/2026.09.02.26362044", "score": 6, "source": "medrxiv"}, "medrxiv:10.64898/2026.09.02.26362001": {"id": "medrxiv:10.64898/2026.09.02.26362001", "title": "Heterogeneity in Excess Mortality Across Mental, Behavioural, and Neurodevelopmental Disorders", "why": "精神科流行病學研究，關於超額死亡率異質性，與再入院預測邊緣相關但無臨床文本或神經影像方法論貢獻。", "tag": "精神病理預測", "venue": "psychiatry and clinical psychology", "date": "2026-09-04", "url": "https://doi.org/10.64898/2026.09.02.26362001", "doi": "10.64898/2026.09.02.26362001", "score": 4, "source": "medrxiv"}, "medrxiv:10.64898/2026.09.02.26362008": {"id": "medrxiv:10.64898/2026.09.02.26362008", "title": "Can a General-Purpose Coding Agent Analyze a Production Hospital Data Warehouse?", "why": "臨床數據倉庫查詢自動化，與EHR結構化擷取有遠端相關，但非中文、非精神科、無LLM微調方法論。", "tag": "臨床文本LLM", "venue": "health informatics", "date": "2026-09-04", "url": "https://doi.org/10.64898/2026.09.02.26362008", "doi": "10.64898/2026.09.02.26362008", "score": 3, "source": "medrxiv"}, "biorxiv:10.64898/2026.08.30.748100": {"id": "biorxiv:10.64898/2026.08.30.748100", "title": "Human-like meaning maps from single-prompt VLM ratings of local scene meaning", "why": "視覺語言模型用於場景語義判斷，與精神科臨床或神經影像無關。", "tag": "其他", "venue": "neuroscience", "date": "2026-09-03", "url": "https://doi.org/10.64898/2026.08.30.748100", "doi": "10.64898/2026.08.30.748100", "score": 1, "source": "biorxiv"}, "biorxiv:10.64898/2026.08.31.747807": {"id": "biorxiv:10.64898/2026.08.31.747807", "title": "Recurrent beta-gamma interactions between olfactory bulb and piriform cortex support cross-sniff perceptual continuity in humans", "why": "嗅覺腦迴路基礎神經科學，動物實驗色彩濃厚，與臨床精神科或預測模型無關。", "tag": "其他", "venue": "neuroscience", "date": "2026-09-04", "url": "https://doi.org/10.64898/2026.08.31.747807", "doi": "10.64898/2026.08.31.747807", "score": 1, "source": "biorxiv"}};
+window.PROXY = "";
+
+const KS='radar.saved', KF='radar.feedback';
+const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}};
+const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){
+  alert('儲存空間寫入失敗，收藏可能不會保留。')}};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,
+  c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function actsHtml(id){
+  return '<div class="acts" data-id="'+esc(id)+'">'
+    +'<button class="save">收藏</button>'
+    +'<button class="up">讚</button>'
+    +'<button class="dn">倒讚</button></div>';
+}
+
+function linksHtml(it){
+  let h='';
+  if(it.url) h+='<a href="'+esc(it.url)+'">'+
+    (it.source==='PubMed'?'PubMed':it.source==='arXiv'?'arXiv':'預印本')+'</a>';
+  if(it.doi) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
+  if(it.doi && window.PROXY) h+='<a href="'+esc(window.PROXY+'https://doi.org/'+it.doi)+
+    '">全文（校內）</a>';
+  return '<div class="links">'+h+'</div>';
+}
+
+function itemHtml(it){
+  const meta=[it.tag,it.venue,it.date].filter(Boolean).join(' · ');
+  return '<div class="item"><div class="sc">'+esc(it.score)+'</div><div>'
+    +'<p class="ttl">'+esc(it.title)+'</p>'
+    +(it.why?'<p class="why">'+esc(it.why)+'</p>':'')
+    +'<p class="meta">'+esc(meta)+'</p>'
+    +linksHtml(it)+actsHtml(it.id)+'</div></div>';
+}
+
+function renderSaved(){
+  const box=document.getElementById('savedbox');
+  const saved=rd(KS);
+  const arr=Object.values(saved).sort((a,b)=>(b._at||0)-(a._at||0));
+  if(!arr.length){box.innerHTML='';return;}
+  box.innerHTML='<h2 class="saved">待讀清單（'+arr.length+'）</h2>'
+    +arr.map(itemHtml).join('');
+  paint();
+}
+
+function paint(){
+  const saved=rd(KS), fb=rd(KF);
+  document.querySelectorAll('.acts').forEach(el=>{
+    const id=el.dataset.id, v=(fb[id]||{}).v;
+    el.querySelector('.save').classList.toggle('on', !!saved[id]);
+    el.querySelector('.save').textContent = saved[id]?'已收藏':'收藏';
+    el.querySelector('.up').classList.toggle('on', v===1);
+    el.querySelector('.dn').classList.toggle('on', v===-1);
+  });
+}
+
+document.addEventListener('click', e=>{
+  const btn=e.target.closest('.acts button'); if(!btn) return;
+  const id=btn.closest('.acts').dataset.id;
+  const it=(window.ITEMS||{})[id] || (rd(KS)[id]);
+  if(!it) return;
+  if(btn.classList.contains('save')){
+    const s=rd(KS);
+    if(s[id]) delete s[id]; else s[id]=Object.assign({},it,{_at:Date.now()});
+    wr(KS,s); renderSaved();
+  } else {
+    const v=btn.classList.contains('up')?1:-1;
+    const f=rd(KF);
+    if((f[id]||{}).v===v) delete f[id];
+    else f[id]={v:v,title:it.title,venue:it.venue,tag:it.tag,at:Date.now()};
+    wr(KF,f);
+  }
+  paint();
+});
+
+function exportFb(){
+  const f=rd(KF);
+  const arr=Object.entries(f).map(([id,o])=>({id:id,v:o.v,title:o.title,
+    venue:o.venue,tag:o.tag}));
+  const txt=JSON.stringify(arr,null,1);
+  const ta=document.getElementById('dump');
+  ta.style.display='block'; ta.value=txt; ta.select();
+  if(navigator.clipboard) navigator.clipboard.writeText(txt).then(
+    ()=>{document.getElementById('expbtn').textContent='已複製 '+arr.length+' 筆回饋';},
+    ()=>{});
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  renderSaved(); paint();
+  document.getElementById('expbtn').addEventListener('click', exportFb);
+});
+
+</script>
+</body></html>
