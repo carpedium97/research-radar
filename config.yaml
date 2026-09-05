@@ -1,7 +1,17 @@
 # ============================================================
-# Research Radar 設定檔
-# 改這個檔案就好，radar.py 不用動
+# Research Radar 設定檔（個人研究雷達，每天跑）
+# 跑法：python radar.py
 # ============================================================
+
+title: 研究雷達
+output: index.html
+state: seen.json
+feedback: feedback.json
+namespace: radar          # 收藏與回饋在瀏覽器裡的儲存空間，不要跟 teaching 相同
+group_by: score
+
+siblings:
+  精神醫學新知: ./teaching.html
 
 # 你的研究輪廓 —— 這段會直接送給 Claude 當作打分依據
 # 寫得越具體，篩選越準。建議每兩三個月回來修一次。

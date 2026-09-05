@@ -1,0 +1,154 @@
+# ============================================================
+# 精神醫學新知（教學用）
+# 跑法：python radar.py teaching.yaml
+# 目的：讓你掌握國際頂級期刊上會改變臨床實務與教學內容的新研究，
+#       與個人研究方向無關。
+# ============================================================
+
+title: 精神醫學新知
+output: teaching.html          # 網址 → .../research-radar/teaching.html
+state: seen_teaching.json      # 跟個人雷達分開記錄，互不干擾
+feedback: feedback_teaching.json
+namespace: teach               # 收藏與回饋在瀏覽器裡獨立儲存
+group_by: tag                  # 按臨床領域分組，不按分數排
+
+siblings:
+  研究雷達: ./index.html
+
+ezproxy_prefix: ""             # 你們是 FortiClient VPN，留空即可
+
+lookback_days: 8               # 每週跑一次，多回看一天避免遺漏
+max_score_items: 160
+
+thresholds:
+  read: 7
+  scan: 5
+
+# ------------------------------------------------------------
+# 評分對象與判準
+# ------------------------------------------------------------
+profile: |
+  你在為一位臺灣的精神科主治醫師篩選文獻。他同時負責住院醫師與醫學生的教學。
+
+  他的需求跟自己的研究方向「無關」。他要的是：作為一個在國際上跟得上進度的
+  臨床精神科醫師與教師，這一週有哪些研究是他不知道會顯得落伍、或會改變他
+  對學生講的內容。
+
+  請用這個標準判斷一篇論文的價值：
+  - 這會不會改變臨床決策？（用藥選擇、劑量、療程長度、監測項目、
+    分流與住院決策、心理治療的適應症）
+  - 這會不會推翻或修正一個目前教科書上的說法？
+  - 這是不是重要的安全訊號或法規變動？
+  - 這是不是一個他在教學查房上可以直接引用的高品質證據？
+
+  優先順序：臨床指引 > 大型 RCT > 統合分析／網絡統合分析 > 系統性回顧
+  > 大型世代研究（尤其是北歐 registry 這類） > 其他。
+
+  請壓低分數的類型：
+  - 純機轉、動物、細胞、影像方法學研究（再漂亮也不會改變他怎麼教）
+  - 單一中心小樣本、無對照組的研究
+  - 量表開發與心理計量學研究
+  - 只在特定國家健保脈絡下才成立、無法外推到臺灣的政策研究
+  - 敘事性回顧（narrative review）與觀點文章
+  - 純基因關聯、GWAS
+
+rubric: |
+  10 = 這一週最重要的一篇，會直接改變臨床實務或教科書說法；
+  8-9 = 重要，他應該讀完整篇並在教學中提到；
+  7 = 值得知道，讀摘要就夠；
+  5-6 = 邊緣，掃過標題即可；
+  0-4 = 對臨床教學沒有用處。
+  請嚴格。一週給出 9 分以上的不應超過三篇。
+  評分只看「對臨床教學的價值」，不看論文本身的學術聲望或期刊名氣。
+
+why_instruction: |
+  兩句正體中文（合計 80 字以內）。第一句講這篇的核心結論（含關鍵數字，
+  例如效果量、NNT、風險比，有的話一定要寫出來）；第二句講這對臨床實務或
+  教學內容的具體意涵——他該改變什麼做法，或該對學生強調什麼。
+  不要寫「值得關注」「有重要意義」這種空話。
+
+tags:
+  - 思覺失調症與精神病
+  - 情感疾患
+  - 成癮
+  - 焦慮與創傷
+  - 兒童青少年
+  - 老年與認知
+  - 自殺與危機處理
+  - 精神藥理與安全性
+  - 心理治療與非藥物
+  - 診斷與服務體系
+
+# ------------------------------------------------------------
+# PubMed 查詢
+# 分三組：頂級綜合醫學期刊（加精神科主題過濾）、頂級精神科期刊（全收）、
+# 次級精神科期刊（只收 RCT／統合分析／系統性回顧／指引）
+# ------------------------------------------------------------
+pubmed:
+  queries:
+    - name: 綜合醫學頂刊的精神科論文
+      max: 60
+      term: >
+        ("N Engl J Med"[Journal] OR "Lancet"[Journal] OR "JAMA"[Journal]
+         OR "BMJ"[Journal] OR "Nat Med"[Journal] OR "Ann Intern Med"[Journal])
+        AND (psychiatr*[Title/Abstract] OR "mental health"[Title/Abstract]
+         OR depress*[Title/Abstract] OR schizophren*[Title/Abstract]
+         OR psychosis[Title/Abstract] OR bipolar[Title/Abstract]
+         OR anxiety[Title/Abstract] OR suicide[Title/Abstract]
+         OR addiction[Title/Abstract] OR "substance use"[Title/Abstract]
+         OR antipsychotic*[Title/Abstract] OR antidepress*[Title/Abstract]
+         OR dementia[Title/Abstract] OR insomnia[Title/Abstract]
+         OR "opioid use disorder"[Title/Abstract])
+
+    - name: 精神科頂刊全掃
+      max: 120
+      term: >
+        ("JAMA Psychiatry"[Journal] OR "Am J Psychiatry"[Journal]
+         OR "Lancet Psychiatry"[Journal] OR "World Psychiatry"[Journal]
+         OR "Mol Psychiatry"[Journal] OR "Biol Psychiatry"[Journal]
+         OR "Neuropsychopharmacology"[Journal] OR "Br J Psychiatry"[Journal]
+         OR "Schizophr Bull"[Journal] OR "JAMA Netw Open"[Journal])
+        AND (psychiatr*[Title/Abstract] OR "mental health"[Title/Abstract]
+         OR depress*[Title/Abstract] OR schizophren*[Title/Abstract]
+         OR psychosis[Title/Abstract] OR bipolar[Title/Abstract]
+         OR anxiety[Title/Abstract] OR suicide[Title/Abstract]
+         OR addiction[Title/Abstract] OR "substance use"[Title/Abstract]
+         OR antipsychotic*[Title/Abstract] OR antidepress*[Title/Abstract]
+         OR ADHD[Title/Abstract] OR autism[Title/Abstract]
+         OR dementia[Title/Abstract] OR psychotherap*[Title/Abstract])
+
+    - name: 精神科期刊的高證據等級研究
+      max: 140
+      term: >
+        ("Psychol Med"[Journal] OR "Acta Psychiatr Scand"[Journal]
+         OR "Addiction"[Journal] OR "J Clin Psychiatry"[Journal]
+         OR "Eur Neuropsychopharmacol"[Journal]
+         OR "Int J Neuropsychopharmacol"[Journal]
+         OR "Aust N Z J Psychiatry"[Journal] OR "CNS Drugs"[Journal]
+         OR "Drug Alcohol Depend"[Journal] OR "Schizophr Res"[Journal]
+         OR "J Affect Disord"[Journal] OR "Bipolar Disord"[Journal]
+         OR "J Am Acad Child Adolesc Psychiatry"[Journal]
+         OR "Am J Geriatr Psychiatry"[Journal]
+         OR "BMJ Ment Health"[Journal]
+         OR "Cochrane Database Syst Rev"[Journal])
+        AND (randomized controlled trial[pt] OR meta-analysis[pt]
+         OR systematic review[pt] OR practice guideline[pt]
+         OR guideline[pt])
+
+    - name: 跨期刊的臨床指引與網絡統合分析
+      max: 60
+      term: >
+        (practice guideline[pt] OR "network meta-analysis"[Title]
+         OR "clinical practice guideline"[Title])
+        AND (psychiatr*[Title/Abstract] OR schizophren*[Title/Abstract]
+         OR depress*[Title/Abstract] OR bipolar[Title/Abstract]
+         OR "substance use disorder"[Title/Abstract]
+         OR "opioid use disorder"[Title/Abstract]
+         OR anxiety[Title/Abstract] OR PTSD[Title/Abstract])
+        AND English[lang]
+
+# 教學用途不收預印本：未經同儕審查的結果不適合拿去教學生
+arxiv:
+  categories: []
+rxiv:
+  servers: []
