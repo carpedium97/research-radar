@@ -79,11 +79,23 @@ def load_state(path):
         return set(), set()
 
 
-def save_state(path, ids, titles):
+def load_shown(path):
+    """只回傳真的被顯示出來（值得讀／掃一眼）的標題。
+    舊格式沒有這個鍵，回空集合即可。"""
+    try:
+        with open(path, encoding="utf-8") as f:
+            return set(json.load(f).get("shown_titles", []))
+    except Exception:
+        return set()
+
+
+def save_state(path, ids, titles, shown_titles=None):
     os.makedirs(os.path.dirname(path), exist_ok=True)
+    prev = load_shown(path)
+    out = {"ids": sorted(ids)[-8000:], "titles": sorted(titles)[-8000:],
+           "shown_titles": sorted(prev | set(shown_titles or ()))[-3000:]}
     with open(path, "w", encoding="utf-8") as f:
-        json.dump({"ids": sorted(ids)[-8000:],
-                   "titles": sorted(titles)[-8000:]}, f, ensure_ascii=False)
+        json.dump(out, f, ensure_ascii=False)
 
 
 def load_feedback(path):
@@ -556,10 +568,19 @@ def render(items, cfg):
     title = cfg.get("title", "研究雷達")
     ns = cfg.get("namespace", "radar")
     outfile = cfg.get("output", "index.html")
-    items.sort(key=lambda x: -x["score"])
+    items.sort(key=lambda x: (-x["score"], x.get("title", "")))
     read = [i for i in items if i["score"] >= th["read"]]
     scan = [i for i in items if th["scan"] <= i["score"] < th["read"]]
     rest = [i for i in items if i["score"] < th["scan"]]
+
+    # 值得讀有硬上限。就算模型某天普遍給高分，清單長度仍然可控；
+    # 溢出的不會消失，只是降到「掃一眼」。
+    cap = cfg.get("read_cap")
+    if cap and len(read) > cap:
+        overflow = read[cap:]
+        read = read[:cap]
+        scan = overflow + scan
+        log(f"值得讀超過上限 {cap}，{len(overflow)} 篇移到掃一眼")
     now = datetime.now(TPE)
 
     def links_html(it):
@@ -661,7 +682,7 @@ window.PROXY = {json.dumps(proxy)};
     dest = os.path.join(DOCS, outfile)
     if not items and os.path.exists(dest):
         log(f"這一輪沒有新論文，保留既有的 docs/{outfile} 不覆蓋")
-        return
+        return set()
 
     arch = os.path.join(DOCS, "archive", os.path.splitext(outfile)[0])
     os.makedirs(arch, exist_ok=True)
@@ -671,6 +692,7 @@ window.PROXY = {json.dumps(proxy)};
               encoding="utf-8") as f:
         f.write(page)
     log(f"已輸出 docs/{outfile}（值得讀 {len(read)}、掃一眼 {len(scan)}）")
+    return {norm_title(i["title"]) for i in read + scan}
 
 
 # ---------------------------------------------------------------- main
@@ -703,6 +725,15 @@ def main():
                         now.strftime("%Y-%m-%d"))
 
     seen_ids, seen_titles = load_state(state_path)
+
+    # 另一頁「真的顯示出來過」的才排除。只是被抓到但埋在低分區的不算——
+    # 同一篇在研究雷達是 2 分，在教學版可能是 9 分。
+    for other in cfg.get("also_exclude", []):
+        o_shown = load_shown(os.path.join(ROOT, "state", other))
+        if o_shown:
+            log(f"另外排除 {other} 已顯示過的 {len(o_shown)} 篇")
+        seen_titles |= o_shown
+
     fresh, ids_now, titles_now = [], set(), set()
     for it in items:
         nt = norm_title(it["title"])
@@ -719,8 +750,9 @@ def main():
         log(f"超過上限，只送前 {cap} 篇打分")
         fresh = fresh[:cap]
 
-    render(score_items(fresh, cfg, calib), cfg)
-    save_state(state_path, seen_ids | ids_now, seen_titles | titles_now)
+    shown = render(score_items(fresh, cfg, calib), cfg) or set()
+    own_ids, own_titles = load_state(state_path)
+    save_state(state_path, own_ids | ids_now, own_titles | titles_now, shown)
 
 
 if __name__ == "__main__":

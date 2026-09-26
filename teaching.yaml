@@ -7,7 +7,8 @@
 
 title: 精神醫學新知
 output: teaching.html          # 網址 → .../research-radar/teaching.html
-state: seen_teaching.json      # 跟個人雷達分開記錄，互不干擾
+state: seen_teaching.json
+also_exclude: [seen.json]      # 研究雷達已經推過的就不再重複一次      # 跟個人雷達分開記錄，互不干擾
 feedback: feedback_teaching.json
 namespace: teach               # 收藏與回饋在瀏覽器裡獨立儲存
 group_by: tag                  # 按臨床領域分組，不按分數排
@@ -23,6 +24,9 @@ max_score_items: 160
 thresholds:
   read: 7
   scan: 5
+
+# 每週「值得讀」的硬上限。實測一週 19 篇偏多，溢出的降到「掃一眼」。
+read_cap: 10
 
 # ------------------------------------------------------------
 # 評分對象與判準
@@ -143,6 +147,22 @@ pubmed:
         AND (randomized controlled trial[pt] OR meta-analysis[pt]
          OR systematic review[pt] OR practice guideline[pt]
          OR guideline[pt])
+
+    - name: 成癮醫學的高證據等級研究
+      max: 80
+      term: >
+        (randomized controlled trial[pt] OR meta-analysis[pt]
+         OR systematic review[pt] OR practice guideline[pt])
+        AND ("substance use disorder"[Title/Abstract]
+         OR "opioid use disorder"[Title/Abstract]
+         OR "alcohol use disorder"[Title/Abstract]
+         OR methamphetamine[Title/Abstract] OR amphetamine[Title/Abstract]
+         OR "stimulant use"[Title/Abstract] OR cannabis[Title/Abstract]
+         OR "smoking cessation"[Title/Abstract]
+         OR buprenorphine[Title/Abstract] OR naltrexone[Title/Abstract]
+         OR methadone[Title/Abstract]
+         OR "GLP-1"[Title/Abstract] OR semaglutide[Title/Abstract])
+        AND English[lang]
 
     - name: 跨期刊的臨床指引與網絡統合分析
       max: 60
