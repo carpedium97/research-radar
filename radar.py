@@ -181,10 +181,18 @@ def _efetch(pmids):
                        or art.findtext(".//Journal/Title") or "")
             ptypes = [p.text for p in art.findall(".//PublicationType")
                       if p.text]
+            # 只取這篇論文自己的 ID。絕對不能用 .//ArticleId —— 那會一路掃進
+            # PubmedData/ReferenceList，撈到參考文獻的 DOI（實測 32% 會錯）。
             doi = ""
-            for aid in art.findall(".//ArticleId"):
-                if aid.get("IdType") == "doi":
-                    doi = (aid.text or "").strip()
+            for aid in art.findall("./PubmedData/ArticleIdList/ArticleId"):
+                if aid.get("IdType") == "doi" and (aid.text or "").strip():
+                    doi = aid.text.strip()
+                    break
+            if not doi:   # 少數紀錄把 DOI 放在 Article/ELocationID
+                for el in art.findall("./MedlineCitation/Article/ELocationID"):
+                    if el.get("EIdType") == "doi" and (el.text or "").strip():
+                        doi = el.text.strip()
+                        break
             if not title:
                 continue
             out.append({
@@ -460,6 +468,7 @@ h2.saved{color:var(--save)}
 .meta{color:var(--muted);font-size:.78rem;margin:0 0 .35rem}
 .links a{color:var(--accent);font-size:.8rem;margin-right:.9rem;
   text-underline-offset:2px}
+.links .stale{color:var(--muted);font-size:.8rem}
 a{color:var(--accent)}
 .acts{margin-top:.5rem;display:flex;gap:1.1rem;align-items:center}
 .acts button{background:none;border:0;padding:0;font:inherit;font-size:.8rem;
@@ -493,9 +502,13 @@ function linksHtml(it){
   let h='';
   if(it.url) h+='<a href="'+esc(it.url)+'">'+
     (it.source==='PubMed'?'PubMed':it.source==='arXiv'?'arXiv':'預印本')+'</a>';
-  if(it.doi) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
-  if(it.doi && window.PROXY) h+='<a href="'+
+  // 2026-09-26 之前收藏的項目，DOI 是舊程式抓的，可能指向參考文獻裡的
+  // 另一篇論文。那些只留 PubMed 連結。
+  const doiOk = it.doi && (it.dv || 0) >= 2;
+  if(doiOk) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
+  if(doiOk && window.PROXY) h+='<a href="'+
     esc(window.PROXY+'https://doi.org/'+it.doi)+'">全文（校內）</a>';
+  if(it.doi && !doiOk) h+='<span class="stale">DOI 待更新，請用 PubMed</span>';
   return '<div class="links">'+h+'</div>';
 }
 
@@ -643,7 +656,10 @@ def render(items, cfg):
 
     keep = ("id", "title", "why", "tag", "venue", "date", "url", "doi",
             "score", "source")
-    lookup = {it["id"]: {k: it.get(k, "") for k in keep} for it in items}
+    # dv = DOI 版本。1 代表舊程式抓的（可能是參考文獻的 DOI），2 代表已修正。
+    # 存在瀏覽器裡的舊收藏沒有這個欄位，頁面會據此隱藏它們的 DOI 連結。
+    lookup = {it["id"]: dict({k: it.get(k, "") for k in keep}, dv=2)
+              for it in items}
     items_json = json.dumps(lookup, ensure_ascii=False).replace("<", "\\u003c")
 
     nav = ""
