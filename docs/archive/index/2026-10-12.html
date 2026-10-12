@@ -1,0 +1,161 @@
+<!doctype html><html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="研究雷達">
+<meta name="theme-color" content="#fbfaf7">
+<title>研究雷達 10/12</title>
+<style>
+:root{
+  --paper:#fbfaf7; --ink:#16181c; --muted:#6b7280; --rule:#e3e0d8;
+  --accent:#1b3a5c; --hot:#8c2f24; --save:#9a6b12;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161a; --ink:#e8e6e1; --muted:#8b8f98; --rule:#282c33;
+         --accent:#8fb4d9; --hot:#e0796a; --save:#d3a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:44rem;margin:0 auto;padding:2rem 1.15rem 5rem}
+header{padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.6rem}
+h1{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;
+  font-size:1.5rem;margin:0 0 .2rem;letter-spacing:-.01em}
+.stamp{color:var(--muted);font-size:.82rem}
+.stamp a{margin-left:.6rem}
+h2{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;font-size:1.05rem;
+  margin:2.4rem 0 .2rem;color:var(--accent)}
+h2.saved{color:var(--save)}
+.item{display:grid;grid-template-columns:2.4rem 1fr;gap:.85rem;
+  padding:1.05rem 0;border-top:1px solid var(--rule)}
+.sc{font-family:Georgia,serif;font-size:1.5rem;line-height:1.15;
+  color:var(--muted);font-variant-numeric:tabular-nums;padding-top:.05rem}
+.sc.hi{color:var(--hot)}
+.ttl{font-family:Georgia,"Noto Serif TC",serif;font-size:1.02rem;
+  line-height:1.35;margin:0 0 .35rem}
+.why{margin:0 0 .45rem}
+.meta{color:var(--muted);font-size:.78rem;margin:0 0 .35rem}
+.links a{color:var(--accent);font-size:.8rem;margin-right:.9rem;
+  text-underline-offset:2px}
+.links .stale{color:var(--muted);font-size:.8rem}
+a{color:var(--accent)}
+.acts{margin-top:.5rem;display:flex;gap:1.1rem;align-items:center}
+.acts button{background:none;border:0;padding:0;font:inherit;font-size:.8rem;
+  color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.acts button.on{font-weight:600}
+.acts .save.on{color:var(--save)}
+.acts .up.on{color:var(--accent)}
+.acts .dn.on{color:var(--hot)}
+details{margin-top:2rem;border-top:1px solid var(--rule);padding-top:.8rem}
+summary{cursor:pointer;color:var(--muted);font-size:.86rem}
+.empty{color:var(--muted);padding:2rem 0}
+footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);
+  color:var(--muted);font-size:.75rem}
+footer button{background:none;border:1px solid var(--rule);border-radius:3px;
+  padding:.4rem .7rem;font:inherit;font-size:.78rem;color:var(--ink);
+  cursor:pointer;margin:.6rem .5rem .6rem 0}
+#dump{width:100%;height:9rem;margin-top:.6rem;font-size:.7rem;
+  font-family:ui-monospace,monospace;display:none;
+  background:var(--paper);color:var(--ink);border:1px solid var(--rule)}
+</style></head><body><div class="wrap">
+<header><h1>研究雷達</h1>
+<div class="stamp">2026 年 10 月 12 日 · 掃過 22 篇 · 值得讀 3 篇<a href="./teaching.html">精神醫學新知</a></div></header>
+<section id="savedbox"></section>
+<h2>值得讀</h2><div class="item"><div class="sc hi">9</div><div><p class="ttl">Diagnostic accuracy and clinician-rated reasoning quality dissociate in a blinded evaluation of large language models in psychiatry</p><p class="why">四個前沿LLM在精神科診斷上（196 個臨床病歷），準確度 0.759-0.837 vs 臨床評定推理品質分離（兩模型準確度同為 0.827 但推理評分相差 0.70，95% CI 0.50-0.90），示範診斷精準度與臨床推理品質獨立，自動標準無法替代臨床判斷。</p><p class="meta">臨床文本LLM · health informatics · 2026-10-11</p><div class="links"><a href="https://doi.org/10.64898/2026.02.03.26345402">預印本</a><a href="https://doi.org/10.64898/2026.02.03.26345402">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.02.03.26345402"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc hi">8</div><div><p class="ttl">Connectomic signatures advance the understandings of transdiagnostic heterogeneity in psychosis.</p><p class="why">精神病橫式-連接體框架綜論，整合連接體重疊、normative modeling、多世代數據調和與臨床生物類型分層，提出精準精神醫學轉譯路線圖兼具思覺失調症相關性。</p><p class="meta">精神病理預測 · Commun Med (Lond)</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42859173/">PubMed</a><a href="https://doi.org/10.1038/s43856-026-01967-y">DOI</a></div><div class="acts" data-id="pmid:42859173"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc hi">8</div><div><p class="ttl">From examinations to consultations: a physician-reviewed Japanese benchmark for large language models in traditional Kampo medicine</p><p class="why">日本漢方醫學的 LLM 基準建構研究。74 個臨床諮詢情境、310 個評估準則、醫師修訂，涵蓋 10 個模型。區分「知識保有」(74.8-92.4%) 與「臨床應用」能力（限於已知風險的病例應用僅 17.5%）。跨廠商評分器信度高（ρ=0.952-0.976），評分偏差 0.4-0.6 個百分點。</p><p class="meta">臨床文本LLM · health informatics · 2026-10-11</p><div class="links"><a href="https://doi.org/10.64898/2026.10.07.26365005">預印本</a><a href="https://doi.org/10.64898/2026.10.07.26365005">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.10.07.26365005"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><h2>掃一眼</h2><div class="item"><div class="sc">7</div><div><p class="ttl">Machine Learning-Supported Efficient VTE Risk Assessment using Routinely Collected Electronic Health Record Data</p><p class="why">NHS五家醫院 VTE 風險評估自動化（N=577,904 入院），機器學習模型 AUROC 0.709 與臨床紀錄相當（0.704），示範常規EHR預填充工作流可行性；跨科系但無精神科病理應用。</p><p class="meta">其他 · health informatics · 2026-10-09</p><div class="links"><a href="https://doi.org/10.64898/2026.08.18.26360687">預印本</a><a href="https://doi.org/10.64898/2026.08.18.26360687">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.08.18.26360687"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">7</div><div><p class="ttl">Prototyping and evaluation of a clinical decision support system in long-term care in German nursing homes.</p><p class="why">德國長期照護混合 CDSS 原型，結合知識模型、規則引擎與 LLM 從敘述性護理紀錄擷取指標，72% 推薦正確率、LLM 擷取同意率 76%，示範文本擷取與臨床決策整合。</p><p class="meta">臨床文本LLM · Health Care Manag Sci</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42859266/">PubMed</a><a href="https://doi.org/10.1007/s10729-026-09794-2">DOI</a></div><div class="acts" data-id="pmid:42859266"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">7</div><div><p class="ttl">RxReduce: a medication deprescribing agent framework leveraging large language models to optimize proton pump inhibitor use.</p><p class="why">RxReduce 質子幫浦抑制劑停藥決策框架，結合 RAG 與 LLM 分析臨床紀錄，F1 分數 0.84（基線 0.70），示範 LLM 輔助臨床判斷之可行性但對精神科無直接應用。</p><p class="meta">臨床文本LLM · JAMIA Open</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42857748/">PubMed</a><a href="https://doi.org/10.1093/jamiaopen/ooag167">DOI</a></div><div class="acts" data-id="pmid:42857748"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">A decade of cannabis-related hospital admissions in Victoria, Australia: A retrospective observational study.</p><p class="why">澳洲 10 年期追蹤，大麻相關住院 39,565 人，主診斷個案增加 49%（2013/14 vs 2022/23），但無成癮治療或藥物介入數據。</p><p class="meta">精神病理預測 · Addiction</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42859904/">PubMed</a><a href="https://doi.org/10.1111/add.70601">DOI</a></div><div class="acts" data-id="pmid:42859904"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">Artificial intelligence in hepatocellular carcinoma diagnosis and AI-assisted treatment support: Current landscape and future directions.</p><p class="why">HCC診療中的AI整合綜述，涵蓋基礎模型、LLM、機器人手術決策支持，指出多中心前瞻性驗證缺口與工作流整合挑戰；無原創資料。</p><p class="meta">其他 · Liver Res</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42856947/">PubMed</a><a href="https://doi.org/10.1016/j.livres.2026.08.001">DOI</a></div><div class="acts" data-id="pmid:42856947"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">Normative Modeling of Molecular-Enriched Functional Connectivity for Detecting Deviations from Healthy Brain Aging.</p><p class="why">分子富集功能連結的常模模型轉移到外部資料（7 個資料集，N=4,152），97.5% 模型合格率，關聯澱粉蛋白負荷；方法論工具但無精神科臨床端點。</p><p class="meta">神經影像方法 · bioRxiv</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42856517/">PubMed</a><a href="https://doi.org/10.64898/2026.09.28.754989">DOI</a></div><div class="acts" data-id="pmid:42856517"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">A geometric rs-fMRI connectome descriptor reveals individual stability without robust autism group differences.</p><p class="why">Riemannian 連結體幾何描述符在 ABIDE I (N=1035) 上無自閉症群體差異（d=-0.007），取得高個體可重複性但無診斷價值；為 brain age gap 領域已過飽和的方法學批判。</p><p class="meta">神經影像方法 · Cogn Neurodyn</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42857201/">PubMed</a><a href="https://doi.org/10.1007/s11571-026-10563-8">DOI</a></div><div class="acts" data-id="pmid:42857201"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Do Calibrated-Probability Claims Hold Up in Clinical Diagnosis? A Pre-registered Evaluation of a Decision Model Against Frontier Language Models</p><p class="why">前瞻性登記評估決策模型 vs LLM 臨床診斷準確度（3 個案例集，Jev top-1 72%、Claude Opus 87.4% 在 DDXPlus），發現機率校準宣稱不成立；通用診斷工具，無精神科聚焦。</p><p class="meta">其他 · health informatics · 2026-10-11</p><div class="links"><a href="https://doi.org/10.64898/2026.10.09.26365153">預印本</a><a href="https://doi.org/10.64898/2026.10.09.26365153">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.10.09.26365153"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Metabolic modulation of brain network dynamics during alcohol withdrawal</p><p class="why">酒精戒斷期間酮體代謝與腦網絡動態的關聯研究。酮體濃度上升與 cue-induced craving 減少相關（n=未明確，追蹤 3 週）。方法為 fMRI 有效連接分析。</p><p class="meta">成癮與GLP-1 · addiction medicine · 2026-10-11</p><div class="links"><a href="https://doi.org/10.64898/2026.10.07.26364946">預印本</a><a href="https://doi.org/10.64898/2026.10.07.26364946">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.10.07.26364946"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">The role of white matter microstructure in the association between childhood maltreatment and adult post-traumatic symptoms.</p><p class="why">299 人 PTSD／mTBI 世代研究，童年虐待與白質擴散參數關聯，中介分析顯示胼胝體及上縱束參與，但無治療端點或創傷精神症狀的明確轉化。</p><p class="meta">神經影像方法 · Mol Psychiatry</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42859210/">PubMed</a><a href="https://doi.org/10.1038/s41380-026-03624-1">DOI</a></div><div class="acts" data-id="pmid:42859210"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><details><summary>其餘 9 篇（低相關）</summary><div class="item"><div class="sc">4</div><div><p class="ttl">Automated Question-and-Answer-Based Speech-In-Noise Hearing Test Using a Large Language Model.</p><p class="why">40 名聽力受試者使用文本轉語音、自動語音辨識與 LLM 的會話式聽力測試，AUC 0.97、與純音聽力檢查相關性 r=0.86，無臨床轉譯或實務部署證據。</p><p class="meta">其他 · Trends Hear</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42858185/">PubMed</a><a href="https://doi.org/10.1177/23312165261479670">DOI</a></div><div class="acts" data-id="pmid:42858185"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">4</div><div><p class="ttl">Automating fine needle aspiration and non-gynecologic quality control using a large language model: A real-world evaluation of diagnostic accuracy and efficiency.</p><p class="why">細胞病理報告自動分類，98.5% 準確度（465/472），但領域非精神科、無臨床端點，方法為LLM套用標準工作流。</p><p class="meta">其他 · Cytojournal</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42857471/">PubMed</a><a href="https://doi.org/10.25259/Cytojournal_192_2025">DOI</a></div><div class="acts" data-id="pmid:42857471"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Agreement between large language models, human reviewers, and authors in evaluating STROBE checklists for observational studies in rheumatology.</p><p class="why">LLM 評估 STROBE 檢核表（17 篇風濕病學論文），與人工評審一致性 AC1=0.826，但純方法論評估工具，無臨床應用。</p><p class="meta">其他 · EULAR Rheumatol Open</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42857289/">PubMed</a><a href="https://doi.org/10.1016/j.ero.2026.100193">DOI</a></div><div class="acts" data-id="pmid:42857289"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Biological rationales from language models enable leakage-resistant forecasts of target-indication success.</p><p class="why">PRIORITI 框架用 LLM 合成人類遺傳學證據預測藥物-適應症成功（N=6,784，外部測試 N=765，AUROC 0.817），純藥物開發適用，無精神科相關性。</p><p class="meta">其他 · bioRxiv</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42856309/">PubMed</a><a href="https://doi.org/10.64898/2026.09.24.754137">DOI</a></div><div class="acts" data-id="pmid:42856309"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Comparison of DeepSeek AI and Human Reviewers in Structured Evaluation of Neurosurgical Manuscripts: A Pilot Study.</p><p class="why">DeepSeek 與人工評審員對 11 篇神經外科個案報告的評分比較，DeepSeek 新穎性評分過高（系統性高估），無醫療決策或臨床預測應用。</p><p class="meta">其他 · J Neurol Surg Rep</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42859550/">PubMed</a><a href="https://doi.org/10.1055/a-2964-9336">DOI</a></div><div class="acts" data-id="pmid:42859550"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Large language model-based bibliometric evaluation of population descriptors in human genetics.</p><p class="why">使用LLM評估GWAS論文（N=4,007，2007-2025）中族群描述詞的NASEM建議遵循度，無臨床應用或精神科相關。</p><p class="meta">其他 · bioRxiv</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42856267/">PubMed</a><a href="https://doi.org/10.64898/2026.09.24.754051">DOI</a></div><div class="acts" data-id="pmid:42856267"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Six pragmatic steps to separate medical GenAI&#x27;s promise from its inherent dangers.</p><p class="why">醫學 GenAI 風險管理通則性意見文章，無實徵數據、無臨床場景、無量化評估。</p><p class="meta">其他 · NPJ Digit Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42859179/">PubMed</a><a href="https://doi.org/10.1038/s41746-026-03384-w">DOI</a></div><div class="acts" data-id="pmid:42859179"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">eData: A tool and format for rapid extraction of exposure data from scientific articles.</p><p class="why">環境化學數據擷取工具 eData，使用 LLM 從文獻快速擷取暴露資料，85% 格式驗證通過率、每篇縮時 3 小時至 1 小時，與臨床或健康科學無關。</p><p class="meta">其他 · Integr Environ Assess Manag</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42858169/">PubMed</a><a href="https://doi.org/10.1093/inteam/vjag163">DOI</a></div><div class="acts" data-id="pmid:42858169"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Zebrafish behavioral phenomics reveals functional subtypes of autism risk genes.</p><p class="why">斑馬魚動物模型測試 11 個自閉症風險基因，鑑別出 3 個行為亞型與阿片類藥物反應，無人類臨床病人或精神科相關性。</p><p class="meta">其他 · Mol Psychiatry</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42859211/">PubMed</a><a href="https://doi.org/10.1038/s41380-026-03922-8">DOI</a></div><div class="acts" data-id="pmid:42859211"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div></details>
+<footer>
+<button id="expbtn">匯出回饋（複製到剪貼簿）</button>
+<textarea id="dump" readonly></textarea>
+<p>收藏與回饋存在這台裝置的瀏覽器裡，換裝置不會同步。
+分數由 Claude 依設定檔的評分標準評定，僅供分流參考，不代表論文品質。</p>
+</footer>
+</div>
+<script>
+window.NS = "radar";
+window.ITEMS = {"medrxiv:10.64898/2026.02.03.26345402": {"id": "medrxiv:10.64898/2026.02.03.26345402", "title": "Diagnostic accuracy and clinician-rated reasoning quality dissociate in a blinded evaluation of large language models in psychiatry", "why": "四個前沿LLM在精神科診斷上（196 個臨床病歷），準確度 0.759-0.837 vs 臨床評定推理品質分離（兩模型準確度同為 0.827 但推理評分相差 0.70，95% CI 0.50-0.90），示範診斷精準度與臨床推理品質獨立，自動標準無法替代臨床判斷。", "tag": "臨床文本LLM", "venue": "health informatics", "date": "2026-10-11", "url": "https://doi.org/10.64898/2026.02.03.26345402", "doi": "10.64898/2026.02.03.26345402", "score": 9, "source": "medrxiv", "dv": 2}, "pmid:42859173": {"id": "pmid:42859173", "title": "Connectomic signatures advance the understandings of transdiagnostic heterogeneity in psychosis.", "why": "精神病橫式-連接體框架綜論，整合連接體重疊、normative modeling、多世代數據調和與臨床生物類型分層，提出精準精神醫學轉譯路線圖兼具思覺失調症相關性。", "tag": "精神病理預測", "venue": "Commun Med (Lond)", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42859173/", "doi": "10.1038/s43856-026-01967-y", "score": 8, "source": "PubMed", "dv": 2}, "medrxiv:10.64898/2026.10.07.26365005": {"id": "medrxiv:10.64898/2026.10.07.26365005", "title": "From examinations to consultations: a physician-reviewed Japanese benchmark for large language models in traditional Kampo medicine", "why": "日本漢方醫學的 LLM 基準建構研究。74 個臨床諮詢情境、310 個評估準則、醫師修訂，涵蓋 10 個模型。區分「知識保有」(74.8-92.4%) 與「臨床應用」能力（限於已知風險的病例應用僅 17.5%）。跨廠商評分器信度高（ρ=0.952-0.976），評分偏差 0.4-0.6 個百分點。", "tag": "臨床文本LLM", "venue": "health informatics", "date": "2026-10-11", "url": "https://doi.org/10.64898/2026.10.07.26365005", "doi": "10.64898/2026.10.07.26365005", "score": 8, "source": "medrxiv", "dv": 2}, "medrxiv:10.64898/2026.08.18.26360687": {"id": "medrxiv:10.64898/2026.08.18.26360687", "title": "Machine Learning-Supported Efficient VTE Risk Assessment using Routinely Collected Electronic Health Record Data", "why": "NHS五家醫院 VTE 風險評估自動化（N=577,904 入院），機器學習模型 AUROC 0.709 與臨床紀錄相當（0.704），示範常規EHR預填充工作流可行性；跨科系但無精神科病理應用。", "tag": "其他", "venue": "health informatics", "date": "2026-10-09", "url": "https://doi.org/10.64898/2026.08.18.26360687", "doi": "10.64898/2026.08.18.26360687", "score": 7, "source": "medrxiv", "dv": 2}, "pmid:42859266": {"id": "pmid:42859266", "title": "Prototyping and evaluation of a clinical decision support system in long-term care in German nursing homes.", "why": "德國長期照護混合 CDSS 原型，結合知識模型、規則引擎與 LLM 從敘述性護理紀錄擷取指標，72% 推薦正確率、LLM 擷取同意率 76%，示範文本擷取與臨床決策整合。", "tag": "臨床文本LLM", "venue": "Health Care Manag Sci", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42859266/", "doi": "10.1007/s10729-026-09794-2", "score": 7, "source": "PubMed", "dv": 2}, "pmid:42857748": {"id": "pmid:42857748", "title": "RxReduce: a medication deprescribing agent framework leveraging large language models to optimize proton pump inhibitor use.", "why": "RxReduce 質子幫浦抑制劑停藥決策框架，結合 RAG 與 LLM 分析臨床紀錄，F1 分數 0.84（基線 0.70），示範 LLM 輔助臨床判斷之可行性但對精神科無直接應用。", "tag": "臨床文本LLM", "venue": "JAMIA Open", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42857748/", "doi": "10.1093/jamiaopen/ooag167", "score": 7, "source": "PubMed", "dv": 2}, "pmid:42859904": {"id": "pmid:42859904", "title": "A decade of cannabis-related hospital admissions in Victoria, Australia: A retrospective observational study.", "why": "澳洲 10 年期追蹤，大麻相關住院 39,565 人，主診斷個案增加 49%（2013/14 vs 2022/23），但無成癮治療或藥物介入數據。", "tag": "精神病理預測", "venue": "Addiction", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42859904/", "doi": "10.1111/add.70601", "score": 6, "source": "PubMed", "dv": 2}, "pmid:42856947": {"id": "pmid:42856947", "title": "Artificial intelligence in hepatocellular carcinoma diagnosis and AI-assisted treatment support: Current landscape and future directions.", "why": "HCC診療中的AI整合綜述，涵蓋基礎模型、LLM、機器人手術決策支持，指出多中心前瞻性驗證缺口與工作流整合挑戰；無原創資料。", "tag": "其他", "venue": "Liver Res", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42856947/", "doi": "10.1016/j.livres.2026.08.001", "score": 6, "source": "PubMed", "dv": 2}, "pmid:42856517": {"id": "pmid:42856517", "title": "Normative Modeling of Molecular-Enriched Functional Connectivity for Detecting Deviations from Healthy Brain Aging.", "why": "分子富集功能連結的常模模型轉移到外部資料（7 個資料集，N=4,152），97.5% 模型合格率，關聯澱粉蛋白負荷；方法論工具但無精神科臨床端點。", "tag": "神經影像方法", "venue": "bioRxiv", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42856517/", "doi": "10.64898/2026.09.28.754989", "score": 6, "source": "PubMed", "dv": 2}, "pmid:42857201": {"id": "pmid:42857201", "title": "A geometric rs-fMRI connectome descriptor reveals individual stability without robust autism group differences.", "why": "Riemannian 連結體幾何描述符在 ABIDE I (N=1035) 上無自閉症群體差異（d=-0.007），取得高個體可重複性但無診斷價值；為 brain age gap 領域已過飽和的方法學批判。", "tag": "神經影像方法", "venue": "Cogn Neurodyn", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42857201/", "doi": "10.1007/s11571-026-10563-8", "score": 5, "source": "PubMed", "dv": 2}, "medrxiv:10.64898/2026.10.09.26365153": {"id": "medrxiv:10.64898/2026.10.09.26365153", "title": "Do Calibrated-Probability Claims Hold Up in Clinical Diagnosis? A Pre-registered Evaluation of a Decision Model Against Frontier Language Models", "why": "前瞻性登記評估決策模型 vs LLM 臨床診斷準確度（3 個案例集，Jev top-1 72%、Claude Opus 87.4% 在 DDXPlus），發現機率校準宣稱不成立；通用診斷工具，無精神科聚焦。", "tag": "其他", "venue": "health informatics", "date": "2026-10-11", "url": "https://doi.org/10.64898/2026.10.09.26365153", "doi": "10.64898/2026.10.09.26365153", "score": 5, "source": "medrxiv", "dv": 2}, "medrxiv:10.64898/2026.10.07.26364946": {"id": "medrxiv:10.64898/2026.10.07.26364946", "title": "Metabolic modulation of brain network dynamics during alcohol withdrawal", "why": "酒精戒斷期間酮體代謝與腦網絡動態的關聯研究。酮體濃度上升與 cue-induced craving 減少相關（n=未明確，追蹤 3 週）。方法為 fMRI 有效連接分析。", "tag": "成癮與GLP-1", "venue": "addiction medicine", "date": "2026-10-11", "url": "https://doi.org/10.64898/2026.10.07.26364946", "doi": "10.64898/2026.10.07.26364946", "score": 5, "source": "medrxiv", "dv": 2}, "pmid:42859210": {"id": "pmid:42859210", "title": "The role of white matter microstructure in the association between childhood maltreatment and adult post-traumatic symptoms.", "why": "299 人 PTSD／mTBI 世代研究，童年虐待與白質擴散參數關聯，中介分析顯示胼胝體及上縱束參與，但無治療端點或創傷精神症狀的明確轉化。", "tag": "神經影像方法", "venue": "Mol Psychiatry", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42859210/", "doi": "10.1038/s41380-026-03624-1", "score": 5, "source": "PubMed", "dv": 2}, "pmid:42858185": {"id": "pmid:42858185", "title": "Automated Question-and-Answer-Based Speech-In-Noise Hearing Test Using a Large Language Model.", "why": "40 名聽力受試者使用文本轉語音、自動語音辨識與 LLM 的會話式聽力測試，AUC 0.97、與純音聽力檢查相關性 r=0.86，無臨床轉譯或實務部署證據。", "tag": "其他", "venue": "Trends Hear", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42858185/", "doi": "10.1177/23312165261479670", "score": 4, "source": "PubMed", "dv": 2}, "pmid:42857471": {"id": "pmid:42857471", "title": "Automating fine needle aspiration and non-gynecologic quality control using a large language model: A real-world evaluation of diagnostic accuracy and efficiency.", "why": "細胞病理報告自動分類，98.5% 準確度（465/472），但領域非精神科、無臨床端點，方法為LLM套用標準工作流。", "tag": "其他", "venue": "Cytojournal", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42857471/", "doi": "10.25259/Cytojournal_192_2025", "score": 4, "source": "PubMed", "dv": 2}, "pmid:42857289": {"id": "pmid:42857289", "title": "Agreement between large language models, human reviewers, and authors in evaluating STROBE checklists for observational studies in rheumatology.", "why": "LLM 評估 STROBE 檢核表（17 篇風濕病學論文），與人工評審一致性 AC1=0.826，但純方法論評估工具，無臨床應用。", "tag": "其他", "venue": "EULAR Rheumatol Open", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42857289/", "doi": "10.1016/j.ero.2026.100193", "score": 3, "source": "PubMed", "dv": 2}, "pmid:42856309": {"id": "pmid:42856309", "title": "Biological rationales from language models enable leakage-resistant forecasts of target-indication success.", "why": "PRIORITI 框架用 LLM 合成人類遺傳學證據預測藥物-適應症成功（N=6,784，外部測試 N=765，AUROC 0.817），純藥物開發適用，無精神科相關性。", "tag": "其他", "venue": "bioRxiv", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42856309/", "doi": "10.64898/2026.09.24.754137", "score": 3, "source": "PubMed", "dv": 2}, "pmid:42859550": {"id": "pmid:42859550", "title": "Comparison of DeepSeek AI and Human Reviewers in Structured Evaluation of Neurosurgical Manuscripts: A Pilot Study.", "why": "DeepSeek 與人工評審員對 11 篇神經外科個案報告的評分比較，DeepSeek 新穎性評分過高（系統性高估），無醫療決策或臨床預測應用。", "tag": "其他", "venue": "J Neurol Surg Rep", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42859550/", "doi": "10.1055/a-2964-9336", "score": 3, "source": "PubMed", "dv": 2}, "pmid:42856267": {"id": "pmid:42856267", "title": "Large language model-based bibliometric evaluation of population descriptors in human genetics.", "why": "使用LLM評估GWAS論文（N=4,007，2007-2025）中族群描述詞的NASEM建議遵循度，無臨床應用或精神科相關。", "tag": "其他", "venue": "bioRxiv", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42856267/", "doi": "10.64898/2026.09.24.754051", "score": 2, "source": "PubMed", "dv": 2}, "pmid:42859179": {"id": "pmid:42859179", "title": "Six pragmatic steps to separate medical GenAI's promise from its inherent dangers.", "why": "醫學 GenAI 風險管理通則性意見文章，無實徵數據、無臨床場景、無量化評估。", "tag": "其他", "venue": "NPJ Digit Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42859179/", "doi": "10.1038/s41746-026-03384-w", "score": 2, "source": "PubMed", "dv": 2}, "pmid:42858169": {"id": "pmid:42858169", "title": "eData: A tool and format for rapid extraction of exposure data from scientific articles.", "why": "環境化學數據擷取工具 eData，使用 LLM 從文獻快速擷取暴露資料，85% 格式驗證通過率、每篇縮時 3 小時至 1 小時，與臨床或健康科學無關。", "tag": "其他", "venue": "Integr Environ Assess Manag", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42858169/", "doi": "10.1093/inteam/vjag163", "score": 2, "source": "PubMed", "dv": 2}, "pmid:42859211": {"id": "pmid:42859211", "title": "Zebrafish behavioral phenomics reveals functional subtypes of autism risk genes.", "why": "斑馬魚動物模型測試 11 個自閉症風險基因，鑑別出 3 個行為亞型與阿片類藥物反應，無人類臨床病人或精神科相關性。", "tag": "其他", "venue": "Mol Psychiatry", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42859211/", "doi": "10.1038/s41380-026-03922-8", "score": 1, "source": "PubMed", "dv": 2}};
+window.PROXY = "";
+
+const KS=window.NS+'.saved', KF=window.NS+'.feedback';
+const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}};
+const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){
+  alert('儲存空間寫入失敗，收藏可能不會保留。')}};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,
+  c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function linksHtml(it){
+  let h='';
+  if(it.url) h+='<a href="'+esc(it.url)+'">'+
+    (it.source==='PubMed'?'PubMed':it.source==='arXiv'?'arXiv':'預印本')+'</a>';
+  // 2026-09-26 之前收藏的項目，DOI 是舊程式抓的，可能指向參考文獻裡的
+  // 另一篇論文。那些只留 PubMed 連結。
+  const doiOk = it.doi && (it.dv || 0) >= 2;
+  if(doiOk) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
+  if(doiOk && window.PROXY) h+='<a href="'+
+    esc(window.PROXY+'https://doi.org/'+it.doi)+'">全文（校內）</a>';
+  if(it.doi && !doiOk) h+='<span class="stale">DOI 待更新，請用 PubMed</span>';
+  return '<div class="links">'+h+'</div>';
+}
+
+function itemHtml(it){
+  const meta=[it.tag,it.venue,it.date].filter(Boolean).join(' · ');
+  return '<div class="item"><div class="sc">'+esc(it.score)+'</div><div>'
+    +'<p class="ttl">'+esc(it.title)+'</p>'
+    +(it.why?'<p class="why">'+esc(it.why)+'</p>':'')
+    +'<p class="meta">'+esc(meta)+'</p>'+linksHtml(it)
+    +'<div class="acts" data-id="'+esc(it.id)+'">'
+    +'<button class="save">收藏</button><button class="up">讚</button>'
+    +'<button class="dn">倒讚</button></div></div></div>';
+}
+
+function renderSaved(){
+  const box=document.getElementById('savedbox');
+  const arr=Object.values(rd(KS)).sort((a,b)=>(b._at||0)-(a._at||0));
+  box.innerHTML = arr.length
+    ? '<h2 class="saved">待讀清單（'+arr.length+'）</h2>'+arr.map(itemHtml).join('')
+    : '';
+  paint();
+}
+
+function paint(){
+  const saved=rd(KS), fb=rd(KF);
+  document.querySelectorAll('.acts').forEach(el=>{
+    const id=el.dataset.id, v=(fb[id]||{}).v;
+    const sb=el.querySelector('.save');
+    sb.classList.toggle('on', !!saved[id]);
+    sb.textContent = saved[id]?'已收藏':'收藏';
+    el.querySelector('.up').classList.toggle('on', v===1);
+    el.querySelector('.dn').classList.toggle('on', v===-1);
+  });
+}
+
+document.addEventListener('click', e=>{
+  const btn=e.target.closest('.acts button'); if(!btn) return;
+  const id=btn.closest('.acts').dataset.id;
+  const it=(window.ITEMS||{})[id] || rd(KS)[id];
+  if(!it) return;
+  if(btn.classList.contains('save')){
+    const s=rd(KS);
+    if(s[id]) delete s[id]; else s[id]=Object.assign({},it,{_at:Date.now()});
+    wr(KS,s); renderSaved();
+  } else {
+    const v=btn.classList.contains('up')?1:-1, f=rd(KF);
+    if((f[id]||{}).v===v) delete f[id];
+    else f[id]={v:v,title:it.title,venue:it.venue,tag:it.tag,at:Date.now()};
+    wr(KF,f); paint();
+  }
+});
+
+window.addEventListener('DOMContentLoaded',()=>{
+  renderSaved();
+  document.getElementById('expbtn').addEventListener('click',()=>{
+    const arr=Object.entries(rd(KF)).map(([id,o])=>({id:id,v:o.v,
+      title:o.title,venue:o.venue,tag:o.tag}));
+    const txt=JSON.stringify(arr,null,1), ta=document.getElementById('dump');
+    ta.style.display='block'; ta.value=txt; ta.select();
+    if(navigator.clipboard) navigator.clipboard.writeText(txt).then(()=>{
+      document.getElementById('expbtn').textContent='已複製 '+arr.length+' 筆回饋';},()=>{});
+  });
+});
+
+</script>
+</body></html>
