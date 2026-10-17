@@ -1,0 +1,161 @@
+<!doctype html><html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="研究雷達">
+<meta name="theme-color" content="#fbfaf7">
+<title>研究雷達 10/18</title>
+<style>
+:root{
+  --paper:#fbfaf7; --ink:#16181c; --muted:#6b7280; --rule:#e3e0d8;
+  --accent:#1b3a5c; --hot:#8c2f24; --save:#9a6b12;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161a; --ink:#e8e6e1; --muted:#8b8f98; --rule:#282c33;
+         --accent:#8fb4d9; --hot:#e0796a; --save:#d3a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:44rem;margin:0 auto;padding:2rem 1.15rem 5rem}
+header{padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.6rem}
+h1{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;
+  font-size:1.5rem;margin:0 0 .2rem;letter-spacing:-.01em}
+.stamp{color:var(--muted);font-size:.82rem}
+.stamp a{margin-left:.6rem}
+h2{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;font-size:1.05rem;
+  margin:2.4rem 0 .2rem;color:var(--accent)}
+h2.saved{color:var(--save)}
+.item{display:grid;grid-template-columns:2.4rem 1fr;gap:.85rem;
+  padding:1.05rem 0;border-top:1px solid var(--rule)}
+.sc{font-family:Georgia,serif;font-size:1.5rem;line-height:1.15;
+  color:var(--muted);font-variant-numeric:tabular-nums;padding-top:.05rem}
+.sc.hi{color:var(--hot)}
+.ttl{font-family:Georgia,"Noto Serif TC",serif;font-size:1.02rem;
+  line-height:1.35;margin:0 0 .35rem}
+.why{margin:0 0 .45rem}
+.meta{color:var(--muted);font-size:.78rem;margin:0 0 .35rem}
+.links a{color:var(--accent);font-size:.8rem;margin-right:.9rem;
+  text-underline-offset:2px}
+.links .stale{color:var(--muted);font-size:.8rem}
+a{color:var(--accent)}
+.acts{margin-top:.5rem;display:flex;gap:1.1rem;align-items:center}
+.acts button{background:none;border:0;padding:0;font:inherit;font-size:.8rem;
+  color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.acts button.on{font-weight:600}
+.acts .save.on{color:var(--save)}
+.acts .up.on{color:var(--accent)}
+.acts .dn.on{color:var(--hot)}
+details{margin-top:2rem;border-top:1px solid var(--rule);padding-top:.8rem}
+summary{cursor:pointer;color:var(--muted);font-size:.86rem}
+.empty{color:var(--muted);padding:2rem 0}
+footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);
+  color:var(--muted);font-size:.75rem}
+footer button{background:none;border:1px solid var(--rule);border-radius:3px;
+  padding:.4rem .7rem;font:inherit;font-size:.78rem;color:var(--ink);
+  cursor:pointer;margin:.6rem .5rem .6rem 0}
+#dump{width:100%;height:9rem;margin-top:.6rem;font-size:.7rem;
+  font-family:ui-monospace,monospace;display:none;
+  background:var(--paper);color:var(--ink);border:1px solid var(--rule)}
+</style></head><body><div class="wrap">
+<header><h1>研究雷達</h1>
+<div class="stamp">2026 年 10 月 18 日 · 掃過 20 篇 · 值得讀 4 篇<a href="./teaching.html">精神醫學新知</a></div></header>
+<section id="savedbox"></section>
+<h2>值得讀</h2><div class="item"><div class="sc hi">9</div><div><p class="ttl">BanglaDiaHallu: Hallucinations of large language models and the effect of guideline-grounded retrieval-augmented generation in Bangla diabetes question answering</p><p class="why">孟加拉糖尿病QA中LLM幻覺率量化與指南引導RAG效果：Qwen3.5-9B從77.5%降至11.3%（-66.3個百分點）、五項指標各升0.24–0.38。低資源語言臨床文本LLM、地端部署、錯誤分析實例。</p><p class="meta">臨床文本LLM · health informatics · 2026-10-17</p><div class="links"><a href="https://doi.org/10.64898/2026.10.14.26365587">預印本</a><a href="https://doi.org/10.64898/2026.10.14.26365587">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.10.14.26365587"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc hi">9</div><div><p class="ttl">Real-world, digital-first delivery of GLP-1 receptor agonist therapy in women.</p><p class="why">8,127 名女性 GLP-1 受體促效劑（99.8% tirzepatide）數位照護真實世界實證，6 月追蹤體重下降 16.1 kg、15.5% 基線體重，留置率 91.4%，無嚴重不良事件；數位優先交付模式於大規模族群的成本效益證據。</p><p class="meta">成癮與GLP-1 · Nat Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42888249/">PubMed</a><a href="https://doi.org/10.1038/s41591-026-04687-x">DOI</a></div><div class="acts" data-id="pmid:42888249"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc hi">8</div><div><p class="ttl">Heroin overdose risk profiles following long-term heroin dependence: Findings from the 18- to 20-year follow-up of the Australian treatment outcome study.</p><p class="why">18-20 年追蹤 401 名海洛因依賴者，潛在類別分析識出三類風險群（高 7%、中 44%、低 49%），關聯 PTSD、精神健康、物質使用模式與過量用藥風險，直接對應成癮族群結果預測的世代研究方法論。</p><p class="meta">成癮與GLP-1 · Addiction</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42888913/">PubMed</a><a href="https://doi.org/10.1111/add.70666">DOI</a></div><div class="acts" data-id="pmid:42888913"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc hi">8</div><div><p class="ttl">Performance uncertainty in medical image analysis: A large-scale investigation of confidence intervals.</p><p class="why">醫療影像AI性能不確定性量化：24個任務、19個模型、多種信賴區間方法，提出實務決策樹。直接指導臨床AI驗證框架與報告規範。</p><p class="meta">統合分析方法 · Med Image Anal</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42887473/">PubMed</a><a href="https://doi.org/10.1016/j.media.2026.104349">DOI</a></div><div class="acts" data-id="pmid:42887473"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><h2>掃一眼</h2><div class="item"><div class="sc">7</div><div><p class="ttl">Postnatal corpus callosum microstructural deviations are linked to neurobehavioral outcomes in preterm infants.</p><p class="why">規範模型框架量化早產兒胼胝體微結構偏差與神經行為結果關聯：脾部異向性升高、下丘腦運動認知評分提高。小樣本臨床神經影像應用示範。</p><p class="meta">神經影像方法 · Dev Cogn Neurosci</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42887087/">PubMed</a><a href="https://doi.org/10.1016/j.dcn.2026.101839">DOI</a></div><div class="acts" data-id="pmid:42887087"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><details><summary>其餘 15 篇（低相關）</summary><div class="item"><div class="sc">4</div><div><p class="ttl">VentiProtect ARDS, vibe coding lung protection: a five-minute clinician-built ventilator tool as proof-of-concept for physician prompt engineering.</p><p class="why">醫師提示工程快速開發ARDS呼吸器輔助工具（4分25秒完成），100個情境驗證無計算錯誤。地端部署概念驗證，但臨床結果未評估。</p><p class="meta">其他 · Anaesth Crit Care Pain Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42887688/">PubMed</a><a href="https://doi.org/10.1016/j.accpm.2026.101934">DOI</a></div><div class="acts" data-id="pmid:42887688"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Neural dynamics of auditory attention: Interactions between top-down and bottom-up processes.</p><p class="why">聽覺注意力神經機制綜述，整合頂層與底層控制。屬基礎神經認知，無精神科臨床族群或結果預測。</p><p class="meta">其他 · Neuroimage</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42887836/">PubMed</a><a href="https://doi.org/10.1016/j.neuroimage.2026.122285">DOI</a></div><div class="acts" data-id="pmid:42887836"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Neurovascular coupling in simultaneous EEG-fNIRS studies: A scoping review of analytical frameworks and clinical applications.</p><p class="why">57 篇研究的 EEG-fNIRS 同時記錄耦合分析框架 scoping review；神經影像方法學綜述，但對臨床精神科端點無直接操作價值，已超出主線優先級。</p><p class="meta">神經影像方法 · Neuroimage</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42887838/">PubMed</a><a href="https://doi.org/10.1016/j.neuroimage.2026.122298">DOI</a></div><div class="acts" data-id="pmid:42887838"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Online clinical readiness course enhanced knowledge and perceived confidence of trainees during the COVID-19 pandemic.</p><p class="why">COVID-19線上課程對703名受訓者知識與信心之效果：中位數60→92、p&lt;0.001。醫學教育介入，無長期臨床結果追蹤。</p><p class="meta">其他 · BMC Med Educ</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42888400/">PubMed</a><a href="https://doi.org/10.1186/s12909-026-09987-x">DOI</a></div><div class="acts" data-id="pmid:42888400"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Decoding Spatial Attention in the Cocktail Party Problem Using Whole-head High-Density fNIRS.</p><p class="why">fNIRS 解碼雞尾酒會效應中的空間注意力，IPL 通道達最大解碼準確度。無臨床端點，非精神科應用。</p><p class="meta">其他 · Neuroimage</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42887837/">PubMed</a><a href="https://doi.org/10.1016/j.neuroimage.2026.122292">DOI</a></div><div class="acts" data-id="pmid:42887837"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Tetradic Dynamics of Dyadic Sensorimotor Coordination: A Multiscale EEG Hyperscanning Study</p><p class="why">EEG超掃描測量16對受試者領導-追隨角色與感覺運動協調，領導者前額葉預測資訊、追隨者額頂葉適應資訊。基礎神經動力學，無精神科臨床族群。</p><p class="meta">其他 · neuroscience · 2026-10-17</p><div class="links"><a href="https://doi.org/10.64898/2026.06.21.732435">預印本</a><a href="https://doi.org/10.64898/2026.06.21.732435">DOI</a></div><div class="acts" data-id="biorxiv:10.64898/2026.06.21.732435"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Comparative evaluation of AI-driven large language models for periodontal-orthodontic patient questions: accuracy, comprehensiveness, readability, and temporal consistency.</p><p class="why">LLM在牙周矯正患者問題之準確性與可讀性比較，PerioGPT與Gemini最佳。無臨床驗證、無精神科相關性。</p><p class="meta">其他 · BMC Oral Health</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42888393/">PubMed</a><a href="https://doi.org/10.1186/s12903-026-09382-4">DOI</a></div><div class="acts" data-id="pmid:42888393"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">A reality check for autoimmune CAR T cells.</p><p class="why">新聞評論，無實質研究內容。</p><p class="meta">其他 · Nat Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42888252/">PubMed</a><a href="https://doi.org/10.1038/d41591-026-00052-0">DOI</a></div><div class="acts" data-id="pmid:42888252"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">AmpliconSuite: an end-to-end workflow for analyzing focal amplifications in cancer genomes.</p><p class="why">癌症基因組胞外 DNA 放大分析工具開發；純生物資訊工程，與臨床精神科無關。</p><p class="meta">其他 · Nat Methods</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42888240/">PubMed</a><a href="https://doi.org/10.1038/s41592-026-03264-x">DOI</a></div><div class="acts" data-id="pmid:42888240"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Conversational brain AI for adaptive epilepsy care.</p><p class="why">摘要缺失，無法評估；標題暗示 AI 在癲癇照護應用，惟與優先主軸無交集。</p><p class="meta">其他 · Nat Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42888250/">PubMed</a><a href="https://doi.org/10.1038/s41591-026-04719-6">DOI</a></div><div class="acts" data-id="pmid:42888250"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">EGFR-targeted antibody-toxin conjugate in recurrent glioma: a phase 1 trial.</p><p class="why">腦瘤抗體毒素共軛物單臂第一期試驗，中位整體存活 7.9 個月；腫瘤學領域，與精神心理衛生無交集。</p><p class="meta">其他 · Nat Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42888247/">PubMed</a><a href="https://doi.org/10.1038/s41591-026-04715-w">DOI</a></div><div class="acts" data-id="pmid:42888247"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Keeping artificial intelligence agents within the clinical task.</p><p class="why">摘要缺失，無法評估。</p><p class="meta">其他 · Lancet Digit Health</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42888106/">PubMed</a><a href="https://doi.org/10.1016/j.landig.2026.101123">DOI</a></div><div class="acts" data-id="pmid:42888106"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Only time will tell.</p><p class="why">新聞評論，無研究內容。</p><p class="meta">其他 · Nat Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42888248/">PubMed</a><a href="https://doi.org/10.1038/s41591-026-04699-7">DOI</a></div><div class="acts" data-id="pmid:42888248"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Recent developments of fluorescent proteins and biosensors driven by cross-disciplinary insights.</p><p class="why">螢光蛋白與生物感測器工程回顧；基礎光學物理，非臨床應用。</p><p class="meta">其他 · Nat Methods</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42888239/">PubMed</a><a href="https://doi.org/10.1038/s41592-026-03268-7">DOI</a></div><div class="acts" data-id="pmid:42888239"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">SpectralTAG: Functional group identification from infrared spectra via unified LLM and GNN textual graphs.</p><p class="why">LLM與GNN用於紅外光譜化學官能基辨識，AUC&gt;0.98。純化學應用，無醫療臨床意義。</p><p class="meta">其他 · Anal Chim Acta</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42887948/">PubMed</a><a href="https://doi.org/10.1016/j.aca.2026.346160">DOI</a></div><div class="acts" data-id="pmid:42887948"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div></details>
+<footer>
+<button id="expbtn">匯出回饋（複製到剪貼簿）</button>
+<textarea id="dump" readonly></textarea>
+<p>收藏與回饋存在這台裝置的瀏覽器裡，換裝置不會同步。
+分數由 Claude 依設定檔的評分標準評定，僅供分流參考，不代表論文品質。</p>
+</footer>
+</div>
+<script>
+window.NS = "radar";
+window.ITEMS = {"medrxiv:10.64898/2026.10.14.26365587": {"id": "medrxiv:10.64898/2026.10.14.26365587", "title": "BanglaDiaHallu: Hallucinations of large language models and the effect of guideline-grounded retrieval-augmented generation in Bangla diabetes question answering", "why": "孟加拉糖尿病QA中LLM幻覺率量化與指南引導RAG效果：Qwen3.5-9B從77.5%降至11.3%（-66.3個百分點）、五項指標各升0.24–0.38。低資源語言臨床文本LLM、地端部署、錯誤分析實例。", "tag": "臨床文本LLM", "venue": "health informatics", "date": "2026-10-17", "url": "https://doi.org/10.64898/2026.10.14.26365587", "doi": "10.64898/2026.10.14.26365587", "score": 9, "source": "medrxiv", "dv": 2}, "pmid:42888249": {"id": "pmid:42888249", "title": "Real-world, digital-first delivery of GLP-1 receptor agonist therapy in women.", "why": "8,127 名女性 GLP-1 受體促效劑（99.8% tirzepatide）數位照護真實世界實證，6 月追蹤體重下降 16.1 kg、15.5% 基線體重，留置率 91.4%，無嚴重不良事件；數位優先交付模式於大規模族群的成本效益證據。", "tag": "成癮與GLP-1", "venue": "Nat Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42888249/", "doi": "10.1038/s41591-026-04687-x", "score": 9, "source": "PubMed", "dv": 2}, "pmid:42888913": {"id": "pmid:42888913", "title": "Heroin overdose risk profiles following long-term heroin dependence: Findings from the 18- to 20-year follow-up of the Australian treatment outcome study.", "why": "18-20 年追蹤 401 名海洛因依賴者，潛在類別分析識出三類風險群（高 7%、中 44%、低 49%），關聯 PTSD、精神健康、物質使用模式與過量用藥風險，直接對應成癮族群結果預測的世代研究方法論。", "tag": "成癮與GLP-1", "venue": "Addiction", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42888913/", "doi": "10.1111/add.70666", "score": 8, "source": "PubMed", "dv": 2}, "pmid:42887473": {"id": "pmid:42887473", "title": "Performance uncertainty in medical image analysis: A large-scale investigation of confidence intervals.", "why": "醫療影像AI性能不確定性量化：24個任務、19個模型、多種信賴區間方法，提出實務決策樹。直接指導臨床AI驗證框架與報告規範。", "tag": "統合分析方法", "venue": "Med Image Anal", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42887473/", "doi": "10.1016/j.media.2026.104349", "score": 8, "source": "PubMed", "dv": 2}, "pmid:42887087": {"id": "pmid:42887087", "title": "Postnatal corpus callosum microstructural deviations are linked to neurobehavioral outcomes in preterm infants.", "why": "規範模型框架量化早產兒胼胝體微結構偏差與神經行為結果關聯：脾部異向性升高、下丘腦運動認知評分提高。小樣本臨床神經影像應用示範。", "tag": "神經影像方法", "venue": "Dev Cogn Neurosci", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42887087/", "doi": "10.1016/j.dcn.2026.101839", "score": 7, "source": "PubMed", "dv": 2}, "pmid:42887688": {"id": "pmid:42887688", "title": "VentiProtect ARDS, vibe coding lung protection: a five-minute clinician-built ventilator tool as proof-of-concept for physician prompt engineering.", "why": "醫師提示工程快速開發ARDS呼吸器輔助工具（4分25秒完成），100個情境驗證無計算錯誤。地端部署概念驗證，但臨床結果未評估。", "tag": "其他", "venue": "Anaesth Crit Care Pain Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42887688/", "doi": "10.1016/j.accpm.2026.101934", "score": 4, "source": "PubMed", "dv": 2}, "pmid:42887836": {"id": "pmid:42887836", "title": "Neural dynamics of auditory attention: Interactions between top-down and bottom-up processes.", "why": "聽覺注意力神經機制綜述，整合頂層與底層控制。屬基礎神經認知，無精神科臨床族群或結果預測。", "tag": "其他", "venue": "Neuroimage", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42887836/", "doi": "10.1016/j.neuroimage.2026.122285", "score": 3, "source": "PubMed", "dv": 2}, "pmid:42887838": {"id": "pmid:42887838", "title": "Neurovascular coupling in simultaneous EEG-fNIRS studies: A scoping review of analytical frameworks and clinical applications.", "why": "57 篇研究的 EEG-fNIRS 同時記錄耦合分析框架 scoping review；神經影像方法學綜述，但對臨床精神科端點無直接操作價值，已超出主線優先級。", "tag": "神經影像方法", "venue": "Neuroimage", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42887838/", "doi": "10.1016/j.neuroimage.2026.122298", "score": 3, "source": "PubMed", "dv": 2}, "pmid:42888400": {"id": "pmid:42888400", "title": "Online clinical readiness course enhanced knowledge and perceived confidence of trainees during the COVID-19 pandemic.", "why": "COVID-19線上課程對703名受訓者知識與信心之效果：中位數60→92、p\u003c0.001。醫學教育介入，無長期臨床結果追蹤。", "tag": "其他", "venue": "BMC Med Educ", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42888400/", "doi": "10.1186/s12909-026-09987-x", "score": 3, "source": "PubMed", "dv": 2}, "pmid:42887837": {"id": "pmid:42887837", "title": "Decoding Spatial Attention in the Cocktail Party Problem Using Whole-head High-Density fNIRS.", "why": "fNIRS 解碼雞尾酒會效應中的空間注意力，IPL 通道達最大解碼準確度。無臨床端點，非精神科應用。", "tag": "其他", "venue": "Neuroimage", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42887837/", "doi": "10.1016/j.neuroimage.2026.122292", "score": 2, "source": "PubMed", "dv": 2}, "biorxiv:10.64898/2026.06.21.732435": {"id": "biorxiv:10.64898/2026.06.21.732435", "title": "Tetradic Dynamics of Dyadic Sensorimotor Coordination: A Multiscale EEG Hyperscanning Study", "why": "EEG超掃描測量16對受試者領導-追隨角色與感覺運動協調，領導者前額葉預測資訊、追隨者額頂葉適應資訊。基礎神經動力學，無精神科臨床族群。", "tag": "其他", "venue": "neuroscience", "date": "2026-10-17", "url": "https://doi.org/10.64898/2026.06.21.732435", "doi": "10.64898/2026.06.21.732435", "score": 2, "source": "biorxiv", "dv": 2}, "pmid:42888393": {"id": "pmid:42888393", "title": "Comparative evaluation of AI-driven large language models for periodontal-orthodontic patient questions: accuracy, comprehensiveness, readability, and temporal consistency.", "why": "LLM在牙周矯正患者問題之準確性與可讀性比較，PerioGPT與Gemini最佳。無臨床驗證、無精神科相關性。", "tag": "其他", "venue": "BMC Oral Health", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42888393/", "doi": "10.1186/s12903-026-09382-4", "score": 1, "source": "PubMed", "dv": 2}, "pmid:42888252": {"id": "pmid:42888252", "title": "A reality check for autoimmune CAR T cells.", "why": "新聞評論，無實質研究內容。", "tag": "其他", "venue": "Nat Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42888252/", "doi": "10.1038/d41591-026-00052-0", "score": 0, "source": "PubMed", "dv": 2}, "pmid:42888240": {"id": "pmid:42888240", "title": "AmpliconSuite: an end-to-end workflow for analyzing focal amplifications in cancer genomes.", "why": "癌症基因組胞外 DNA 放大分析工具開發；純生物資訊工程，與臨床精神科無關。", "tag": "其他", "venue": "Nat Methods", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42888240/", "doi": "10.1038/s41592-026-03264-x", "score": 0, "source": "PubMed", "dv": 2}, "pmid:42888250": {"id": "pmid:42888250", "title": "Conversational brain AI for adaptive epilepsy care.", "why": "摘要缺失，無法評估；標題暗示 AI 在癲癇照護應用，惟與優先主軸無交集。", "tag": "其他", "venue": "Nat Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42888250/", "doi": "10.1038/s41591-026-04719-6", "score": 0, "source": "PubMed", "dv": 2}, "pmid:42888247": {"id": "pmid:42888247", "title": "EGFR-targeted antibody-toxin conjugate in recurrent glioma: a phase 1 trial.", "why": "腦瘤抗體毒素共軛物單臂第一期試驗，中位整體存活 7.9 個月；腫瘤學領域，與精神心理衛生無交集。", "tag": "其他", "venue": "Nat Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42888247/", "doi": "10.1038/s41591-026-04715-w", "score": 0, "source": "PubMed", "dv": 2}, "pmid:42888106": {"id": "pmid:42888106", "title": "Keeping artificial intelligence agents within the clinical task.", "why": "摘要缺失，無法評估。", "tag": "其他", "venue": "Lancet Digit Health", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42888106/", "doi": "10.1016/j.landig.2026.101123", "score": 0, "source": "PubMed", "dv": 2}, "pmid:42888248": {"id": "pmid:42888248", "title": "Only time will tell.", "why": "新聞評論，無研究內容。", "tag": "其他", "venue": "Nat Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42888248/", "doi": "10.1038/s41591-026-04699-7", "score": 0, "source": "PubMed", "dv": 2}, "pmid:42888239": {"id": "pmid:42888239", "title": "Recent developments of fluorescent proteins and biosensors driven by cross-disciplinary insights.", "why": "螢光蛋白與生物感測器工程回顧；基礎光學物理，非臨床應用。", "tag": "其他", "venue": "Nat Methods", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42888239/", "doi": "10.1038/s41592-026-03268-7", "score": 0, "source": "PubMed", "dv": 2}, "pmid:42887948": {"id": "pmid:42887948", "title": "SpectralTAG: Functional group identification from infrared spectra via unified LLM and GNN textual graphs.", "why": "LLM與GNN用於紅外光譜化學官能基辨識，AUC>0.98。純化學應用，無醫療臨床意義。", "tag": "其他", "venue": "Anal Chim Acta", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42887948/", "doi": "10.1016/j.aca.2026.346160", "score": 0, "source": "PubMed", "dv": 2}};
+window.PROXY = "";
+
+const KS=window.NS+'.saved', KF=window.NS+'.feedback';
+const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}};
+const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){
+  alert('儲存空間寫入失敗，收藏可能不會保留。')}};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,
+  c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function linksHtml(it){
+  let h='';
+  if(it.url) h+='<a href="'+esc(it.url)+'">'+
+    (it.source==='PubMed'?'PubMed':it.source==='arXiv'?'arXiv':'預印本')+'</a>';
+  // 2026-09-26 之前收藏的項目，DOI 是舊程式抓的，可能指向參考文獻裡的
+  // 另一篇論文。那些只留 PubMed 連結。
+  const doiOk = it.doi && (it.dv || 0) >= 2;
+  if(doiOk) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
+  if(doiOk && window.PROXY) h+='<a href="'+
+    esc(window.PROXY+'https://doi.org/'+it.doi)+'">全文（校內）</a>';
+  if(it.doi && !doiOk) h+='<span class="stale">DOI 待更新，請用 PubMed</span>';
+  return '<div class="links">'+h+'</div>';
+}
+
+function itemHtml(it){
+  const meta=[it.tag,it.venue,it.date].filter(Boolean).join(' · ');
+  return '<div class="item"><div class="sc">'+esc(it.score)+'</div><div>'
+    +'<p class="ttl">'+esc(it.title)+'</p>'
+    +(it.why?'<p class="why">'+esc(it.why)+'</p>':'')
+    +'<p class="meta">'+esc(meta)+'</p>'+linksHtml(it)
+    +'<div class="acts" data-id="'+esc(it.id)+'">'
+    +'<button class="save">收藏</button><button class="up">讚</button>'
+    +'<button class="dn">倒讚</button></div></div></div>';
+}
+
+function renderSaved(){
+  const box=document.getElementById('savedbox');
+  const arr=Object.values(rd(KS)).sort((a,b)=>(b._at||0)-(a._at||0));
+  box.innerHTML = arr.length
+    ? '<h2 class="saved">待讀清單（'+arr.length+'）</h2>'+arr.map(itemHtml).join('')
+    : '';
+  paint();
+}
+
+function paint(){
+  const saved=rd(KS), fb=rd(KF);
+  document.querySelectorAll('.acts').forEach(el=>{
+    const id=el.dataset.id, v=(fb[id]||{}).v;
+    const sb=el.querySelector('.save');
+    sb.classList.toggle('on', !!saved[id]);
+    sb.textContent = saved[id]?'已收藏':'收藏';
+    el.querySelector('.up').classList.toggle('on', v===1);
+    el.querySelector('.dn').classList.toggle('on', v===-1);
+  });
+}
+
+document.addEventListener('click', e=>{
+  const btn=e.target.closest('.acts button'); if(!btn) return;
+  const id=btn.closest('.acts').dataset.id;
+  const it=(window.ITEMS||{})[id] || rd(KS)[id];
+  if(!it) return;
+  if(btn.classList.contains('save')){
+    const s=rd(KS);
+    if(s[id]) delete s[id]; else s[id]=Object.assign({},it,{_at:Date.now()});
+    wr(KS,s); renderSaved();
+  } else {
+    const v=btn.classList.contains('up')?1:-1, f=rd(KF);
+    if((f[id]||{}).v===v) delete f[id];
+    else f[id]={v:v,title:it.title,venue:it.venue,tag:it.tag,at:Date.now()};
+    wr(KF,f); paint();
+  }
+});
+
+window.addEventListener('DOMContentLoaded',()=>{
+  renderSaved();
+  document.getElementById('expbtn').addEventListener('click',()=>{
+    const arr=Object.entries(rd(KF)).map(([id,o])=>({id:id,v:o.v,
+      title:o.title,venue:o.venue,tag:o.tag}));
+    const txt=JSON.stringify(arr,null,1), ta=document.getElementById('dump');
+    ta.style.display='block'; ta.value=txt; ta.select();
+    if(navigator.clipboard) navigator.clipboard.writeText(txt).then(()=>{
+      document.getElementById('expbtn').textContent='已複製 '+arr.length+' 筆回饋';},()=>{});
+  });
+});
+
+</script>
+</body></html>
