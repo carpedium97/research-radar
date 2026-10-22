@@ -1,0 +1,161 @@
+<!doctype html><html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="研究雷達">
+<meta name="theme-color" content="#fbfaf7">
+<title>研究雷達 10/22</title>
+<style>
+:root{
+  --paper:#fbfaf7; --ink:#16181c; --muted:#6b7280; --rule:#e3e0d8;
+  --accent:#1b3a5c; --hot:#8c2f24; --save:#9a6b12;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161a; --ink:#e8e6e1; --muted:#8b8f98; --rule:#282c33;
+         --accent:#8fb4d9; --hot:#e0796a; --save:#d3a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:44rem;margin:0 auto;padding:2rem 1.15rem 5rem}
+header{padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.6rem}
+h1{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;
+  font-size:1.5rem;margin:0 0 .2rem;letter-spacing:-.01em}
+.stamp{color:var(--muted);font-size:.82rem}
+.stamp a{margin-left:.6rem}
+h2{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;font-size:1.05rem;
+  margin:2.4rem 0 .2rem;color:var(--accent)}
+h2.saved{color:var(--save)}
+.item{display:grid;grid-template-columns:2.4rem 1fr;gap:.85rem;
+  padding:1.05rem 0;border-top:1px solid var(--rule)}
+.sc{font-family:Georgia,serif;font-size:1.5rem;line-height:1.15;
+  color:var(--muted);font-variant-numeric:tabular-nums;padding-top:.05rem}
+.sc.hi{color:var(--hot)}
+.ttl{font-family:Georgia,"Noto Serif TC",serif;font-size:1.02rem;
+  line-height:1.35;margin:0 0 .35rem}
+.why{margin:0 0 .45rem}
+.meta{color:var(--muted);font-size:.78rem;margin:0 0 .35rem}
+.links a{color:var(--accent);font-size:.8rem;margin-right:.9rem;
+  text-underline-offset:2px}
+.links .stale{color:var(--muted);font-size:.8rem}
+a{color:var(--accent)}
+.acts{margin-top:.5rem;display:flex;gap:1.1rem;align-items:center}
+.acts button{background:none;border:0;padding:0;font:inherit;font-size:.8rem;
+  color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.acts button.on{font-weight:600}
+.acts .save.on{color:var(--save)}
+.acts .up.on{color:var(--accent)}
+.acts .dn.on{color:var(--hot)}
+details{margin-top:2rem;border-top:1px solid var(--rule);padding-top:.8rem}
+summary{cursor:pointer;color:var(--muted);font-size:.86rem}
+.empty{color:var(--muted);padding:2rem 0}
+footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);
+  color:var(--muted);font-size:.75rem}
+footer button{background:none;border:1px solid var(--rule);border-radius:3px;
+  padding:.4rem .7rem;font:inherit;font-size:.78rem;color:var(--ink);
+  cursor:pointer;margin:.6rem .5rem .6rem 0}
+#dump{width:100%;height:9rem;margin-top:.6rem;font-size:.7rem;
+  font-family:ui-monospace,monospace;display:none;
+  background:var(--paper);color:var(--ink);border:1px solid var(--rule)}
+</style></head><body><div class="wrap">
+<header><h1>研究雷達</h1>
+<div class="stamp">2026 年 10 月 22 日 · 掃過 12 篇 · 值得讀 1 篇<a href="./teaching.html">精神醫學新知</a></div></header>
+<section id="savedbox"></section>
+<h2>值得讀</h2><div class="item"><div class="sc hi">8</div><div><p class="ttl">TurkRadLLM: A Compact MedGemma-Based Model for Structuring Turkish Lumbar and Cervical Spine MRI Reports-A Multi-reader Validation Study.</p><p class="why">MedGemma 4B 土耳其脊椎 MRI 報告結構化，10,227 報告微調、多讀者驗證 180 份（接納率 100%），銀標準印象同意度 17.7%→67.1%；緊急標誌敏感度 18.8%→62.5%；地端部署 14.75GB；醫學文本編碼驗證框架有借鑑，但非精神科、非預測。</p><p class="meta">臨床文本LLM · J Imaging Inform Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42902038/">PubMed</a><a href="https://doi.org/10.1007/s10278-026-02427-8">DOI</a></div><div class="acts" data-id="pmid:42902038"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><h2>掃一眼</h2><div class="item"><div class="sc">7</div><div><p class="ttl">Gold-standard-guided direct preference optimisation for ICD-10-AM and ACHI code assignment from discharge summaries.</p><p class="why">澳洲出院摘要 ICD-10-AM 編碼自動化，Meta-Llama-3-8B + DPO 微調，F1 0.7397–0.7834；臨床文本編碼但非精神科、評估偏誤侷限於高頻診斷。</p><p class="meta">臨床文本LLM · BMC Med Inform Decis Mak</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42902234/">PubMed</a><a href="https://doi.org/10.1186/s12911-026-03631-w">DOI</a></div><div class="acts" data-id="pmid:42902234"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">Workflow Topology-Guided Skill Loading for Agentic AI in Clinical Trial Data Pipelines: Sequential Exploratory Evaluation.</p><p class="why">臨床試驗資料管道工作流拓樸導引 LLM 技能載入，559 片段注入、120 manifest 皆可源示蹤；SDTM/ADaM 標準合規但域特異性高、非精神科、未涉預測或診斷。</p><p class="meta">臨床文本LLM · JMIR Form Res</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42901481/">PubMed</a><a href="https://doi.org/10.2196/100769">DOI</a></div><div class="acts" data-id="pmid:42901481"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">MEDA-PKD: a dynamic, real-time analytics platform for precision care in autosomal dominant polycystic kidney disease.</p><p class="why">動態臨床資料整合平臺示例（1735 患者、平均追蹤 796 天），實時分析架構可參考但非精神科、非預測模型。</p><p class="meta">其他 · NPJ Digit Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42901931/">PubMed</a><a href="https://doi.org/10.1038/s41746-026-03267-0">DOI</a></div><div class="acts" data-id="pmid:42901931"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><details><summary>其餘 8 篇（低相關）</summary><div class="item"><div class="sc">4</div><div><p class="ttl">Dose-dependent myelin g-ratio alterations in the white matter of 16p11.2 copy number variations</p><p class="why">16p11.2 CNV 於白質 g-ratio 的劑量依賴性改變。80 對照、26 缺失、13 重複個案，normative modeling 評估。兒童神經發展遺傳風險，非精神科成人臨床群體。</p><p class="meta">神經影像方法 · neuroscience · 2026-10-21</p><div class="links"><a href="https://doi.org/10.64898/2026.10.19.760158">預印本</a><a href="https://doi.org/10.64898/2026.10.19.760158">DOI</a></div><div class="acts" data-id="biorxiv:10.64898/2026.10.19.760158"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">4</div><div><p class="ttl">Two distinct projection pathways converge onto the same BLA neurons to contribute to fear memory retrieval.</p><p class="why">恐懼記憶迴路映射研究，創傷後壓力症的神經基礎但無臨床試驗或臨床轉化證據。</p><p class="meta">其他 · Mol Psychiatry</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42901948/">PubMed</a><a href="https://doi.org/10.1038/s41380-026-03929-1">DOI</a></div><div class="acts" data-id="pmid:42901948"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">A Cloud-Enabled LIMS-QMS Platform With Large Language Model-Assisted Standard Operating Procedure Generation for GLP/GMP-Aligned Theranostics Laboratory Operations.</p><p class="why">GLP/GMP 實驗室資訊管理系統的 LLM 輔助 SOP 生成工程。187 筆請求、23 日平均周轉。與臨床精神科無關。</p><p class="meta">其他 · SLAS Technol</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42901382/">PubMed</a><a href="https://doi.org/10.1016/j.slast.2026.100473">DOI</a></div><div class="acts" data-id="pmid:42901382"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Artificial Intelligence-Assisted Reconstruction Planning of Cheek Soft Tissue Defects: A Comparative Study Against Surgical Expert Consensus.</p><p class="why">ChatGPT-4o 臉部軟組織缺損重建規劃決策支持，46 標準化照片、專家評分 ICC 0.75；塑性外科應用無精神科相關性。</p><p class="meta">其他 · Aesthetic Plast Surg</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42901993/">PubMed</a><a href="https://doi.org/10.1007/s00266-026-06295-z">DOI</a></div><div class="acts" data-id="pmid:42901993"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Dysregulated cholesterol trafficking through ABCA1 drives neurodegeneration in Parkinson&#x27;s disease.</p><p class="why">帕金森病 ABCA1 膽固醇代謝機轉研究，分子生物層面，無臨床端點或治療試驗數據。</p><p class="meta">其他 · Nat Neurosci</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42901980/">PubMed</a><a href="https://doi.org/10.1038/s41593-026-02487-7">DOI</a></div><div class="acts" data-id="pmid:42901980"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Early lineage divergence segregates sensory and motor-associative identities in the thalamus.</p><p class="why">丘腦發育譜系分化基礎神經生物學，無臨床精神科相關性。</p><p class="meta">其他 · Nat Neurosci</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42901979/">PubMed</a><a href="https://doi.org/10.1038/s41593-026-02485-9">DOI</a></div><div class="acts" data-id="pmid:42901979"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Sex Education in the Age of Artificial Intelligence: A Qualitative Analysis of ChatGPT-3.5 Responses to Adolescents&#x27; Questions on Romantic Relationships and Sexuality.</p><p class="why">ChatGPT 針對青少年性教育諮詢之內容分析，393 封郵件、17.8% 觸發內容策略；教育應用無臨床精神醫學涵義。</p><p class="meta">其他 · Arch Sex Behav</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42902095/">PubMed</a><a href="https://doi.org/10.1007/s10508-026-03575-2">DOI</a></div><div class="acts" data-id="pmid:42902095"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Author Correction: FcRH5×CD3 bispecific antibody cevostamab in relapsed or refractory multiple myeloma: a phase 1 trial.</p><p class="why">Published Erratum，無實質內容。</p><p class="meta">其他 · Nat Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42901991/">PubMed</a><a href="https://doi.org/10.1038/s41591-026-04757-0">DOI</a></div><div class="acts" data-id="pmid:42901991"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div></details>
+<footer>
+<button id="expbtn">匯出回饋（複製到剪貼簿）</button>
+<textarea id="dump" readonly></textarea>
+<p>收藏與回饋存在這台裝置的瀏覽器裡，換裝置不會同步。
+分數由 Claude 依設定檔的評分標準評定，僅供分流參考，不代表論文品質。</p>
+</footer>
+</div>
+<script>
+window.NS = "radar";
+window.ITEMS = {"pmid:42902038": {"id": "pmid:42902038", "title": "TurkRadLLM: A Compact MedGemma-Based Model for Structuring Turkish Lumbar and Cervical Spine MRI Reports-A Multi-reader Validation Study.", "why": "MedGemma 4B 土耳其脊椎 MRI 報告結構化，10,227 報告微調、多讀者驗證 180 份（接納率 100%），銀標準印象同意度 17.7%→67.1%；緊急標誌敏感度 18.8%→62.5%；地端部署 14.75GB；醫學文本編碼驗證框架有借鑑，但非精神科、非預測。", "tag": "臨床文本LLM", "venue": "J Imaging Inform Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42902038/", "doi": "10.1007/s10278-026-02427-8", "score": 8, "source": "PubMed", "dv": 2}, "pmid:42902234": {"id": "pmid:42902234", "title": "Gold-standard-guided direct preference optimisation for ICD-10-AM and ACHI code assignment from discharge summaries.", "why": "澳洲出院摘要 ICD-10-AM 編碼自動化，Meta-Llama-3-8B + DPO 微調，F1 0.7397–0.7834；臨床文本編碼但非精神科、評估偏誤侷限於高頻診斷。", "tag": "臨床文本LLM", "venue": "BMC Med Inform Decis Mak", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42902234/", "doi": "10.1186/s12911-026-03631-w", "score": 7, "source": "PubMed", "dv": 2}, "pmid:42901481": {"id": "pmid:42901481", "title": "Workflow Topology-Guided Skill Loading for Agentic AI in Clinical Trial Data Pipelines: Sequential Exploratory Evaluation.", "why": "臨床試驗資料管道工作流拓樸導引 LLM 技能載入，559 片段注入、120 manifest 皆可源示蹤；SDTM/ADaM 標準合規但域特異性高、非精神科、未涉預測或診斷。", "tag": "臨床文本LLM", "venue": "JMIR Form Res", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42901481/", "doi": "10.2196/100769", "score": 6, "source": "PubMed", "dv": 2}, "pmid:42901931": {"id": "pmid:42901931", "title": "MEDA-PKD: a dynamic, real-time analytics platform for precision care in autosomal dominant polycystic kidney disease.", "why": "動態臨床資料整合平臺示例（1735 患者、平均追蹤 796 天），實時分析架構可參考但非精神科、非預測模型。", "tag": "其他", "venue": "NPJ Digit Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42901931/", "doi": "10.1038/s41746-026-03267-0", "score": 5, "source": "PubMed", "dv": 2}, "biorxiv:10.64898/2026.10.19.760158": {"id": "biorxiv:10.64898/2026.10.19.760158", "title": "Dose-dependent myelin g-ratio alterations in the white matter of 16p11.2 copy number variations", "why": "16p11.2 CNV 於白質 g-ratio 的劑量依賴性改變。80 對照、26 缺失、13 重複個案，normative modeling 評估。兒童神經發展遺傳風險，非精神科成人臨床群體。", "tag": "神經影像方法", "venue": "neuroscience", "date": "2026-10-21", "url": "https://doi.org/10.64898/2026.10.19.760158", "doi": "10.64898/2026.10.19.760158", "score": 4, "source": "biorxiv", "dv": 2}, "pmid:42901948": {"id": "pmid:42901948", "title": "Two distinct projection pathways converge onto the same BLA neurons to contribute to fear memory retrieval.", "why": "恐懼記憶迴路映射研究，創傷後壓力症的神經基礎但無臨床試驗或臨床轉化證據。", "tag": "其他", "venue": "Mol Psychiatry", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42901948/", "doi": "10.1038/s41380-026-03929-1", "score": 4, "source": "PubMed", "dv": 2}, "pmid:42901382": {"id": "pmid:42901382", "title": "A Cloud-Enabled LIMS-QMS Platform With Large Language Model-Assisted Standard Operating Procedure Generation for GLP/GMP-Aligned Theranostics Laboratory Operations.", "why": "GLP/GMP 實驗室資訊管理系統的 LLM 輔助 SOP 生成工程。187 筆請求、23 日平均周轉。與臨床精神科無關。", "tag": "其他", "venue": "SLAS Technol", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42901382/", "doi": "10.1016/j.slast.2026.100473", "score": 2, "source": "PubMed", "dv": 2}, "pmid:42901993": {"id": "pmid:42901993", "title": "Artificial Intelligence-Assisted Reconstruction Planning of Cheek Soft Tissue Defects: A Comparative Study Against Surgical Expert Consensus.", "why": "ChatGPT-4o 臉部軟組織缺損重建規劃決策支持，46 標準化照片、專家評分 ICC 0.75；塑性外科應用無精神科相關性。", "tag": "其他", "venue": "Aesthetic Plast Surg", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42901993/", "doi": "10.1007/s00266-026-06295-z", "score": 2, "source": "PubMed", "dv": 2}, "pmid:42901980": {"id": "pmid:42901980", "title": "Dysregulated cholesterol trafficking through ABCA1 drives neurodegeneration in Parkinson's disease.", "why": "帕金森病 ABCA1 膽固醇代謝機轉研究，分子生物層面，無臨床端點或治療試驗數據。", "tag": "其他", "venue": "Nat Neurosci", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42901980/", "doi": "10.1038/s41593-026-02487-7", "score": 2, "source": "PubMed", "dv": 2}, "pmid:42901979": {"id": "pmid:42901979", "title": "Early lineage divergence segregates sensory and motor-associative identities in the thalamus.", "why": "丘腦發育譜系分化基礎神經生物學，無臨床精神科相關性。", "tag": "其他", "venue": "Nat Neurosci", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42901979/", "doi": "10.1038/s41593-026-02485-9", "score": 1, "source": "PubMed", "dv": 2}, "pmid:42902095": {"id": "pmid:42902095", "title": "Sex Education in the Age of Artificial Intelligence: A Qualitative Analysis of ChatGPT-3.5 Responses to Adolescents' Questions on Romantic Relationships and Sexuality.", "why": "ChatGPT 針對青少年性教育諮詢之內容分析，393 封郵件、17.8% 觸發內容策略；教育應用無臨床精神醫學涵義。", "tag": "其他", "venue": "Arch Sex Behav", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42902095/", "doi": "10.1007/s10508-026-03575-2", "score": 1, "source": "PubMed", "dv": 2}, "pmid:42901991": {"id": "pmid:42901991", "title": "Author Correction: FcRH5×CD3 bispecific antibody cevostamab in relapsed or refractory multiple myeloma: a phase 1 trial.", "why": "Published Erratum，無實質內容。", "tag": "其他", "venue": "Nat Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42901991/", "doi": "10.1038/s41591-026-04757-0", "score": 0, "source": "PubMed", "dv": 2}};
+window.PROXY = "";
+
+const KS=window.NS+'.saved', KF=window.NS+'.feedback';
+const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}};
+const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){
+  alert('儲存空間寫入失敗，收藏可能不會保留。')}};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,
+  c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function linksHtml(it){
+  let h='';
+  if(it.url) h+='<a href="'+esc(it.url)+'">'+
+    (it.source==='PubMed'?'PubMed':it.source==='arXiv'?'arXiv':'預印本')+'</a>';
+  // 2026-09-26 之前收藏的項目，DOI 是舊程式抓的，可能指向參考文獻裡的
+  // 另一篇論文。那些只留 PubMed 連結。
+  const doiOk = it.doi && (it.dv || 0) >= 2;
+  if(doiOk) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
+  if(doiOk && window.PROXY) h+='<a href="'+
+    esc(window.PROXY+'https://doi.org/'+it.doi)+'">全文（校內）</a>';
+  if(it.doi && !doiOk) h+='<span class="stale">DOI 待更新，請用 PubMed</span>';
+  return '<div class="links">'+h+'</div>';
+}
+
+function itemHtml(it){
+  const meta=[it.tag,it.venue,it.date].filter(Boolean).join(' · ');
+  return '<div class="item"><div class="sc">'+esc(it.score)+'</div><div>'
+    +'<p class="ttl">'+esc(it.title)+'</p>'
+    +(it.why?'<p class="why">'+esc(it.why)+'</p>':'')
+    +'<p class="meta">'+esc(meta)+'</p>'+linksHtml(it)
+    +'<div class="acts" data-id="'+esc(it.id)+'">'
+    +'<button class="save">收藏</button><button class="up">讚</button>'
+    +'<button class="dn">倒讚</button></div></div></div>';
+}
+
+function renderSaved(){
+  const box=document.getElementById('savedbox');
+  const arr=Object.values(rd(KS)).sort((a,b)=>(b._at||0)-(a._at||0));
+  box.innerHTML = arr.length
+    ? '<h2 class="saved">待讀清單（'+arr.length+'）</h2>'+arr.map(itemHtml).join('')
+    : '';
+  paint();
+}
+
+function paint(){
+  const saved=rd(KS), fb=rd(KF);
+  document.querySelectorAll('.acts').forEach(el=>{
+    const id=el.dataset.id, v=(fb[id]||{}).v;
+    const sb=el.querySelector('.save');
+    sb.classList.toggle('on', !!saved[id]);
+    sb.textContent = saved[id]?'已收藏':'收藏';
+    el.querySelector('.up').classList.toggle('on', v===1);
+    el.querySelector('.dn').classList.toggle('on', v===-1);
+  });
+}
+
+document.addEventListener('click', e=>{
+  const btn=e.target.closest('.acts button'); if(!btn) return;
+  const id=btn.closest('.acts').dataset.id;
+  const it=(window.ITEMS||{})[id] || rd(KS)[id];
+  if(!it) return;
+  if(btn.classList.contains('save')){
+    const s=rd(KS);
+    if(s[id]) delete s[id]; else s[id]=Object.assign({},it,{_at:Date.now()});
+    wr(KS,s); renderSaved();
+  } else {
+    const v=btn.classList.contains('up')?1:-1, f=rd(KF);
+    if((f[id]||{}).v===v) delete f[id];
+    else f[id]={v:v,title:it.title,venue:it.venue,tag:it.tag,at:Date.now()};
+    wr(KF,f); paint();
+  }
+});
+
+window.addEventListener('DOMContentLoaded',()=>{
+  renderSaved();
+  document.getElementById('expbtn').addEventListener('click',()=>{
+    const arr=Object.entries(rd(KF)).map(([id,o])=>({id:id,v:o.v,
+      title:o.title,venue:o.venue,tag:o.tag}));
+    const txt=JSON.stringify(arr,null,1), ta=document.getElementById('dump');
+    ta.style.display='block'; ta.value=txt; ta.select();
+    if(navigator.clipboard) navigator.clipboard.writeText(txt).then(()=>{
+      document.getElementById('expbtn').textContent='已複製 '+arr.length+' 筆回饋';},()=>{});
+  });
+});
+
+</script>
+</body></html>
