@@ -1,0 +1,161 @@
+<!doctype html><html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="研究雷達">
+<meta name="theme-color" content="#fbfaf7">
+<title>研究雷達 10/23</title>
+<style>
+:root{
+  --paper:#fbfaf7; --ink:#16181c; --muted:#6b7280; --rule:#e3e0d8;
+  --accent:#1b3a5c; --hot:#8c2f24; --save:#9a6b12;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161a; --ink:#e8e6e1; --muted:#8b8f98; --rule:#282c33;
+         --accent:#8fb4d9; --hot:#e0796a; --save:#d3a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:44rem;margin:0 auto;padding:2rem 1.15rem 5rem}
+header{padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.6rem}
+h1{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;
+  font-size:1.5rem;margin:0 0 .2rem;letter-spacing:-.01em}
+.stamp{color:var(--muted);font-size:.82rem}
+.stamp a{margin-left:.6rem}
+h2{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;font-size:1.05rem;
+  margin:2.4rem 0 .2rem;color:var(--accent)}
+h2.saved{color:var(--save)}
+.item{display:grid;grid-template-columns:2.4rem 1fr;gap:.85rem;
+  padding:1.05rem 0;border-top:1px solid var(--rule)}
+.sc{font-family:Georgia,serif;font-size:1.5rem;line-height:1.15;
+  color:var(--muted);font-variant-numeric:tabular-nums;padding-top:.05rem}
+.sc.hi{color:var(--hot)}
+.ttl{font-family:Georgia,"Noto Serif TC",serif;font-size:1.02rem;
+  line-height:1.35;margin:0 0 .35rem}
+.why{margin:0 0 .45rem}
+.meta{color:var(--muted);font-size:.78rem;margin:0 0 .35rem}
+.links a{color:var(--accent);font-size:.8rem;margin-right:.9rem;
+  text-underline-offset:2px}
+.links .stale{color:var(--muted);font-size:.8rem}
+a{color:var(--accent)}
+.acts{margin-top:.5rem;display:flex;gap:1.1rem;align-items:center}
+.acts button{background:none;border:0;padding:0;font:inherit;font-size:.8rem;
+  color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.acts button.on{font-weight:600}
+.acts .save.on{color:var(--save)}
+.acts .up.on{color:var(--accent)}
+.acts .dn.on{color:var(--hot)}
+details{margin-top:2rem;border-top:1px solid var(--rule);padding-top:.8rem}
+summary{cursor:pointer;color:var(--muted);font-size:.86rem}
+.empty{color:var(--muted);padding:2rem 0}
+footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);
+  color:var(--muted);font-size:.75rem}
+footer button{background:none;border:1px solid var(--rule);border-radius:3px;
+  padding:.4rem .7rem;font:inherit;font-size:.78rem;color:var(--ink);
+  cursor:pointer;margin:.6rem .5rem .6rem 0}
+#dump{width:100%;height:9rem;margin-top:.6rem;font-size:.7rem;
+  font-family:ui-monospace,monospace;display:none;
+  background:var(--paper);color:var(--ink);border:1px solid var(--rule)}
+</style></head><body><div class="wrap">
+<header><h1>研究雷達</h1>
+<div class="stamp">2026 年 10 月 23 日 · 掃過 12 篇 · 值得讀 2 篇<a href="./teaching.html">精神醫學新知</a></div></header>
+<section id="savedbox"></section>
+<h2>值得讀</h2><div class="item"><div class="sc hi">8</div><div><p class="ttl">Characterizing Cancer Symptom Experiences and Related Psychosocial Concerns Through Chinese Social Media Narratives: Computational Text Analysis.</p><p class="why">中文社群媒體 26,086 篇癌症患者敘述分析，GPT-4o-mini 辨識第一人稱敘述 F1 分數 81.2%，SPPADE 症狀抽取 κ 0.714-0.754；BERTopic 話題模型揭示潛在主題。中文臨床文本、多模態標註方法與信度報告完整。</p><p class="meta">臨床文本LLM · J Med Internet Res</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42902828/">PubMed</a><a href="https://doi.org/10.2196/102862">DOI</a></div><div class="acts" data-id="pmid:42902828"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc hi">8</div><div><p class="ttl">Privacy-Preserving Large Language Model Deployment for Oncology Registry Abstraction: Structure-Aware Evaluation in a Real-World Clinical Setting</p><p class="why">Meta Llama 3.3 70B 在 6,700 份腫瘤臨床筆記上實現結構化擷取，F1 分別為診斷 97.2%、組織學 95.8%、分期 92.6%、生物標誌物 91.4%、治療 88.1%；採隱私保護地端部署與結構感知評估框架（正確/缺漏/虛構/錯誤分類）。</p><p class="meta">臨床文本LLM · health informatics · 2026-10-20</p><div class="links"><a href="https://doi.org/10.64898/2026.05.18.26353541">預印本</a><a href="https://doi.org/10.64898/2026.05.18.26353541">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.05.18.26353541"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><h2>掃一眼</h2><div class="item"><div class="sc">7</div><div><p class="ttl">Block Diffusion for Longitudinal EHR: Accuracy, Efficiency, and Representation Trade-offs</p><p class="why">MIMIC-IV 縱貫 EHR：區塊擴散模型（B=8）相比自迴歸模型推論速度快 1.43 倍，保留相近預測效能；凍結線性探針在兩模型表徵學習表現近似。方法創新但未與臨床預測端點整合。</p><p class="meta">其他 · cs.LG, cs.AI · 2026-10-21</p><div class="links"><a href="https://arxiv.org/abs/2610.29533v1">arXiv</a></div><div class="acts" data-id="arxiv:2610.29533v1"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">7</div><div><p class="ttl">Community mental health workforce capacity and official early psychiatric readmission indicators in Italy: a longitudinal ecological panel study.</p><p class="why">義大利 2015-2024 年 21 個區域縱貫研究，醫護人數密度每增 10 人/10 萬成人，30 日內精神科再住院率相對危險比 1.006（95% CI 0.934-1.034，p=0.81），95% CI 不排除零效應。</p><p class="meta">精神病理預測 · Epidemiol Psychiatr Sci</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42904349/">PubMed</a><a href="https://doi.org/10.1017/S2045796026101073">DOI</a></div><div class="acts" data-id="pmid:42904349"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">From Divergent Guidelines to Delphi-Ready Items: Tutorial for Large Language Model-Assisted Guideline Harmonization Using Penile Cancer as a Worked Example.</p><p class="why">以陰莖癌為例，LLM 從 5 份臨床指南與 PubMed 文獻系統擷取並整合 157 項建議為 68 項協調項目，識別 15 項一致與 53 項分歧項目。方法框架通用但未驗證在精神科。</p><p class="meta">臨床文本LLM · J Med Internet Res</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42902842/">PubMed</a><a href="https://doi.org/10.2196/96886">DOI</a></div><div class="acts" data-id="pmid:42902842"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">Virtual Reality Therapy Assistants for Adjunctive Cue Exposure Training in the Treatment of Alcohol Use Disorder (VITAACue-AUD): Protocol for a Technical Feasibility Study.</p><p class="why">德國 Mannheim 中央心理衛生院酒精成癮 VR 曝露治療助理（VRTA）可行性研究協議，計畫招募 20 名患者進行定性評估，開發階段。</p><p class="meta">成癮與GLP-1 · JMIR Res Protoc</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42902919/">PubMed</a><a href="https://doi.org/10.2196/99080">DOI</a></div><div class="acts" data-id="pmid:42902919"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Are Joint-Embedding Predictive Objectives Effective for Longitudinal EHRs?</p><p class="why">JEPA vs MLM 在 MIMIC-IV 上的比較研究。JEPA 三種設計均不如 MLM，顯示潛在空間預測對 EHR 序列學習無優勢。</p><p class="meta">臨床文本LLM · cs.LG, cs.AI · 2026-10-21</p><div class="links"><a href="https://arxiv.org/abs/2610.29528v1">arXiv</a></div><div class="acts" data-id="arxiv:2610.29528v1"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Large Language Models in the Radiology Workflow: Current Applications, Challenges, and Future Perspectives.</p><p class="why">放射科 LLM 應用綜述：討論掃描協議、影像判讀、報告生成、幻覺與文本偏誤問題。無新方法學，非精神科。</p><p class="meta">其他 · J Korean Soc Radiol</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42903037/">PubMed</a><a href="https://doi.org/10.3348/jksr.2026.0080">DOI</a></div><div class="acts" data-id="pmid:42903037"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Nicotine pouch use characteristics, self-perceived addiction and regret among Danish youth.</p><p class="why">丹麥 15-29 歲尼古丁囊使用者 1,201 人中，82.2% 自覺成癮、79.0% 後悔使用；每日使用者成癮勝算比 40.68。尼古丁非核心關注物質。</p><p class="meta">成癮與GLP-1 · Addiction</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42902826/">PubMed</a><a href="https://doi.org/10.1111/add.70689">DOI</a></div><div class="acts" data-id="pmid:42902826"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><details><summary>其餘 3 篇（低相關）</summary><div class="item"><div class="sc">4</div><div><p class="ttl">Agentic Automation of BT-RADS Scoring Using an End-to-End System for Standardized Glioma Follow-up Assessment.</p><p class="why">LLM+CNN 自動評分腦腫瘤 MRI 報告系統，492 例準確度 76.0% vs 57.5%，Cohen κ 0.71。腦瘤非精神科、方法未創新。</p><p class="meta">其他 · Radiol Artif Intell</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42905016/">PubMed</a><a href="https://doi.org/10.1148/ryai.260234">DOI</a></div><div class="acts" data-id="pmid:42905016"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Assessment of radiographic healing after tibial plateau leveling osteotomy in young and older dogs using the modified RUST scoring system.</p><p class="why">獸醫學：100 隻犬隻 TPLO 術後 8 週影像評分，年齡組間 mRUST 得分無差異；LLM vs 外科醫師vs住院醫師 ICC 0.45。動物實驗。</p><p class="meta">其他 · Front Vet Sci</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42903056/">PubMed</a><a href="https://doi.org/10.3389/fvets.2026.1934451">DOI</a></div><div class="acts" data-id="pmid:42903056"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Applying psychometrics to large language model simulated populations: recreating the HEXACO personality inventory experiment with generative agents.</p><p class="why">310 個 GPT-4 虛擬人物填答人格量表 HEXACO，因子結構與原始人類樣本部分對齊；跨模型人格檔案存在變異性。純工程虛擬實驗，無臨床端點。</p><p class="meta">其他 · R Soc Open Sci</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42904031/">PubMed</a><a href="https://doi.org/10.1098/rsos.251802">DOI</a></div><div class="acts" data-id="pmid:42904031"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div></details>
+<footer>
+<button id="expbtn">匯出回饋（複製到剪貼簿）</button>
+<textarea id="dump" readonly></textarea>
+<p>收藏與回饋存在這台裝置的瀏覽器裡，換裝置不會同步。
+分數由 Claude 依設定檔的評分標準評定，僅供分流參考，不代表論文品質。</p>
+</footer>
+</div>
+<script>
+window.NS = "radar";
+window.ITEMS = {"pmid:42902828": {"id": "pmid:42902828", "title": "Characterizing Cancer Symptom Experiences and Related Psychosocial Concerns Through Chinese Social Media Narratives: Computational Text Analysis.", "why": "中文社群媒體 26,086 篇癌症患者敘述分析，GPT-4o-mini 辨識第一人稱敘述 F1 分數 81.2%，SPPADE 症狀抽取 κ 0.714-0.754；BERTopic 話題模型揭示潛在主題。中文臨床文本、多模態標註方法與信度報告完整。", "tag": "臨床文本LLM", "venue": "J Med Internet Res", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42902828/", "doi": "10.2196/102862", "score": 8, "source": "PubMed", "dv": 2}, "medrxiv:10.64898/2026.05.18.26353541": {"id": "medrxiv:10.64898/2026.05.18.26353541", "title": "Privacy-Preserving Large Language Model Deployment for Oncology Registry Abstraction: Structure-Aware Evaluation in a Real-World Clinical Setting", "why": "Meta Llama 3.3 70B 在 6,700 份腫瘤臨床筆記上實現結構化擷取，F1 分別為診斷 97.2%、組織學 95.8%、分期 92.6%、生物標誌物 91.4%、治療 88.1%；採隱私保護地端部署與結構感知評估框架（正確/缺漏/虛構/錯誤分類）。", "tag": "臨床文本LLM", "venue": "health informatics", "date": "2026-10-20", "url": "https://doi.org/10.64898/2026.05.18.26353541", "doi": "10.64898/2026.05.18.26353541", "score": 8, "source": "medrxiv", "dv": 2}, "arxiv:2610.29533v1": {"id": "arxiv:2610.29533v1", "title": "Block Diffusion for Longitudinal EHR: Accuracy, Efficiency, and Representation Trade-offs", "why": "MIMIC-IV 縱貫 EHR：區塊擴散模型（B=8）相比自迴歸模型推論速度快 1.43 倍，保留相近預測效能；凍結線性探針在兩模型表徵學習表現近似。方法創新但未與臨床預測端點整合。", "tag": "其他", "venue": "cs.LG, cs.AI", "date": "2026-10-21", "url": "https://arxiv.org/abs/2610.29533v1", "doi": "", "score": 7, "source": "arXiv", "dv": 2}, "pmid:42904349": {"id": "pmid:42904349", "title": "Community mental health workforce capacity and official early psychiatric readmission indicators in Italy: a longitudinal ecological panel study.", "why": "義大利 2015-2024 年 21 個區域縱貫研究，醫護人數密度每增 10 人/10 萬成人，30 日內精神科再住院率相對危險比 1.006（95% CI 0.934-1.034，p=0.81），95% CI 不排除零效應。", "tag": "精神病理預測", "venue": "Epidemiol Psychiatr Sci", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42904349/", "doi": "10.1017/S2045796026101073", "score": 7, "source": "PubMed", "dv": 2}, "pmid:42902842": {"id": "pmid:42902842", "title": "From Divergent Guidelines to Delphi-Ready Items: Tutorial for Large Language Model-Assisted Guideline Harmonization Using Penile Cancer as a Worked Example.", "why": "以陰莖癌為例，LLM 從 5 份臨床指南與 PubMed 文獻系統擷取並整合 157 項建議為 68 項協調項目，識別 15 項一致與 53 項分歧項目。方法框架通用但未驗證在精神科。", "tag": "臨床文本LLM", "venue": "J Med Internet Res", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42902842/", "doi": "10.2196/96886", "score": 6, "source": "PubMed", "dv": 2}, "pmid:42902919": {"id": "pmid:42902919", "title": "Virtual Reality Therapy Assistants for Adjunctive Cue Exposure Training in the Treatment of Alcohol Use Disorder (VITAACue-AUD): Protocol for a Technical Feasibility Study.", "why": "德國 Mannheim 中央心理衛生院酒精成癮 VR 曝露治療助理（VRTA）可行性研究協議，計畫招募 20 名患者進行定性評估，開發階段。", "tag": "成癮與GLP-1", "venue": "JMIR Res Protoc", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42902919/", "doi": "10.2196/99080", "score": 6, "source": "PubMed", "dv": 2}, "arxiv:2610.29528v1": {"id": "arxiv:2610.29528v1", "title": "Are Joint-Embedding Predictive Objectives Effective for Longitudinal EHRs?", "why": "JEPA vs MLM 在 MIMIC-IV 上的比較研究。JEPA 三種設計均不如 MLM，顯示潛在空間預測對 EHR 序列學習無優勢。", "tag": "臨床文本LLM", "venue": "cs.LG, cs.AI", "date": "2026-10-21", "url": "https://arxiv.org/abs/2610.29528v1", "doi": "", "score": 5, "source": "arXiv", "dv": 2}, "pmid:42903037": {"id": "pmid:42903037", "title": "Large Language Models in the Radiology Workflow: Current Applications, Challenges, and Future Perspectives.", "why": "放射科 LLM 應用綜述：討論掃描協議、影像判讀、報告生成、幻覺與文本偏誤問題。無新方法學，非精神科。", "tag": "其他", "venue": "J Korean Soc Radiol", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42903037/", "doi": "10.3348/jksr.2026.0080", "score": 5, "source": "PubMed", "dv": 2}, "pmid:42902826": {"id": "pmid:42902826", "title": "Nicotine pouch use characteristics, self-perceived addiction and regret among Danish youth.", "why": "丹麥 15-29 歲尼古丁囊使用者 1,201 人中，82.2% 自覺成癮、79.0% 後悔使用；每日使用者成癮勝算比 40.68。尼古丁非核心關注物質。", "tag": "成癮與GLP-1", "venue": "Addiction", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42902826/", "doi": "10.1111/add.70689", "score": 5, "source": "PubMed", "dv": 2}, "pmid:42905016": {"id": "pmid:42905016", "title": "Agentic Automation of BT-RADS Scoring Using an End-to-End System for Standardized Glioma Follow-up Assessment.", "why": "LLM+CNN 自動評分腦腫瘤 MRI 報告系統，492 例準確度 76.0% vs 57.5%，Cohen κ 0.71。腦瘤非精神科、方法未創新。", "tag": "其他", "venue": "Radiol Artif Intell", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42905016/", "doi": "10.1148/ryai.260234", "score": 4, "source": "PubMed", "dv": 2}, "pmid:42903056": {"id": "pmid:42903056", "title": "Assessment of radiographic healing after tibial plateau leveling osteotomy in young and older dogs using the modified RUST scoring system.", "why": "獸醫學：100 隻犬隻 TPLO 術後 8 週影像評分，年齡組間 mRUST 得分無差異；LLM vs 外科醫師vs住院醫師 ICC 0.45。動物實驗。", "tag": "其他", "venue": "Front Vet Sci", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42903056/", "doi": "10.3389/fvets.2026.1934451", "score": 3, "source": "PubMed", "dv": 2}, "pmid:42904031": {"id": "pmid:42904031", "title": "Applying psychometrics to large language model simulated populations: recreating the HEXACO personality inventory experiment with generative agents.", "why": "310 個 GPT-4 虛擬人物填答人格量表 HEXACO，因子結構與原始人類樣本部分對齊；跨模型人格檔案存在變異性。純工程虛擬實驗，無臨床端點。", "tag": "其他", "venue": "R Soc Open Sci", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42904031/", "doi": "10.1098/rsos.251802", "score": 2, "source": "PubMed", "dv": 2}};
+window.PROXY = "";
+
+const KS=window.NS+'.saved', KF=window.NS+'.feedback';
+const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}};
+const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){
+  alert('儲存空間寫入失敗，收藏可能不會保留。')}};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,
+  c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function linksHtml(it){
+  let h='';
+  if(it.url) h+='<a href="'+esc(it.url)+'">'+
+    (it.source==='PubMed'?'PubMed':it.source==='arXiv'?'arXiv':'預印本')+'</a>';
+  // 2026-09-26 之前收藏的項目，DOI 是舊程式抓的，可能指向參考文獻裡的
+  // 另一篇論文。那些只留 PubMed 連結。
+  const doiOk = it.doi && (it.dv || 0) >= 2;
+  if(doiOk) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
+  if(doiOk && window.PROXY) h+='<a href="'+
+    esc(window.PROXY+'https://doi.org/'+it.doi)+'">全文（校內）</a>';
+  if(it.doi && !doiOk) h+='<span class="stale">DOI 待更新，請用 PubMed</span>';
+  return '<div class="links">'+h+'</div>';
+}
+
+function itemHtml(it){
+  const meta=[it.tag,it.venue,it.date].filter(Boolean).join(' · ');
+  return '<div class="item"><div class="sc">'+esc(it.score)+'</div><div>'
+    +'<p class="ttl">'+esc(it.title)+'</p>'
+    +(it.why?'<p class="why">'+esc(it.why)+'</p>':'')
+    +'<p class="meta">'+esc(meta)+'</p>'+linksHtml(it)
+    +'<div class="acts" data-id="'+esc(it.id)+'">'
+    +'<button class="save">收藏</button><button class="up">讚</button>'
+    +'<button class="dn">倒讚</button></div></div></div>';
+}
+
+function renderSaved(){
+  const box=document.getElementById('savedbox');
+  const arr=Object.values(rd(KS)).sort((a,b)=>(b._at||0)-(a._at||0));
+  box.innerHTML = arr.length
+    ? '<h2 class="saved">待讀清單（'+arr.length+'）</h2>'+arr.map(itemHtml).join('')
+    : '';
+  paint();
+}
+
+function paint(){
+  const saved=rd(KS), fb=rd(KF);
+  document.querySelectorAll('.acts').forEach(el=>{
+    const id=el.dataset.id, v=(fb[id]||{}).v;
+    const sb=el.querySelector('.save');
+    sb.classList.toggle('on', !!saved[id]);
+    sb.textContent = saved[id]?'已收藏':'收藏';
+    el.querySelector('.up').classList.toggle('on', v===1);
+    el.querySelector('.dn').classList.toggle('on', v===-1);
+  });
+}
+
+document.addEventListener('click', e=>{
+  const btn=e.target.closest('.acts button'); if(!btn) return;
+  const id=btn.closest('.acts').dataset.id;
+  const it=(window.ITEMS||{})[id] || rd(KS)[id];
+  if(!it) return;
+  if(btn.classList.contains('save')){
+    const s=rd(KS);
+    if(s[id]) delete s[id]; else s[id]=Object.assign({},it,{_at:Date.now()});
+    wr(KS,s); renderSaved();
+  } else {
+    const v=btn.classList.contains('up')?1:-1, f=rd(KF);
+    if((f[id]||{}).v===v) delete f[id];
+    else f[id]={v:v,title:it.title,venue:it.venue,tag:it.tag,at:Date.now()};
+    wr(KF,f); paint();
+  }
+});
+
+window.addEventListener('DOMContentLoaded',()=>{
+  renderSaved();
+  document.getElementById('expbtn').addEventListener('click',()=>{
+    const arr=Object.entries(rd(KF)).map(([id,o])=>({id:id,v:o.v,
+      title:o.title,venue:o.venue,tag:o.tag}));
+    const txt=JSON.stringify(arr,null,1), ta=document.getElementById('dump');
+    ta.style.display='block'; ta.value=txt; ta.select();
+    if(navigator.clipboard) navigator.clipboard.writeText(txt).then(()=>{
+      document.getElementById('expbtn').textContent='已複製 '+arr.length+' 筆回饋';},()=>{});
+  });
+});
+
+</script>
+</body></html>
