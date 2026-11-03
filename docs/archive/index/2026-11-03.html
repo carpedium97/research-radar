@@ -1,0 +1,161 @@
+<!doctype html><html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="研究雷達">
+<meta name="theme-color" content="#fbfaf7">
+<title>研究雷達 11/03</title>
+<style>
+:root{
+  --paper:#fbfaf7; --ink:#16181c; --muted:#6b7280; --rule:#e3e0d8;
+  --accent:#1b3a5c; --hot:#8c2f24; --save:#9a6b12;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161a; --ink:#e8e6e1; --muted:#8b8f98; --rule:#282c33;
+         --accent:#8fb4d9; --hot:#e0796a; --save:#d3a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:44rem;margin:0 auto;padding:2rem 1.15rem 5rem}
+header{padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.6rem}
+h1{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;
+  font-size:1.5rem;margin:0 0 .2rem;letter-spacing:-.01em}
+.stamp{color:var(--muted);font-size:.82rem}
+.stamp a{margin-left:.6rem}
+h2{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;font-size:1.05rem;
+  margin:2.4rem 0 .2rem;color:var(--accent)}
+h2.saved{color:var(--save)}
+.item{display:grid;grid-template-columns:2.4rem 1fr;gap:.85rem;
+  padding:1.05rem 0;border-top:1px solid var(--rule)}
+.sc{font-family:Georgia,serif;font-size:1.5rem;line-height:1.15;
+  color:var(--muted);font-variant-numeric:tabular-nums;padding-top:.05rem}
+.sc.hi{color:var(--hot)}
+.ttl{font-family:Georgia,"Noto Serif TC",serif;font-size:1.02rem;
+  line-height:1.35;margin:0 0 .35rem}
+.why{margin:0 0 .45rem}
+.meta{color:var(--muted);font-size:.78rem;margin:0 0 .35rem}
+.links a{color:var(--accent);font-size:.8rem;margin-right:.9rem;
+  text-underline-offset:2px}
+.links .stale{color:var(--muted);font-size:.8rem}
+a{color:var(--accent)}
+.acts{margin-top:.5rem;display:flex;gap:1.1rem;align-items:center}
+.acts button{background:none;border:0;padding:0;font:inherit;font-size:.8rem;
+  color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.acts button.on{font-weight:600}
+.acts .save.on{color:var(--save)}
+.acts .up.on{color:var(--accent)}
+.acts .dn.on{color:var(--hot)}
+details{margin-top:2rem;border-top:1px solid var(--rule);padding-top:.8rem}
+summary{cursor:pointer;color:var(--muted);font-size:.86rem}
+.empty{color:var(--muted);padding:2rem 0}
+footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);
+  color:var(--muted);font-size:.75rem}
+footer button{background:none;border:1px solid var(--rule);border-radius:3px;
+  padding:.4rem .7rem;font:inherit;font-size:.78rem;color:var(--ink);
+  cursor:pointer;margin:.6rem .5rem .6rem 0}
+#dump{width:100%;height:9rem;margin-top:.6rem;font-size:.7rem;
+  font-family:ui-monospace,monospace;display:none;
+  background:var(--paper);color:var(--ink);border:1px solid var(--rule)}
+</style></head><body><div class="wrap">
+<header><h1>研究雷達</h1>
+<div class="stamp">2026 年 11 月 03 日 · 掃過 17 篇 · 值得讀 1 篇<a href="./teaching.html">精神醫學新知</a></div></header>
+<section id="savedbox"></section>
+<h2>值得讀</h2><div class="item"><div class="sc hi">8</div><div><p class="ttl">Longitudinal prediction of adolescent depression from environmental and polygenic risk scores.</p><p class="why">青少年憂鬱症縱貫預測，環境風險評分（depRS）12個預測因子、解釋變異12.3%，與多基因風險評分結合AUC 0.71；N=9797、2年追蹤。環境–遺傳整合預測框架直接示範精神疾患風險分層方法。</p><p class="meta">精神病理預測 · Mol Psychiatry</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42967952/">PubMed</a><a href="https://doi.org/10.1038/s41380-026-03934-4">DOI</a></div><div class="acts" data-id="pmid:42967952"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><h2>掃一眼</h2><div class="item"><div class="sc">7</div><div><p class="ttl">Comparing Machine Learning Methods for Detecting Caregiver Burden in Transcribed Conversations with Clinicians</p><p class="why">失智症照顧者負擔偵測，LLM prompting F1=0.60 vs 弱監督 0.58，但樣本規模未明、標籤策略問題待解，方法學思路可參考。</p><p class="meta">臨床文本LLM · health informatics · 2026-11-02</p><div class="links"><a href="https://doi.org/10.64898/2026.10.30.26366925">預印本</a><a href="https://doi.org/10.64898/2026.10.30.26366925">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.10.30.26366925"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">7</div><div><p class="ttl">Differential Accuracy of Semantic Versus Phonological Speech Error Transcription in Aphasia: Comparing Large Language Model (Whisper) to Clinician (Speech-Language Pathologist) Performance.</p><p class="why">Whisper ASR在失語症患者命名測試轉錄中的性能：語義錯誤匹配92.22%、音韻錯誤23.05%（N=26、4535試次）。臨床文本自動化轉錄的誤差模式分析，示範LLM在病理語音上的限制。</p><p class="meta">臨床文本LLM · J Speech Lang Hear Res</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42970478/">PubMed</a><a href="https://doi.org/10.1044/2026_JSLHR-25-00882">DOI</a></div><div class="acts" data-id="pmid:42970478"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">Conserved Laminar-Cellular Architecture Predicts the Spectrolaminar Motif</p><p class="why">皮層細胞架構預測光譜層狀圖案，並用於預測思覺失調症患者的 LFP 異常，結構-功能映射方法可參考，但未提供臨床端點數據。</p><p class="meta">神經影像方法 · neuroscience · 2026-10-31</p><div class="links"><a href="https://doi.org/10.1101/2024.03.27.587084">預印本</a><a href="https://doi.org/10.1101/2024.03.27.587084">DOI</a></div><div class="acts" data-id="biorxiv:10.1101/2024.03.27.587084"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">Feasibility of Privacy-preserving Locally Hosted Language Models for Assessing Medical Student Reflective Writing.</p><p class="why">本地部署開源LLM（隱私保護）評估醫學生反思寫作，10份去識別敘事、兩份rubric、三次獨立評分一致。地端可部署模式示範，但僅可行性研究、無臨床規模應用證據。</p><p class="meta">臨床文本LLM · Med Sci Educ</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42968798/">PubMed</a><a href="https://doi.org/10.1007/s40670-026-02865-7">DOI</a></div><div class="acts" data-id="pmid:42968798"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">SPARK-ICA: Guided Frequency-Resolved Dynamic Spatial ICA Reveals Fine-Scale fMRI Network Dynamics.</p><p class="why">動態fMRI的空間頻率分解ICA方法（SPARK-ICA），思覺失調症患者應用。方法學工具有學習價值，但未報告臨床預測性能或與他的病歷應用直接相關。</p><p class="meta">神經影像方法 · Hum Brain Mapp</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42969198/">PubMed</a><a href="https://doi.org/10.1002/hbm.70662">DOI</a></div><div class="acts" data-id="pmid:42969198"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">A decision-only model as a low-cost judge of medical AI answers</p><p class="why">決策模型作為 LLM 評判工具，25,091 單位測試顯示 64.7% 與專家一致，成本低但漏診率高（遺漏 55.6%），臨床部署門檻高。</p><p class="meta">臨床文本LLM · health informatics · 2026-11-02</p><div class="links"><a href="https://doi.org/10.64898/2026.10.30.26366939">預印本</a><a href="https://doi.org/10.64898/2026.10.30.26366939">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.10.30.26366939"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">C3E-RRG:Confounder-Aware Causal Evidence Coupling and Evolution for Chest X-Ray Report Generation.</p><p class="why">胸部X光報告生成的因果去偏與evidence grounding方法（confounded adjustment、cross-modal coupling），但非精神科文本、非中文、無病歷規模應用證據。</p><p class="meta">其他 · IEEE Trans Med Imaging</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42970651/">PubMed</a><a href="https://doi.org/10.1109/TMI.2026.3749752">DOI</a></div><div class="acts" data-id="pmid:42970651"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">EigenBrain maps cortical molecular architecture from functional, geometric, and structural eigenmodes</p><p class="why">功能性 MRI 特徵模式重建神經傳遞物受體分布，檢測自閉症橫截面與思覺失調症縱向變化，方法創新但樣本規模與效果量未明。</p><p class="meta">神經影像方法 · neuroscience · 2026-11-02</p><div class="links"><a href="https://doi.org/10.64898/2026.10.27.758642">預印本</a><a href="https://doi.org/10.64898/2026.10.27.758642">DOI</a></div><div class="acts" data-id="biorxiv:10.64898/2026.10.27.758642"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Exploring Spatial Inequities and Livability: A Mixed-Methods Study Using Artificial Intelligence and Community Insights.</p><p class="why">街景影像視覺-語言模型分析聖路易都市不平等，與種族隔離、收入中位數關聯（無量化效果量）。空間流行病學方法學示範，但非精神衛生核心應用。</p><p class="meta">其他 · J Urban Health</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42970178/">PubMed</a><a href="https://doi.org/10.1007/s11524-026-01170-3">DOI</a></div><div class="acts" data-id="pmid:42970178"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><details><summary>其餘 7 篇（低相關）</summary><div class="item"><div class="sc">4</div><div><p class="ttl">Artificial Intelligence in Dietary Management and Nutritional Interventions: A Narrative Review of Current Evidence, Applications, and Translational Challenges.</p><p class="why">營養AI應用綜述：食物辨識CNN、個人化PPGR預測ML模型、飲食諮詢chatbot。泛領域應用，無精神科/成癮/台灣脈絡，缺具體臨床試驗數據。</p><p class="meta">其他 · J Am Nutr Assoc</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42970338/">PubMed</a><a href="https://doi.org/10.1080/27697061.2026.2755960">DOI</a></div><div class="acts" data-id="pmid:42970338"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">4</div><div><p class="ttl">Large language model-based simplification of breast imaging reports: a prospective multicentre study with 2965 patient-based evaluations.</p><p class="why">ChatGPT-4簡化乳房影像報告患者偏好前瞻多中心研究（N=314患者、2965評估），AI簡化版偏好率63.3%、易讀性得分70.0% vs 43.4%。放射科應用，方法不可轉移到臨床病歷擷取。</p><p class="meta">其他 · Insights Imaging</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42970174/">PubMed</a><a href="https://doi.org/10.1186/s13244-026-02423-0">DOI</a></div><div class="acts" data-id="pmid:42970174"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">4</div><div><p class="ttl">Triage Advice From General-Purpose Language Models in Health and Everyday Situations</p><p class="why">通用 LLM 健康諮詢分流評估，82 個情景、53 種模型配置測試，健康場景過度轉介 74.7%，與精神科臨床無特定關連。</p><p class="meta">其他 · health informatics · 2026-11-02</p><div class="links"><a href="https://doi.org/10.64898/2026.10.31.26366978">預印本</a><a href="https://doi.org/10.64898/2026.10.31.26366978">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.10.31.26366978"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Evaluation of chatbot and specialist knowledge on pediatric sedation and general anesthesia: a comparative analysis.</p><p class="why">小兒麻醉領域的 LLM 準確度評比（Claude 92.8%、Gemini 91.7%），與精神科臨床文本應用無關，純領域轉移無新方法。</p><p class="meta">其他 · BMC Med Inform Decis Mak</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42968123/">PubMed</a><a href="https://doi.org/10.1186/s12911-026-03748-y">DOI</a></div><div class="acts" data-id="pmid:42968123"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Mind the Gap: Continuous magnification sampling for pathology foundation models.</p><p class="why">組織病理foundation model跨倍率採樣策略（連續vs離散），精度改善最多4個百分點。純影像技術最佳化，不涉及臨床端點或決策應用。</p><p class="meta">其他 · Med Image Anal</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42967408/">PubMed</a><a href="https://doi.org/10.1016/j.media.2026.104327">DOI</a></div><div class="acts" data-id="pmid:42967408"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Chronic unpredictable stress induces negative cognitive bias in rats with sex-specific changes in neurogenesis and functional connectivity</p><p class="why">大鼠慢性應激-認知偏誤動物模型，海馬體神經發生與性別差異，純動物實驗、無臨床對照。</p><p class="meta">其他 · neuroscience · 2026-10-31</p><div class="links"><a href="https://doi.org/10.64898/2026.10.29.762765">預印本</a><a href="https://doi.org/10.64898/2026.10.29.762765">DOI</a></div><div class="acts" data-id="biorxiv:10.64898/2026.10.29.762765"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Identification of local nonlinear shear-wave dynamics using Volterra kernels: application to prostate cancer detection.</p><p class="why">前列腺癌超音波彈性成像的非線性物理特徵建模（Volterra kernels），CNN分類AUC 0.60–0.66（N=90）。純影像生物標誌方法，與臨床決策無直接連結。</p><p class="meta">其他 · IEEE Trans Med Imaging</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/42970650/">PubMed</a><a href="https://doi.org/10.1109/TMI.2026.3749706">DOI</a></div><div class="acts" data-id="pmid:42970650"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div></details>
+<footer>
+<button id="expbtn">匯出回饋（複製到剪貼簿）</button>
+<textarea id="dump" readonly></textarea>
+<p>收藏與回饋存在這台裝置的瀏覽器裡，換裝置不會同步。
+分數由 Claude 依設定檔的評分標準評定，僅供分流參考，不代表論文品質。</p>
+</footer>
+</div>
+<script>
+window.NS = "radar";
+window.ITEMS = {"pmid:42967952": {"id": "pmid:42967952", "title": "Longitudinal prediction of adolescent depression from environmental and polygenic risk scores.", "why": "青少年憂鬱症縱貫預測，環境風險評分（depRS）12個預測因子、解釋變異12.3%，與多基因風險評分結合AUC 0.71；N=9797、2年追蹤。環境–遺傳整合預測框架直接示範精神疾患風險分層方法。", "tag": "精神病理預測", "venue": "Mol Psychiatry", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42967952/", "doi": "10.1038/s41380-026-03934-4", "score": 8, "source": "PubMed", "dv": 2}, "medrxiv:10.64898/2026.10.30.26366925": {"id": "medrxiv:10.64898/2026.10.30.26366925", "title": "Comparing Machine Learning Methods for Detecting Caregiver Burden in Transcribed Conversations with Clinicians", "why": "失智症照顧者負擔偵測，LLM prompting F1=0.60 vs 弱監督 0.58，但樣本規模未明、標籤策略問題待解，方法學思路可參考。", "tag": "臨床文本LLM", "venue": "health informatics", "date": "2026-11-02", "url": "https://doi.org/10.64898/2026.10.30.26366925", "doi": "10.64898/2026.10.30.26366925", "score": 7, "source": "medrxiv", "dv": 2}, "pmid:42970478": {"id": "pmid:42970478", "title": "Differential Accuracy of Semantic Versus Phonological Speech Error Transcription in Aphasia: Comparing Large Language Model (Whisper) to Clinician (Speech-Language Pathologist) Performance.", "why": "Whisper ASR在失語症患者命名測試轉錄中的性能：語義錯誤匹配92.22%、音韻錯誤23.05%（N=26、4535試次）。臨床文本自動化轉錄的誤差模式分析，示範LLM在病理語音上的限制。", "tag": "臨床文本LLM", "venue": "J Speech Lang Hear Res", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42970478/", "doi": "10.1044/2026_JSLHR-25-00882", "score": 7, "source": "PubMed", "dv": 2}, "biorxiv:10.1101/2024.03.27.587084": {"id": "biorxiv:10.1101/2024.03.27.587084", "title": "Conserved Laminar-Cellular Architecture Predicts the Spectrolaminar Motif", "why": "皮層細胞架構預測光譜層狀圖案，並用於預測思覺失調症患者的 LFP 異常，結構-功能映射方法可參考，但未提供臨床端點數據。", "tag": "神經影像方法", "venue": "neuroscience", "date": "2026-10-31", "url": "https://doi.org/10.1101/2024.03.27.587084", "doi": "10.1101/2024.03.27.587084", "score": 6, "source": "biorxiv", "dv": 2}, "pmid:42968798": {"id": "pmid:42968798", "title": "Feasibility of Privacy-preserving Locally Hosted Language Models for Assessing Medical Student Reflective Writing.", "why": "本地部署開源LLM（隱私保護）評估醫學生反思寫作，10份去識別敘事、兩份rubric、三次獨立評分一致。地端可部署模式示範，但僅可行性研究、無臨床規模應用證據。", "tag": "臨床文本LLM", "venue": "Med Sci Educ", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42968798/", "doi": "10.1007/s40670-026-02865-7", "score": 6, "source": "PubMed", "dv": 2}, "pmid:42969198": {"id": "pmid:42969198", "title": "SPARK-ICA: Guided Frequency-Resolved Dynamic Spatial ICA Reveals Fine-Scale fMRI Network Dynamics.", "why": "動態fMRI的空間頻率分解ICA方法（SPARK-ICA），思覺失調症患者應用。方法學工具有學習價值，但未報告臨床預測性能或與他的病歷應用直接相關。", "tag": "神經影像方法", "venue": "Hum Brain Mapp", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42969198/", "doi": "10.1002/hbm.70662", "score": 6, "source": "PubMed", "dv": 2}, "medrxiv:10.64898/2026.10.30.26366939": {"id": "medrxiv:10.64898/2026.10.30.26366939", "title": "A decision-only model as a low-cost judge of medical AI answers", "why": "決策模型作為 LLM 評判工具，25,091 單位測試顯示 64.7% 與專家一致，成本低但漏診率高（遺漏 55.6%），臨床部署門檻高。", "tag": "臨床文本LLM", "venue": "health informatics", "date": "2026-11-02", "url": "https://doi.org/10.64898/2026.10.30.26366939", "doi": "10.64898/2026.10.30.26366939", "score": 5, "source": "medrxiv", "dv": 2}, "pmid:42970651": {"id": "pmid:42970651", "title": "C3E-RRG:Confounder-Aware Causal Evidence Coupling and Evolution for Chest X-Ray Report Generation.", "why": "胸部X光報告生成的因果去偏與evidence grounding方法（confounded adjustment、cross-modal coupling），但非精神科文本、非中文、無病歷規模應用證據。", "tag": "其他", "venue": "IEEE Trans Med Imaging", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42970651/", "doi": "10.1109/TMI.2026.3749752", "score": 5, "source": "PubMed", "dv": 2}, "biorxiv:10.64898/2026.10.27.758642": {"id": "biorxiv:10.64898/2026.10.27.758642", "title": "EigenBrain maps cortical molecular architecture from functional, geometric, and structural eigenmodes", "why": "功能性 MRI 特徵模式重建神經傳遞物受體分布，檢測自閉症橫截面與思覺失調症縱向變化，方法創新但樣本規模與效果量未明。", "tag": "神經影像方法", "venue": "neuroscience", "date": "2026-11-02", "url": "https://doi.org/10.64898/2026.10.27.758642", "doi": "10.64898/2026.10.27.758642", "score": 5, "source": "biorxiv", "dv": 2}, "pmid:42970178": {"id": "pmid:42970178", "title": "Exploring Spatial Inequities and Livability: A Mixed-Methods Study Using Artificial Intelligence and Community Insights.", "why": "街景影像視覺-語言模型分析聖路易都市不平等，與種族隔離、收入中位數關聯（無量化效果量）。空間流行病學方法學示範，但非精神衛生核心應用。", "tag": "其他", "venue": "J Urban Health", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42970178/", "doi": "10.1007/s11524-026-01170-3", "score": 5, "source": "PubMed", "dv": 2}, "pmid:42970338": {"id": "pmid:42970338", "title": "Artificial Intelligence in Dietary Management and Nutritional Interventions: A Narrative Review of Current Evidence, Applications, and Translational Challenges.", "why": "營養AI應用綜述：食物辨識CNN、個人化PPGR預測ML模型、飲食諮詢chatbot。泛領域應用，無精神科/成癮/台灣脈絡，缺具體臨床試驗數據。", "tag": "其他", "venue": "J Am Nutr Assoc", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42970338/", "doi": "10.1080/27697061.2026.2755960", "score": 4, "source": "PubMed", "dv": 2}, "pmid:42970174": {"id": "pmid:42970174", "title": "Large language model-based simplification of breast imaging reports: a prospective multicentre study with 2965 patient-based evaluations.", "why": "ChatGPT-4簡化乳房影像報告患者偏好前瞻多中心研究（N=314患者、2965評估），AI簡化版偏好率63.3%、易讀性得分70.0% vs 43.4%。放射科應用，方法不可轉移到臨床病歷擷取。", "tag": "其他", "venue": "Insights Imaging", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42970174/", "doi": "10.1186/s13244-026-02423-0", "score": 4, "source": "PubMed", "dv": 2}, "medrxiv:10.64898/2026.10.31.26366978": {"id": "medrxiv:10.64898/2026.10.31.26366978", "title": "Triage Advice From General-Purpose Language Models in Health and Everyday Situations", "why": "通用 LLM 健康諮詢分流評估，82 個情景、53 種模型配置測試，健康場景過度轉介 74.7%，與精神科臨床無特定關連。", "tag": "其他", "venue": "health informatics", "date": "2026-11-02", "url": "https://doi.org/10.64898/2026.10.31.26366978", "doi": "10.64898/2026.10.31.26366978", "score": 4, "source": "medrxiv", "dv": 2}, "pmid:42968123": {"id": "pmid:42968123", "title": "Evaluation of chatbot and specialist knowledge on pediatric sedation and general anesthesia: a comparative analysis.", "why": "小兒麻醉領域的 LLM 準確度評比（Claude 92.8%、Gemini 91.7%），與精神科臨床文本應用無關，純領域轉移無新方法。", "tag": "其他", "venue": "BMC Med Inform Decis Mak", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42968123/", "doi": "10.1186/s12911-026-03748-y", "score": 3, "source": "PubMed", "dv": 2}, "pmid:42967408": {"id": "pmid:42967408", "title": "Mind the Gap: Continuous magnification sampling for pathology foundation models.", "why": "組織病理foundation model跨倍率採樣策略（連續vs離散），精度改善最多4個百分點。純影像技術最佳化，不涉及臨床端點或決策應用。", "tag": "其他", "venue": "Med Image Anal", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42967408/", "doi": "10.1016/j.media.2026.104327", "score": 3, "source": "PubMed", "dv": 2}, "biorxiv:10.64898/2026.10.29.762765": {"id": "biorxiv:10.64898/2026.10.29.762765", "title": "Chronic unpredictable stress induces negative cognitive bias in rats with sex-specific changes in neurogenesis and functional connectivity", "why": "大鼠慢性應激-認知偏誤動物模型，海馬體神經發生與性別差異，純動物實驗、無臨床對照。", "tag": "其他", "venue": "neuroscience", "date": "2026-10-31", "url": "https://doi.org/10.64898/2026.10.29.762765", "doi": "10.64898/2026.10.29.762765", "score": 2, "source": "biorxiv", "dv": 2}, "pmid:42970650": {"id": "pmid:42970650", "title": "Identification of local nonlinear shear-wave dynamics using Volterra kernels: application to prostate cancer detection.", "why": "前列腺癌超音波彈性成像的非線性物理特徵建模（Volterra kernels），CNN分類AUC 0.60–0.66（N=90）。純影像生物標誌方法，與臨床決策無直接連結。", "tag": "其他", "venue": "IEEE Trans Med Imaging", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/42970650/", "doi": "10.1109/TMI.2026.3749706", "score": 2, "source": "PubMed", "dv": 2}};
+window.PROXY = "";
+
+const KS=window.NS+'.saved', KF=window.NS+'.feedback';
+const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}};
+const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){
+  alert('儲存空間寫入失敗，收藏可能不會保留。')}};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,
+  c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function linksHtml(it){
+  let h='';
+  if(it.url) h+='<a href="'+esc(it.url)+'">'+
+    (it.source==='PubMed'?'PubMed':it.source==='arXiv'?'arXiv':'預印本')+'</a>';
+  // 2026-09-26 之前收藏的項目，DOI 是舊程式抓的，可能指向參考文獻裡的
+  // 另一篇論文。那些只留 PubMed 連結。
+  const doiOk = it.doi && (it.dv || 0) >= 2;
+  if(doiOk) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
+  if(doiOk && window.PROXY) h+='<a href="'+
+    esc(window.PROXY+'https://doi.org/'+it.doi)+'">全文（校內）</a>';
+  if(it.doi && !doiOk) h+='<span class="stale">DOI 待更新，請用 PubMed</span>';
+  return '<div class="links">'+h+'</div>';
+}
+
+function itemHtml(it){
+  const meta=[it.tag,it.venue,it.date].filter(Boolean).join(' · ');
+  return '<div class="item"><div class="sc">'+esc(it.score)+'</div><div>'
+    +'<p class="ttl">'+esc(it.title)+'</p>'
+    +(it.why?'<p class="why">'+esc(it.why)+'</p>':'')
+    +'<p class="meta">'+esc(meta)+'</p>'+linksHtml(it)
+    +'<div class="acts" data-id="'+esc(it.id)+'">'
+    +'<button class="save">收藏</button><button class="up">讚</button>'
+    +'<button class="dn">倒讚</button></div></div></div>';
+}
+
+function renderSaved(){
+  const box=document.getElementById('savedbox');
+  const arr=Object.values(rd(KS)).sort((a,b)=>(b._at||0)-(a._at||0));
+  box.innerHTML = arr.length
+    ? '<h2 class="saved">待讀清單（'+arr.length+'）</h2>'+arr.map(itemHtml).join('')
+    : '';
+  paint();
+}
+
+function paint(){
+  const saved=rd(KS), fb=rd(KF);
+  document.querySelectorAll('.acts').forEach(el=>{
+    const id=el.dataset.id, v=(fb[id]||{}).v;
+    const sb=el.querySelector('.save');
+    sb.classList.toggle('on', !!saved[id]);
+    sb.textContent = saved[id]?'已收藏':'收藏';
+    el.querySelector('.up').classList.toggle('on', v===1);
+    el.querySelector('.dn').classList.toggle('on', v===-1);
+  });
+}
+
+document.addEventListener('click', e=>{
+  const btn=e.target.closest('.acts button'); if(!btn) return;
+  const id=btn.closest('.acts').dataset.id;
+  const it=(window.ITEMS||{})[id] || rd(KS)[id];
+  if(!it) return;
+  if(btn.classList.contains('save')){
+    const s=rd(KS);
+    if(s[id]) delete s[id]; else s[id]=Object.assign({},it,{_at:Date.now()});
+    wr(KS,s); renderSaved();
+  } else {
+    const v=btn.classList.contains('up')?1:-1, f=rd(KF);
+    if((f[id]||{}).v===v) delete f[id];
+    else f[id]={v:v,title:it.title,venue:it.venue,tag:it.tag,at:Date.now()};
+    wr(KF,f); paint();
+  }
+});
+
+window.addEventListener('DOMContentLoaded',()=>{
+  renderSaved();
+  document.getElementById('expbtn').addEventListener('click',()=>{
+    const arr=Object.entries(rd(KF)).map(([id,o])=>({id:id,v:o.v,
+      title:o.title,venue:o.venue,tag:o.tag}));
+    const txt=JSON.stringify(arr,null,1), ta=document.getElementById('dump');
+    ta.style.display='block'; ta.value=txt; ta.select();
+    if(navigator.clipboard) navigator.clipboard.writeText(txt).then(()=>{
+      document.getElementById('expbtn').textContent='已複製 '+arr.length+' 筆回饋';},()=>{});
+  });
+});
+
+</script>
+</body></html>
