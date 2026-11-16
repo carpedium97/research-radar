@@ -1,0 +1,161 @@
+<!doctype html><html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="研究雷達">
+<meta name="theme-color" content="#fbfaf7">
+<title>研究雷達 11/16</title>
+<style>
+:root{
+  --paper:#fbfaf7; --ink:#16181c; --muted:#6b7280; --rule:#e3e0d8;
+  --accent:#1b3a5c; --hot:#8c2f24; --save:#9a6b12;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161a; --ink:#e8e6e1; --muted:#8b8f98; --rule:#282c33;
+         --accent:#8fb4d9; --hot:#e0796a; --save:#d3a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:44rem;margin:0 auto;padding:2rem 1.15rem 5rem}
+header{padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.6rem}
+h1{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;
+  font-size:1.5rem;margin:0 0 .2rem;letter-spacing:-.01em}
+.stamp{color:var(--muted);font-size:.82rem}
+.stamp a{margin-left:.6rem}
+h2{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;font-size:1.05rem;
+  margin:2.4rem 0 .2rem;color:var(--accent)}
+h2.saved{color:var(--save)}
+.item{display:grid;grid-template-columns:2.4rem 1fr;gap:.85rem;
+  padding:1.05rem 0;border-top:1px solid var(--rule)}
+.sc{font-family:Georgia,serif;font-size:1.5rem;line-height:1.15;
+  color:var(--muted);font-variant-numeric:tabular-nums;padding-top:.05rem}
+.sc.hi{color:var(--hot)}
+.ttl{font-family:Georgia,"Noto Serif TC",serif;font-size:1.02rem;
+  line-height:1.35;margin:0 0 .35rem}
+.why{margin:0 0 .45rem}
+.meta{color:var(--muted);font-size:.78rem;margin:0 0 .35rem}
+.links a{color:var(--accent);font-size:.8rem;margin-right:.9rem;
+  text-underline-offset:2px}
+.links .stale{color:var(--muted);font-size:.8rem}
+a{color:var(--accent)}
+.acts{margin-top:.5rem;display:flex;gap:1.1rem;align-items:center}
+.acts button{background:none;border:0;padding:0;font:inherit;font-size:.8rem;
+  color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.acts button.on{font-weight:600}
+.acts .save.on{color:var(--save)}
+.acts .up.on{color:var(--accent)}
+.acts .dn.on{color:var(--hot)}
+details{margin-top:2rem;border-top:1px solid var(--rule);padding-top:.8rem}
+summary{cursor:pointer;color:var(--muted);font-size:.86rem}
+.empty{color:var(--muted);padding:2rem 0}
+footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);
+  color:var(--muted);font-size:.75rem}
+footer button{background:none;border:1px solid var(--rule);border-radius:3px;
+  padding:.4rem .7rem;font:inherit;font-size:.78rem;color:var(--ink);
+  cursor:pointer;margin:.6rem .5rem .6rem 0}
+#dump{width:100%;height:9rem;margin-top:.6rem;font-size:.7rem;
+  font-family:ui-monospace,monospace;display:none;
+  background:var(--paper);color:var(--ink);border:1px solid var(--rule)}
+</style></head><body><div class="wrap">
+<header><h1>研究雷達</h1>
+<div class="stamp">2026 年 11 月 16 日 · 掃過 15 篇 · 值得讀 1 篇<a href="./teaching.html">精神醫學新知</a></div></header>
+<section id="savedbox"></section>
+<h2>值得讀</h2><div class="item"><div class="sc hi">8</div><div><p class="ttl">Personas shift clinical action thresholds in large language models.</p><p class="why">20 個開源 LLM 在 500 萬臨床決策上的測試，persona 系統提示改變肯定率 9.5 個百分點（36.9%-46.4%），效應跨模型一致（r=0.82）；揭示 LLM 臨床部署中提示詞作為政策層級工具的系統性偏差。</p><p class="meta">臨床文本LLM · Npj Health Syst</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43034186/">PubMed</a><a href="https://doi.org/10.1038/s44401-026-00121-z">DOI</a></div><div class="acts" data-id="pmid:43034186"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><h2>掃一眼</h2><div class="item"><div class="sc">7</div><div><p class="ttl">Overcoming High Volume and Complexity: Developing a Large Language Model-Assisted Scoping Review Method for Identifying Long-term Caesarean Section Outcomes.</p><p class="why">LLM 輔助剖腹產長期結果的 scoping review（n=51281 文獻、人工檢證），敏感性 89.9%、特異性 96.4%、成本 $458.73；混合工作流自動化文獻篩選且保留人工控制，與系統性回顧方法論直接相關。</p><p class="meta">統合分析方法 · Ann Epidemiol</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43033879/">PubMed</a><a href="https://doi.org/10.1016/j.annepidem.2026.110319">DOI</a></div><div class="acts" data-id="pmid:43033879"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">Trusting health information from large language models, online articles, and discussion forums: A comparison of perceived credibility.</p><p class="why">405 名受試者實驗，LLM 與網路論壇均提升虛假醫療資訊可信度評分，效果量中等（η²p=0.07）；涉及 LLM 健康資訊信度問題，與臨床文本應用有邊緣關聯。</p><p class="meta">臨床文本LLM · Internet Interv</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43034719/">PubMed</a><a href="https://doi.org/10.1016/j.invent.2026.101015">DOI</a></div><div class="acts" data-id="pmid:43034719"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Diagnostic Accuracy of Large Language Models for Pediatric Chest Radiograph: Comparison With Pediatricians and Radiologists.</p><p class="why">502 張兒童胸部 X 光，ChatGPT 與 Perplexity 對肺炎敏感性分別 0.81 與更低、與放射科醫師 Kappa 0.34-0.69；通用 LLM 在特定醫學影像診斷中的準確度邊界，跨科別應用無方法新穎性。</p><p class="meta">臨床文本LLM · Pediatr Pulmonol</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43033194/">PubMed</a><a href="https://doi.org/10.1002/ppul.71916">DOI</a></div><div class="acts" data-id="pmid:43033194"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Transdiagnostic gray matter volume reductions implicating social dysfunction in depression, schizophrenia, and alcohol use disorder: A neuroimaging meta-analysis</p><p class="why">147 篇 VBM 研究薈萃分析（n=13,041），發現思覺失調症、重度憂鬱症、酒精使用疾患共同的灰質體積減少位置（眶額葉皮質、腦島），但樣本量過大且無新方法論，不符合松德規模。</p><p class="meta">神經影像方法 · psychiatry and clinical psychology · 2026-11-13</p><div class="links"><a href="https://doi.org/10.64898/2026.10.18.26365862">預印本</a><a href="https://doi.org/10.64898/2026.10.18.26365862">DOI</a></div><div class="acts" data-id="medrxiv:10.64898/2026.10.18.26365862"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><details><summary>其餘 10 篇（低相關）</summary><div class="item"><div class="sc">4</div><div><p class="ttl">Benchmarking large language model performance in generating and assessing radiology objective structured clinical examination.</p><p class="why">放射科考試題目生成與評估，GPT-4o 優於其他 LLM，但無臨床決策端點與中文文本，僅跨域應用示例。</p><p class="meta">臨床文本LLM · Radiol Adv</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43032285/">PubMed</a><a href="https://doi.org/10.1093/radadv/umag039">DOI</a></div><div class="acts" data-id="pmid:43032285"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">4</div><div><p class="ttl">From features to digital biomarkers: EEG-fNIRS classification pipelines for brain monitoring.</p><p class="why">EEG-fNIRS 訊號處理與生物標記萃取的系統性回顧，涵蓋 117 項研究；但與精神科臨床應用無具體連結，純神經影像信號方法論。</p><p class="meta">神經影像方法 · Neuroimage</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43033973/">PubMed</a><a href="https://doi.org/10.1016/j.neuroimage.2026.122344">DOI</a></div><div class="acts" data-id="pmid:43033973"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">LifespanFix: Semi-supervised cortical correction across the human lifespan.</p><p class="why">全生命週期皮質分割缺陷自動修正模型（n=3189 訓練、1058 獨立測試），跨年齡掃描儀與協議；影像分割方法，非精神科臨床終點。</p><p class="meta">神經影像方法 · Med Image Anal</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43033662/">PubMed</a><a href="https://doi.org/10.1016/j.media.2026.104389">DOI</a></div><div class="acts" data-id="pmid:43033662"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">MedReShaper: mesh-based AI for 3D anatomical shape completion in orbital fracture reconstruction with controlled technical validation.</p><p class="why">眼窩骨折重建的網格基礎 AI 方法（n=2400 訓練、1187 外部驗證、45 臨床案例），重建誤差 0.61±0.43 mm；外科應用，無精神科關聯。</p><p class="meta">其他 · Med Image Anal</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43033663/">PubMed</a><a href="https://doi.org/10.1016/j.media.2026.104385">DOI</a></div><div class="acts" data-id="pmid:43033663"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Effectiveness of Health System Interventions to Improve Access to General Healthcare Services for People with Disabilities: A Global Evidence and Gap Map Protocol.</p><p class="why">身心障礙者医療近用的 evidence and gap map 協議文章，涵蓋 WHO 衛生系統六大構面與 UHC 成果；政策系統層級，無臺灣精神科具體臨床數據。</p><p class="meta">其他 · Campbell Syst Rev</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43034392/">PubMed</a><a href="https://doi.org/10.1177/18911803261489527">DOI</a></div><div class="acts" data-id="pmid:43034392"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Multidimensional Neural Maturity Indices from Naturalistic fMRI Reveal the Longitudinal Development of Theory of Mind.</p><p class="why">兒童心智理論發展的縱貫 fMRI 研究（n=27-30 月追蹤），採用多維神經成熟度框架；純認知發展研究，與精神科臨床診療無關。</p><p class="meta">神經影像方法 · Neuroimage</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43033972/">PubMed</a><a href="https://doi.org/10.1016/j.neuroimage.2026.122349">DOI</a></div><div class="acts" data-id="pmid:43033972"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Spatiospectral signatures of stomach-brain synchrony</p><p class="why">腸胃節律與腦皮質耦合的 MEG/EGG 機制研究，基礎生理學探索，無臨床診斷或治療端點。</p><p class="meta">其他 · neuroscience · 2026-11-14</p><div class="links"><a href="https://doi.org/10.64898/2026.03.13.711584">預印本</a><a href="https://doi.org/10.64898/2026.03.13.711584">DOI</a></div><div class="acts" data-id="biorxiv:10.64898/2026.03.13.711584"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">AI-assisted literature mining of perovskite ink formulations using a hybrid regex-LLM extraction pipeline.</p><p class="why">材料科學領域的化學配方擷取，與臨床醫療文本處理無關。</p><p class="meta">其他 · RSC Adv</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43032603/">PubMed</a><a href="https://doi.org/10.1039/d6ra07208a">DOI</a></div><div class="acts" data-id="pmid:43032603"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Tuda: Tucker-parameterized unified dual-stream asymmetric architecture for label-free 3D subcellular structure prediction.</p><p class="why">細胞次結構螢光預測的深度學習架構（TUDA），改進相對 R² 3.9%；純工程最佳化，無臨床應用。</p><p class="meta">其他 · Med Image Anal</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43033664/">PubMed</a><a href="https://doi.org/10.1016/j.media.2026.104384">DOI</a></div><div class="acts" data-id="pmid:43033664"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Reusing pipettes in Patch-seq: a foundation for automated multimodal profiling</p><p class="why">單細胞電生理與轉錄組技術開發，基礎神經科學硬體與實驗程序改進，與臨床精神科無交集。</p><p class="meta">其他 · neuroscience · 2026-11-13</p><div class="links"><a href="https://doi.org/10.64898/2026.11.10.763771">預印本</a><a href="https://doi.org/10.64898/2026.11.10.763771">DOI</a></div><div class="acts" data-id="biorxiv:10.64898/2026.11.10.763771"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div></details>
+<footer>
+<button id="expbtn">匯出回饋（複製到剪貼簿）</button>
+<textarea id="dump" readonly></textarea>
+<p>收藏與回饋存在這台裝置的瀏覽器裡，換裝置不會同步。
+分數由 Claude 依設定檔的評分標準評定，僅供分流參考，不代表論文品質。</p>
+</footer>
+</div>
+<script>
+window.NS = "radar";
+window.ITEMS = {"pmid:43034186": {"id": "pmid:43034186", "title": "Personas shift clinical action thresholds in large language models.", "why": "20 個開源 LLM 在 500 萬臨床決策上的測試，persona 系統提示改變肯定率 9.5 個百分點（36.9%-46.4%），效應跨模型一致（r=0.82）；揭示 LLM 臨床部署中提示詞作為政策層級工具的系統性偏差。", "tag": "臨床文本LLM", "venue": "Npj Health Syst", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43034186/", "doi": "10.1038/s44401-026-00121-z", "score": 8, "source": "PubMed", "dv": 2}, "pmid:43033879": {"id": "pmid:43033879", "title": "Overcoming High Volume and Complexity: Developing a Large Language Model-Assisted Scoping Review Method for Identifying Long-term Caesarean Section Outcomes.", "why": "LLM 輔助剖腹產長期結果的 scoping review（n=51281 文獻、人工檢證），敏感性 89.9%、特異性 96.4%、成本 $458.73；混合工作流自動化文獻篩選且保留人工控制，與系統性回顧方法論直接相關。", "tag": "統合分析方法", "venue": "Ann Epidemiol", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43033879/", "doi": "10.1016/j.annepidem.2026.110319", "score": 7, "source": "PubMed", "dv": 2}, "pmid:43034719": {"id": "pmid:43034719", "title": "Trusting health information from large language models, online articles, and discussion forums: A comparison of perceived credibility.", "why": "405 名受試者實驗，LLM 與網路論壇均提升虛假醫療資訊可信度評分，效果量中等（η²p=0.07）；涉及 LLM 健康資訊信度問題，與臨床文本應用有邊緣關聯。", "tag": "臨床文本LLM", "venue": "Internet Interv", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43034719/", "doi": "10.1016/j.invent.2026.101015", "score": 6, "source": "PubMed", "dv": 2}, "pmid:43033194": {"id": "pmid:43033194", "title": "Diagnostic Accuracy of Large Language Models for Pediatric Chest Radiograph: Comparison With Pediatricians and Radiologists.", "why": "502 張兒童胸部 X 光，ChatGPT 與 Perplexity 對肺炎敏感性分別 0.81 與更低、與放射科醫師 Kappa 0.34-0.69；通用 LLM 在特定醫學影像診斷中的準確度邊界，跨科別應用無方法新穎性。", "tag": "臨床文本LLM", "venue": "Pediatr Pulmonol", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43033194/", "doi": "10.1002/ppul.71916", "score": 5, "source": "PubMed", "dv": 2}, "medrxiv:10.64898/2026.10.18.26365862": {"id": "medrxiv:10.64898/2026.10.18.26365862", "title": "Transdiagnostic gray matter volume reductions implicating social dysfunction in depression, schizophrenia, and alcohol use disorder: A neuroimaging meta-analysis", "why": "147 篇 VBM 研究薈萃分析（n=13,041），發現思覺失調症、重度憂鬱症、酒精使用疾患共同的灰質體積減少位置（眶額葉皮質、腦島），但樣本量過大且無新方法論，不符合松德規模。", "tag": "神經影像方法", "venue": "psychiatry and clinical psychology", "date": "2026-11-13", "url": "https://doi.org/10.64898/2026.10.18.26365862", "doi": "10.64898/2026.10.18.26365862", "score": 5, "source": "medrxiv", "dv": 2}, "pmid:43032285": {"id": "pmid:43032285", "title": "Benchmarking large language model performance in generating and assessing radiology objective structured clinical examination.", "why": "放射科考試題目生成與評估，GPT-4o 優於其他 LLM，但無臨床決策端點與中文文本，僅跨域應用示例。", "tag": "臨床文本LLM", "venue": "Radiol Adv", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43032285/", "doi": "10.1093/radadv/umag039", "score": 4, "source": "PubMed", "dv": 2}, "pmid:43033973": {"id": "pmid:43033973", "title": "From features to digital biomarkers: EEG-fNIRS classification pipelines for brain monitoring.", "why": "EEG-fNIRS 訊號處理與生物標記萃取的系統性回顧，涵蓋 117 項研究；但與精神科臨床應用無具體連結，純神經影像信號方法論。", "tag": "神經影像方法", "venue": "Neuroimage", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43033973/", "doi": "10.1016/j.neuroimage.2026.122344", "score": 4, "source": "PubMed", "dv": 2}, "pmid:43033662": {"id": "pmid:43033662", "title": "LifespanFix: Semi-supervised cortical correction across the human lifespan.", "why": "全生命週期皮質分割缺陷自動修正模型（n=3189 訓練、1058 獨立測試），跨年齡掃描儀與協議；影像分割方法，非精神科臨床終點。", "tag": "神經影像方法", "venue": "Med Image Anal", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43033662/", "doi": "10.1016/j.media.2026.104389", "score": 3, "source": "PubMed", "dv": 2}, "pmid:43033663": {"id": "pmid:43033663", "title": "MedReShaper: mesh-based AI for 3D anatomical shape completion in orbital fracture reconstruction with controlled technical validation.", "why": "眼窩骨折重建的網格基礎 AI 方法（n=2400 訓練、1187 外部驗證、45 臨床案例），重建誤差 0.61±0.43 mm；外科應用，無精神科關聯。", "tag": "其他", "venue": "Med Image Anal", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43033663/", "doi": "10.1016/j.media.2026.104385", "score": 3, "source": "PubMed", "dv": 2}, "pmid:43034392": {"id": "pmid:43034392", "title": "Effectiveness of Health System Interventions to Improve Access to General Healthcare Services for People with Disabilities: A Global Evidence and Gap Map Protocol.", "why": "身心障礙者医療近用的 evidence and gap map 協議文章，涵蓋 WHO 衛生系統六大構面與 UHC 成果；政策系統層級，無臺灣精神科具體臨床數據。", "tag": "其他", "venue": "Campbell Syst Rev", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43034392/", "doi": "10.1177/18911803261489527", "score": 2, "source": "PubMed", "dv": 2}, "pmid:43033972": {"id": "pmid:43033972", "title": "Multidimensional Neural Maturity Indices from Naturalistic fMRI Reveal the Longitudinal Development of Theory of Mind.", "why": "兒童心智理論發展的縱貫 fMRI 研究（n=27-30 月追蹤），採用多維神經成熟度框架；純認知發展研究，與精神科臨床診療無關。", "tag": "神經影像方法", "venue": "Neuroimage", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43033972/", "doi": "10.1016/j.neuroimage.2026.122349", "score": 2, "source": "PubMed", "dv": 2}, "biorxiv:10.64898/2026.03.13.711584": {"id": "biorxiv:10.64898/2026.03.13.711584", "title": "Spatiospectral signatures of stomach-brain synchrony", "why": "腸胃節律與腦皮質耦合的 MEG/EGG 機制研究，基礎生理學探索，無臨床診斷或治療端點。", "tag": "其他", "venue": "neuroscience", "date": "2026-11-14", "url": "https://doi.org/10.64898/2026.03.13.711584", "doi": "10.64898/2026.03.13.711584", "score": 2, "source": "biorxiv", "dv": 2}, "pmid:43032603": {"id": "pmid:43032603", "title": "AI-assisted literature mining of perovskite ink formulations using a hybrid regex-LLM extraction pipeline.", "why": "材料科學領域的化學配方擷取，與臨床醫療文本處理無關。", "tag": "其他", "venue": "RSC Adv", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43032603/", "doi": "10.1039/d6ra07208a", "score": 1, "source": "PubMed", "dv": 2}, "pmid:43033664": {"id": "pmid:43033664", "title": "Tuda: Tucker-parameterized unified dual-stream asymmetric architecture for label-free 3D subcellular structure prediction.", "why": "細胞次結構螢光預測的深度學習架構（TUDA），改進相對 R² 3.9%；純工程最佳化，無臨床應用。", "tag": "其他", "venue": "Med Image Anal", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43033664/", "doi": "10.1016/j.media.2026.104384", "score": 1, "source": "PubMed", "dv": 2}, "biorxiv:10.64898/2026.11.10.763771": {"id": "biorxiv:10.64898/2026.11.10.763771", "title": "Reusing pipettes in Patch-seq: a foundation for automated multimodal profiling", "why": "單細胞電生理與轉錄組技術開發，基礎神經科學硬體與實驗程序改進，與臨床精神科無交集。", "tag": "其他", "venue": "neuroscience", "date": "2026-11-13", "url": "https://doi.org/10.64898/2026.11.10.763771", "doi": "10.64898/2026.11.10.763771", "score": 0, "source": "biorxiv", "dv": 2}};
+window.PROXY = "";
+
+const KS=window.NS+'.saved', KF=window.NS+'.feedback';
+const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}};
+const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){
+  alert('儲存空間寫入失敗，收藏可能不會保留。')}};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,
+  c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function linksHtml(it){
+  let h='';
+  if(it.url) h+='<a href="'+esc(it.url)+'">'+
+    (it.source==='PubMed'?'PubMed':it.source==='arXiv'?'arXiv':'預印本')+'</a>';
+  // 2026-09-26 之前收藏的項目，DOI 是舊程式抓的，可能指向參考文獻裡的
+  // 另一篇論文。那些只留 PubMed 連結。
+  const doiOk = it.doi && (it.dv || 0) >= 2;
+  if(doiOk) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
+  if(doiOk && window.PROXY) h+='<a href="'+
+    esc(window.PROXY+'https://doi.org/'+it.doi)+'">全文（校內）</a>';
+  if(it.doi && !doiOk) h+='<span class="stale">DOI 待更新，請用 PubMed</span>';
+  return '<div class="links">'+h+'</div>';
+}
+
+function itemHtml(it){
+  const meta=[it.tag,it.venue,it.date].filter(Boolean).join(' · ');
+  return '<div class="item"><div class="sc">'+esc(it.score)+'</div><div>'
+    +'<p class="ttl">'+esc(it.title)+'</p>'
+    +(it.why?'<p class="why">'+esc(it.why)+'</p>':'')
+    +'<p class="meta">'+esc(meta)+'</p>'+linksHtml(it)
+    +'<div class="acts" data-id="'+esc(it.id)+'">'
+    +'<button class="save">收藏</button><button class="up">讚</button>'
+    +'<button class="dn">倒讚</button></div></div></div>';
+}
+
+function renderSaved(){
+  const box=document.getElementById('savedbox');
+  const arr=Object.values(rd(KS)).sort((a,b)=>(b._at||0)-(a._at||0));
+  box.innerHTML = arr.length
+    ? '<h2 class="saved">待讀清單（'+arr.length+'）</h2>'+arr.map(itemHtml).join('')
+    : '';
+  paint();
+}
+
+function paint(){
+  const saved=rd(KS), fb=rd(KF);
+  document.querySelectorAll('.acts').forEach(el=>{
+    const id=el.dataset.id, v=(fb[id]||{}).v;
+    const sb=el.querySelector('.save');
+    sb.classList.toggle('on', !!saved[id]);
+    sb.textContent = saved[id]?'已收藏':'收藏';
+    el.querySelector('.up').classList.toggle('on', v===1);
+    el.querySelector('.dn').classList.toggle('on', v===-1);
+  });
+}
+
+document.addEventListener('click', e=>{
+  const btn=e.target.closest('.acts button'); if(!btn) return;
+  const id=btn.closest('.acts').dataset.id;
+  const it=(window.ITEMS||{})[id] || rd(KS)[id];
+  if(!it) return;
+  if(btn.classList.contains('save')){
+    const s=rd(KS);
+    if(s[id]) delete s[id]; else s[id]=Object.assign({},it,{_at:Date.now()});
+    wr(KS,s); renderSaved();
+  } else {
+    const v=btn.classList.contains('up')?1:-1, f=rd(KF);
+    if((f[id]||{}).v===v) delete f[id];
+    else f[id]={v:v,title:it.title,venue:it.venue,tag:it.tag,at:Date.now()};
+    wr(KF,f); paint();
+  }
+});
+
+window.addEventListener('DOMContentLoaded',()=>{
+  renderSaved();
+  document.getElementById('expbtn').addEventListener('click',()=>{
+    const arr=Object.entries(rd(KF)).map(([id,o])=>({id:id,v:o.v,
+      title:o.title,venue:o.venue,tag:o.tag}));
+    const txt=JSON.stringify(arr,null,1), ta=document.getElementById('dump');
+    ta.style.display='block'; ta.value=txt; ta.select();
+    if(navigator.clipboard) navigator.clipboard.writeText(txt).then(()=>{
+      document.getElementById('expbtn').textContent='已複製 '+arr.length+' 筆回饋';},()=>{});
+  });
+});
+
+</script>
+</body></html>
