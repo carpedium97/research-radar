@@ -1,0 +1,161 @@
+<!doctype html><html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="研究雷達">
+<meta name="theme-color" content="#fbfaf7">
+<title>研究雷達 11/22</title>
+<style>
+:root{
+  --paper:#fbfaf7; --ink:#16181c; --muted:#6b7280; --rule:#e3e0d8;
+  --accent:#1b3a5c; --hot:#8c2f24; --save:#9a6b12;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161a; --ink:#e8e6e1; --muted:#8b8f98; --rule:#282c33;
+         --accent:#8fb4d9; --hot:#e0796a; --save:#d3a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:44rem;margin:0 auto;padding:2rem 1.15rem 5rem}
+header{padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.6rem}
+h1{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;
+  font-size:1.5rem;margin:0 0 .2rem;letter-spacing:-.01em}
+.stamp{color:var(--muted);font-size:.82rem}
+.stamp a{margin-left:.6rem}
+h2{font-family:Georgia,"Noto Serif TC",serif;font-weight:400;font-size:1.05rem;
+  margin:2.4rem 0 .2rem;color:var(--accent)}
+h2.saved{color:var(--save)}
+.item{display:grid;grid-template-columns:2.4rem 1fr;gap:.85rem;
+  padding:1.05rem 0;border-top:1px solid var(--rule)}
+.sc{font-family:Georgia,serif;font-size:1.5rem;line-height:1.15;
+  color:var(--muted);font-variant-numeric:tabular-nums;padding-top:.05rem}
+.sc.hi{color:var(--hot)}
+.ttl{font-family:Georgia,"Noto Serif TC",serif;font-size:1.02rem;
+  line-height:1.35;margin:0 0 .35rem}
+.why{margin:0 0 .45rem}
+.meta{color:var(--muted);font-size:.78rem;margin:0 0 .35rem}
+.links a{color:var(--accent);font-size:.8rem;margin-right:.9rem;
+  text-underline-offset:2px}
+.links .stale{color:var(--muted);font-size:.8rem}
+a{color:var(--accent)}
+.acts{margin-top:.5rem;display:flex;gap:1.1rem;align-items:center}
+.acts button{background:none;border:0;padding:0;font:inherit;font-size:.8rem;
+  color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.acts button.on{font-weight:600}
+.acts .save.on{color:var(--save)}
+.acts .up.on{color:var(--accent)}
+.acts .dn.on{color:var(--hot)}
+details{margin-top:2rem;border-top:1px solid var(--rule);padding-top:.8rem}
+summary{cursor:pointer;color:var(--muted);font-size:.86rem}
+.empty{color:var(--muted);padding:2rem 0}
+footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);
+  color:var(--muted);font-size:.75rem}
+footer button{background:none;border:1px solid var(--rule);border-radius:3px;
+  padding:.4rem .7rem;font:inherit;font-size:.78rem;color:var(--ink);
+  cursor:pointer;margin:.6rem .5rem .6rem 0}
+#dump{width:100%;height:9rem;margin-top:.6rem;font-size:.7rem;
+  font-family:ui-monospace,monospace;display:none;
+  background:var(--paper);color:var(--ink);border:1px solid var(--rule)}
+</style></head><body><div class="wrap">
+<header><h1>研究雷達</h1>
+<div class="stamp">2026 年 11 月 22 日 · 掃過 19 篇 · 值得讀 1 篇<a href="./teaching.html">精神醫學新知</a></div></header>
+<section id="savedbox"></section>
+<h2>值得讀</h2><div class="item"><div class="sc hi">8</div><div><p class="ttl">Defensive reactivity to interoceptive perturbation in panic disorder: Depressive symptom burden and panic severity dimensions.</p><p class="why">恐慌症85例患者，hyperventilation後startle反應與抑鬱症嚴重度、恐慌症嚴重度的關聯，網絡分析識別抑鬱症為防禦動員的穩健相關因子。直接涉及恐慌症-畏懼曠野症機轉。</p><p class="meta">畏懼曠野症 · Transl Psychiatry</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064759/">PubMed</a><a href="https://doi.org/10.1038/s41398-026-04570-w">DOI</a></div><div class="acts" data-id="pmid:43064759"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><h2>掃一眼</h2><div class="item"><div class="sc">7</div><div><p class="ttl">Video-Based Automated Seizure Classification Using Multimodal Large Language Models.</p><p class="why">多模態LLM從發作視頻擷取24項症狀學特徵預測癲癇vs非癲癇發作，90例患者LOPO交叉驗證F1=0.76。臨床文本LLM的視頻特徵擷取與evidence grounding案例。</p><p class="meta">臨床文本LLM · Ann Clin Transl Neurol</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064535/">PubMed</a><a href="https://doi.org/10.1002/acn3.70574">DOI</a></div><div class="acts" data-id="pmid:43064535"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">6</div><div><p class="ttl">Feasibility and Acceptability of a Large Language Model-Based Electronic Health Record Summarization Tool in Inpatient Care.</p><p class="why">LLM型EHR摘要工具(Epic Hyperdrive)32名臨床醫師、七科評估，幻覺率6.2%、完整性與正確性獲高評分。真實醫院EHR摘要可行性驗證，但無新方法論貢獻、樣本規模小、無精神科。</p><p class="meta">臨床文本LLM · Appl Clin Inform</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064362/">PubMed</a><a href="https://doi.org/10.1055/a-3001-9600">DOI</a></div><div class="acts" data-id="pmid:43064362"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Evaluating a Large Language Model Conversational Agent for Collecting Standardized Back Pain Data: A Cross-Over Study of Accuracy, Usability, and User Preference.</p><p class="why">LLM對話式系統收集下背痛標準化數據(NIH最小數據集43項)，30名代理患者交叉研究，完整性100%、正確性98.3%、耗時13.6分鐘。交互自然語言數據收集研究，方法應用於非精神科。</p><p class="meta">其他 · Methods Inf Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43063990/">PubMed</a><a href="https://doi.org/10.1055/a-3009-7011">DOI</a></div><div class="acts" data-id="pmid:43063990"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Longitudinal contributions of mother-toddler neural synchrony and maternal depression to children&#x27;s neural reward response.</p><p class="why">63 對母幼 fNIRS 超掃描測同步性預測 1 年後兒童獎賞反應，產後憂鬱症調節效應，樣本小無縱貫臨床結果。</p><p class="meta">其他 · Biol Psychiatry Cogn Neurosci Neuroimaging</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064243/">PubMed</a><a href="https://doi.org/10.1016/j.bpsc.2026.10.017">DOI</a></div><div class="acts" data-id="pmid:43064243"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">5</div><div><p class="ttl">Methylphenidate-induced changes in target-enriched functional connectivity in ADHD</p><p class="why">83名刺激劑初治ADHD兒童成人resting-state fMRI單劑methylphenidate前後，REACT分析dopamine/noradrenaline受體富集功能連結。分子靶向神經影像機轉研究，涉及神經發育但非精神病或成癮主軸。</p><p class="meta">神經影像方法 · psychiatry and clinical psychology · 2026-11-19</p><div class="links"><a href="https://doi.org/10.1101/2025.11.26.25341066">預印本</a><a href="https://doi.org/10.1101/2025.11.26.25341066">DOI</a></div><div class="acts" data-id="medrxiv:10.1101/2025.11.26.25341066"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><details><summary>其餘 13 篇（低相關）</summary><div class="item"><div class="sc">4</div><div><p class="ttl">Ordinal conformal partial-label prediction for medical image grading.</p><p class="why">醫學影像分級的序序conformal學習框架，9個數據集、macro-accuracy增益1.27%。與精神科臨床文本無關。</p><p class="meta">其他 · Med Image Anal</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43063796/">PubMed</a><a href="https://doi.org/10.1016/j.media.2026.104399">DOI</a></div><div class="acts" data-id="pmid:43063796"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">4</div><div><p class="ttl">Sleep characteristics, glymphatic proxies, and ATN biomarkers in Alzheimer&#x27;s disease.</p><p class="why">325 名受試者睡眠特徵與膠淋巴代謝代理與阿茲海默症 ATN 生物標記橫斷關聯，失智症非精神科主軸。</p><p class="meta">神經影像方法 · Neuroimage</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064328/">PubMed</a><a href="https://doi.org/10.1016/j.neuroimage.2026.122360">DOI</a></div><div class="acts" data-id="pmid:43064328"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">4</div><div><p class="ttl">The Association between Physical Activity and Higher Corticolimbic Synaptic Density is Independent of Body Mass Index.</p><p class="why">51 人身體活動與 [18F]SynVesT-1 PET 皮質邊緣系統突觸密度關聯獨立於 BMI，小樣本無精神科臨床應用。</p><p class="meta">神經影像方法 · Biol Psychiatry Cogn Neurosci Neuroimaging</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064241/">PubMed</a><a href="https://doi.org/10.1016/j.bpsc.2026.11.006">DOI</a></div><div class="acts" data-id="pmid:43064241"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Addressing Inconsistency in Functional Neuroimaging: A Replicable Data-Driven Multi-Scale Functional Atlas for Canonical Brain Networks.</p><p class="why">10 萬 resting-state fMRI 資料集製作功能腦網路圖譜，標準化命名，與精神科臨床預測無直接關聯。</p><p class="meta">神經影像方法 · Hum Brain Mapp</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064668/">PubMed</a><a href="https://doi.org/10.1002/hbm.70695">DOI</a></div><div class="acts" data-id="pmid:43064668"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">3</div><div><p class="ttl">Brain variation underlying genetic factors linked to psychiatric and neurodegenerative disorders.</p><p class="why">12 項精神疾患與 4 神經退化病基因組結構方程模型，3,935 腦影像表型關聯，99 精細定位位點，無臨床預測驗證。</p><p class="meta">神經影像方法 · Biol Psychiatry Cogn Neurosci Neuroimaging</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064242/">PubMed</a><a href="https://doi.org/10.1016/j.bpsc.2026.11.005">DOI</a></div><div class="acts" data-id="pmid:43064242"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">A two-platform blueprint for modeling human brain development.</p><p class="why">人類腦發育模型整合綜述，器官體與嵌合體平台，基礎神經發育研究無臨床端點。</p><p class="meta">其他 · Nat Methods</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064830/">PubMed</a><a href="https://doi.org/10.1038/s41592-026-03327-z">DOI</a></div><div class="acts" data-id="pmid:43064830"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">2</div><div><p class="ttl">Navigating membrane selection for PFAS removal with permeability-selectivity trade-off and an AI-powered conversational agent.</p><p class="why">Agentic RAG系統優化PFAS膜選擇，四種LLM設定比較、正確性達96%。工程決策支援系統，與臨床或精神科無涉。</p><p class="meta">其他 · Water Res</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43063670/">PubMed</a><a href="https://doi.org/10.1016/j.watres.2026.127341">DOI</a></div><div class="acts" data-id="pmid:43063670"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Comment on &#x27;Large language model prompt engineering for medical education: A practical guide for the Australian and New Zealand College of Anaesthetists Final Examination&#x27;.</p><p class="why">麻醉科考試LLM提示工程評論信函，無摘要無實質內容。</p><p class="meta">其他 · Anaesth Intensive Care</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43065327/">PubMed</a><a href="https://doi.org/10.1177/0310057X261508878">DOI</a></div><div class="acts" data-id="pmid:43065327"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">Computational methods for cell-cell communication via single cells.</p><p class="why">細胞間通訊計算方法綜述，161 篇論文分類，與精神科臨床無關。</p><p class="meta">其他 · Nat Methods</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064831/">PubMed</a><a href="https://doi.org/10.1038/s41592-026-03287-4">DOI</a></div><div class="acts" data-id="pmid:43064831"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">1</div><div><p class="ttl">System of agentic AI for the discovery of metal-organic frameworks.</p><p class="why">金屬有機框架CO2捕集的agentic AI系統，四個MOF合成驗證。材料科學應用，與臨床醫學無關。</p><p class="meta">其他 · Nat Comput Sci</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064736/">PubMed</a><a href="https://doi.org/10.1038/s43588-026-01058-x">DOI</a></div><div class="acts" data-id="pmid:43064736"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Author Correction: Microbial community resemblance methods differ in their ability to detect biologically relevant patterns.</p><p class="why">正誤更正，無實質內容。</p><p class="meta">其他 · Nat Methods</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064832/">PubMed</a><a href="https://doi.org/10.1038/s41592-026-03336-y">DOI</a></div><div class="acts" data-id="pmid:43064832"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Concerns about use of placebo control in clinical trials of Obinutuzumab β for aquaporin-4 antibody positive neuromyelitis optica spectrum disorder.</p><p class="why">水通道蛋白-4 抗體陽性視神經脊髓炎臨床試驗安慰劑對照倫理疑慮信件。</p><p class="meta">其他 · Nat Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064782/">PubMed</a><a href="https://doi.org/10.1038/s41591-026-04781-0">DOI</a></div><div class="acts" data-id="pmid:43064782"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div><div class="item"><div class="sc">0</div><div><p class="ttl">Reply to: Concerns about use of placebo control in clinical trials of Obinutuzumab β for aquaporin-4 antibody positive neuromyelitis optica spectrum disorder.</p><p class="why">水通道蛋白-4 抗體陽性視神經脊髓炎臨床試驗安慰劑對照爭議回覆信。</p><p class="meta">其他 · Nat Med</p><div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/43064783/">PubMed</a><a href="https://doi.org/10.1038/s41591-026-04782-z">DOI</a></div><div class="acts" data-id="pmid:43064783"><button class="save">收藏</button><button class="up">讚</button><button class="dn">倒讚</button></div></div></div></details>
+<footer>
+<button id="expbtn">匯出回饋（複製到剪貼簿）</button>
+<textarea id="dump" readonly></textarea>
+<p>收藏與回饋存在這台裝置的瀏覽器裡，換裝置不會同步。
+分數由 Claude 依設定檔的評分標準評定，僅供分流參考，不代表論文品質。</p>
+</footer>
+</div>
+<script>
+window.NS = "radar";
+window.ITEMS = {"pmid:43064759": {"id": "pmid:43064759", "title": "Defensive reactivity to interoceptive perturbation in panic disorder: Depressive symptom burden and panic severity dimensions.", "why": "恐慌症85例患者，hyperventilation後startle反應與抑鬱症嚴重度、恐慌症嚴重度的關聯，網絡分析識別抑鬱症為防禦動員的穩健相關因子。直接涉及恐慌症-畏懼曠野症機轉。", "tag": "畏懼曠野症", "venue": "Transl Psychiatry", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064759/", "doi": "10.1038/s41398-026-04570-w", "score": 8, "source": "PubMed", "dv": 2}, "pmid:43064535": {"id": "pmid:43064535", "title": "Video-Based Automated Seizure Classification Using Multimodal Large Language Models.", "why": "多模態LLM從發作視頻擷取24項症狀學特徵預測癲癇vs非癲癇發作，90例患者LOPO交叉驗證F1=0.76。臨床文本LLM的視頻特徵擷取與evidence grounding案例。", "tag": "臨床文本LLM", "venue": "Ann Clin Transl Neurol", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064535/", "doi": "10.1002/acn3.70574", "score": 7, "source": "PubMed", "dv": 2}, "pmid:43064362": {"id": "pmid:43064362", "title": "Feasibility and Acceptability of a Large Language Model-Based Electronic Health Record Summarization Tool in Inpatient Care.", "why": "LLM型EHR摘要工具(Epic Hyperdrive)32名臨床醫師、七科評估，幻覺率6.2%、完整性與正確性獲高評分。真實醫院EHR摘要可行性驗證，但無新方法論貢獻、樣本規模小、無精神科。", "tag": "臨床文本LLM", "venue": "Appl Clin Inform", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064362/", "doi": "10.1055/a-3001-9600", "score": 6, "source": "PubMed", "dv": 2}, "pmid:43063990": {"id": "pmid:43063990", "title": "Evaluating a Large Language Model Conversational Agent for Collecting Standardized Back Pain Data: A Cross-Over Study of Accuracy, Usability, and User Preference.", "why": "LLM對話式系統收集下背痛標準化數據(NIH最小數據集43項)，30名代理患者交叉研究，完整性100%、正確性98.3%、耗時13.6分鐘。交互自然語言數據收集研究，方法應用於非精神科。", "tag": "其他", "venue": "Methods Inf Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43063990/", "doi": "10.1055/a-3009-7011", "score": 5, "source": "PubMed", "dv": 2}, "pmid:43064243": {"id": "pmid:43064243", "title": "Longitudinal contributions of mother-toddler neural synchrony and maternal depression to children's neural reward response.", "why": "63 對母幼 fNIRS 超掃描測同步性預測 1 年後兒童獎賞反應，產後憂鬱症調節效應，樣本小無縱貫臨床結果。", "tag": "其他", "venue": "Biol Psychiatry Cogn Neurosci Neuroimaging", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064243/", "doi": "10.1016/j.bpsc.2026.10.017", "score": 5, "source": "PubMed", "dv": 2}, "medrxiv:10.1101/2025.11.26.25341066": {"id": "medrxiv:10.1101/2025.11.26.25341066", "title": "Methylphenidate-induced changes in target-enriched functional connectivity in ADHD", "why": "83名刺激劑初治ADHD兒童成人resting-state fMRI單劑methylphenidate前後，REACT分析dopamine/noradrenaline受體富集功能連結。分子靶向神經影像機轉研究，涉及神經發育但非精神病或成癮主軸。", "tag": "神經影像方法", "venue": "psychiatry and clinical psychology", "date": "2026-11-19", "url": "https://doi.org/10.1101/2025.11.26.25341066", "doi": "10.1101/2025.11.26.25341066", "score": 5, "source": "medrxiv", "dv": 2}, "pmid:43063796": {"id": "pmid:43063796", "title": "Ordinal conformal partial-label prediction for medical image grading.", "why": "醫學影像分級的序序conformal學習框架，9個數據集、macro-accuracy增益1.27%。與精神科臨床文本無關。", "tag": "其他", "venue": "Med Image Anal", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43063796/", "doi": "10.1016/j.media.2026.104399", "score": 4, "source": "PubMed", "dv": 2}, "pmid:43064328": {"id": "pmid:43064328", "title": "Sleep characteristics, glymphatic proxies, and ATN biomarkers in Alzheimer's disease.", "why": "325 名受試者睡眠特徵與膠淋巴代謝代理與阿茲海默症 ATN 生物標記橫斷關聯，失智症非精神科主軸。", "tag": "神經影像方法", "venue": "Neuroimage", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064328/", "doi": "10.1016/j.neuroimage.2026.122360", "score": 4, "source": "PubMed", "dv": 2}, "pmid:43064241": {"id": "pmid:43064241", "title": "The Association between Physical Activity and Higher Corticolimbic Synaptic Density is Independent of Body Mass Index.", "why": "51 人身體活動與 [18F]SynVesT-1 PET 皮質邊緣系統突觸密度關聯獨立於 BMI，小樣本無精神科臨床應用。", "tag": "神經影像方法", "venue": "Biol Psychiatry Cogn Neurosci Neuroimaging", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064241/", "doi": "10.1016/j.bpsc.2026.11.006", "score": 4, "source": "PubMed", "dv": 2}, "pmid:43064668": {"id": "pmid:43064668", "title": "Addressing Inconsistency in Functional Neuroimaging: A Replicable Data-Driven Multi-Scale Functional Atlas for Canonical Brain Networks.", "why": "10 萬 resting-state fMRI 資料集製作功能腦網路圖譜，標準化命名，與精神科臨床預測無直接關聯。", "tag": "神經影像方法", "venue": "Hum Brain Mapp", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064668/", "doi": "10.1002/hbm.70695", "score": 3, "source": "PubMed", "dv": 2}, "pmid:43064242": {"id": "pmid:43064242", "title": "Brain variation underlying genetic factors linked to psychiatric and neurodegenerative disorders.", "why": "12 項精神疾患與 4 神經退化病基因組結構方程模型，3,935 腦影像表型關聯，99 精細定位位點，無臨床預測驗證。", "tag": "神經影像方法", "venue": "Biol Psychiatry Cogn Neurosci Neuroimaging", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064242/", "doi": "10.1016/j.bpsc.2026.11.005", "score": 3, "source": "PubMed", "dv": 2}, "pmid:43064830": {"id": "pmid:43064830", "title": "A two-platform blueprint for modeling human brain development.", "why": "人類腦發育模型整合綜述，器官體與嵌合體平台，基礎神經發育研究無臨床端點。", "tag": "其他", "venue": "Nat Methods", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064830/", "doi": "10.1038/s41592-026-03327-z", "score": 2, "source": "PubMed", "dv": 2}, "pmid:43063670": {"id": "pmid:43063670", "title": "Navigating membrane selection for PFAS removal with permeability-selectivity trade-off and an AI-powered conversational agent.", "why": "Agentic RAG系統優化PFAS膜選擇，四種LLM設定比較、正確性達96%。工程決策支援系統，與臨床或精神科無涉。", "tag": "其他", "venue": "Water Res", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43063670/", "doi": "10.1016/j.watres.2026.127341", "score": 2, "source": "PubMed", "dv": 2}, "pmid:43065327": {"id": "pmid:43065327", "title": "Comment on 'Large language model prompt engineering for medical education: A practical guide for the Australian and New Zealand College of Anaesthetists Final Examination'.", "why": "麻醉科考試LLM提示工程評論信函，無摘要無實質內容。", "tag": "其他", "venue": "Anaesth Intensive Care", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43065327/", "doi": "10.1177/0310057X261508878", "score": 1, "source": "PubMed", "dv": 2}, "pmid:43064831": {"id": "pmid:43064831", "title": "Computational methods for cell-cell communication via single cells.", "why": "細胞間通訊計算方法綜述，161 篇論文分類，與精神科臨床無關。", "tag": "其他", "venue": "Nat Methods", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064831/", "doi": "10.1038/s41592-026-03287-4", "score": 1, "source": "PubMed", "dv": 2}, "pmid:43064736": {"id": "pmid:43064736", "title": "System of agentic AI for the discovery of metal-organic frameworks.", "why": "金屬有機框架CO2捕集的agentic AI系統，四個MOF合成驗證。材料科學應用，與臨床醫學無關。", "tag": "其他", "venue": "Nat Comput Sci", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064736/", "doi": "10.1038/s43588-026-01058-x", "score": 1, "source": "PubMed", "dv": 2}, "pmid:43064832": {"id": "pmid:43064832", "title": "Author Correction: Microbial community resemblance methods differ in their ability to detect biologically relevant patterns.", "why": "正誤更正，無實質內容。", "tag": "其他", "venue": "Nat Methods", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064832/", "doi": "10.1038/s41592-026-03336-y", "score": 0, "source": "PubMed", "dv": 2}, "pmid:43064782": {"id": "pmid:43064782", "title": "Concerns about use of placebo control in clinical trials of Obinutuzumab β for aquaporin-4 antibody positive neuromyelitis optica spectrum disorder.", "why": "水通道蛋白-4 抗體陽性視神經脊髓炎臨床試驗安慰劑對照倫理疑慮信件。", "tag": "其他", "venue": "Nat Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064782/", "doi": "10.1038/s41591-026-04781-0", "score": 0, "source": "PubMed", "dv": 2}, "pmid:43064783": {"id": "pmid:43064783", "title": "Reply to: Concerns about use of placebo control in clinical trials of Obinutuzumab β for aquaporin-4 antibody positive neuromyelitis optica spectrum disorder.", "why": "水通道蛋白-4 抗體陽性視神經脊髓炎臨床試驗安慰劑對照爭議回覆信。", "tag": "其他", "venue": "Nat Med", "date": "", "url": "https://pubmed.ncbi.nlm.nih.gov/43064783/", "doi": "10.1038/s41591-026-04782-z", "score": 0, "source": "PubMed", "dv": 2}};
+window.PROXY = "";
+
+const KS=window.NS+'.saved', KF=window.NS+'.feedback';
+const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}};
+const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){
+  alert('儲存空間寫入失敗，收藏可能不會保留。')}};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,
+  c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function linksHtml(it){
+  let h='';
+  if(it.url) h+='<a href="'+esc(it.url)+'">'+
+    (it.source==='PubMed'?'PubMed':it.source==='arXiv'?'arXiv':'預印本')+'</a>';
+  // 2026-09-26 之前收藏的項目，DOI 是舊程式抓的，可能指向參考文獻裡的
+  // 另一篇論文。那些只留 PubMed 連結。
+  const doiOk = it.doi && (it.dv || 0) >= 2;
+  if(doiOk) h+='<a href="https://doi.org/'+esc(it.doi)+'">DOI</a>';
+  if(doiOk && window.PROXY) h+='<a href="'+
+    esc(window.PROXY+'https://doi.org/'+it.doi)+'">全文（校內）</a>';
+  if(it.doi && !doiOk) h+='<span class="stale">DOI 待更新，請用 PubMed</span>';
+  return '<div class="links">'+h+'</div>';
+}
+
+function itemHtml(it){
+  const meta=[it.tag,it.venue,it.date].filter(Boolean).join(' · ');
+  return '<div class="item"><div class="sc">'+esc(it.score)+'</div><div>'
+    +'<p class="ttl">'+esc(it.title)+'</p>'
+    +(it.why?'<p class="why">'+esc(it.why)+'</p>':'')
+    +'<p class="meta">'+esc(meta)+'</p>'+linksHtml(it)
+    +'<div class="acts" data-id="'+esc(it.id)+'">'
+    +'<button class="save">收藏</button><button class="up">讚</button>'
+    +'<button class="dn">倒讚</button></div></div></div>';
+}
+
+function renderSaved(){
+  const box=document.getElementById('savedbox');
+  const arr=Object.values(rd(KS)).sort((a,b)=>(b._at||0)-(a._at||0));
+  box.innerHTML = arr.length
+    ? '<h2 class="saved">待讀清單（'+arr.length+'）</h2>'+arr.map(itemHtml).join('')
+    : '';
+  paint();
+}
+
+function paint(){
+  const saved=rd(KS), fb=rd(KF);
+  document.querySelectorAll('.acts').forEach(el=>{
+    const id=el.dataset.id, v=(fb[id]||{}).v;
+    const sb=el.querySelector('.save');
+    sb.classList.toggle('on', !!saved[id]);
+    sb.textContent = saved[id]?'已收藏':'收藏';
+    el.querySelector('.up').classList.toggle('on', v===1);
+    el.querySelector('.dn').classList.toggle('on', v===-1);
+  });
+}
+
+document.addEventListener('click', e=>{
+  const btn=e.target.closest('.acts button'); if(!btn) return;
+  const id=btn.closest('.acts').dataset.id;
+  const it=(window.ITEMS||{})[id] || rd(KS)[id];
+  if(!it) return;
+  if(btn.classList.contains('save')){
+    const s=rd(KS);
+    if(s[id]) delete s[id]; else s[id]=Object.assign({},it,{_at:Date.now()});
+    wr(KS,s); renderSaved();
+  } else {
+    const v=btn.classList.contains('up')?1:-1, f=rd(KF);
+    if((f[id]||{}).v===v) delete f[id];
+    else f[id]={v:v,title:it.title,venue:it.venue,tag:it.tag,at:Date.now()};
+    wr(KF,f); paint();
+  }
+});
+
+window.addEventListener('DOMContentLoaded',()=>{
+  renderSaved();
+  document.getElementById('expbtn').addEventListener('click',()=>{
+    const arr=Object.entries(rd(KF)).map(([id,o])=>({id:id,v:o.v,
+      title:o.title,venue:o.venue,tag:o.tag}));
+    const txt=JSON.stringify(arr,null,1), ta=document.getElementById('dump');
+    ta.style.display='block'; ta.value=txt; ta.select();
+    if(navigator.clipboard) navigator.clipboard.writeText(txt).then(()=>{
+      document.getElementById('expbtn').textContent='已複製 '+arr.length+' 筆回饋';},()=>{});
+  });
+});
+
+</script>
+</body></html>
